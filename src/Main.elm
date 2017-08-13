@@ -4,6 +4,8 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 import Messages exposing (..)
 import Models exposing (Flags, Model, initialModel)
+import Navigation exposing (..)
+import Routing exposing (parseLocation)
 import Update exposing (update)
 import View exposing (view)
 
@@ -11,14 +13,13 @@ import View exposing (view)
 -- INIT
 
 
-init : Flags -> ( Model, Cmd Msg )
-init flags =
-    ( { initialModel
-        | apiUrl = flags.apiUrl
-        , nodeEnv = flags.nodeEnv
-      }
-    , Cmd.none
-    )
+init : Flags -> Location -> ( Model, Cmd Msg )
+init flags location =
+    let
+        currentRoute =
+            parseLocation location
+    in
+    ( initialModel flags currentRoute, Cmd.none )
 
 
 
@@ -36,7 +37,7 @@ subscriptions model =
 
 main : Program Flags Model Msg
 main =
-    Html.programWithFlags
+    Navigation.programWithFlags Messages.OnLocationChange
         { init = init
         , view = view
         , update = update

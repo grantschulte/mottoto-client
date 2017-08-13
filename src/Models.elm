@@ -19,6 +19,7 @@ type alias Model =
     { greeting : Greeting
     , apiUrl : ApiUrl
     , nodeEnv : NodeEnv
+    , route : Route
     }
 
 
@@ -28,13 +29,19 @@ type alias Flags =
     }
 
 
+type Route
+    = WelcomeRoute
+    | NotFoundRoute
+
+
 
 -- INITIAL MODEL
 
 
-initialModel : Model
-initialModel =
+initialModel : Flags -> Route -> Model
+initialModel flags route =
     { greeting = "Hello from Mottoto"
-    , apiUrl = ""
-    , nodeEnv = ""
+    , apiUrl = flags.apiUrl
+    , nodeEnv = flags.nodeEnv
+    , route = route
     }
