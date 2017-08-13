@@ -1,0 +1,31 @@
+/*
+ * Color Helpers
+ */
+
+.color-primary {
+  color: $color-primary;
+}
+
+.color-secondary {
+  color: $color-secondary;
+}
+
+.color-accent {
+  color: $color-accent;
+}
+
+.color-warn {
+  color: $color-warn;
+}
+
+.color-dark {
+  color: $color-dark;
+}
+
+/*
+ * Layout Helpers
+ */
+
+.page-wrapper {
+  padding: 1.2em;
+}
