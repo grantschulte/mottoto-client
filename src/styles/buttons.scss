@@ -1,0 +1,22 @@
+.button {
+  border: 1px solid;
+  border-radius: $button-radius;
+  display: inline-block;
+  font-family: $font-primary;
+  font-size: 16px;
+  height: 40px;
+}
+
+.button-large {
+  font-size: 18px;
+  font-weight: bold;
+  height: 50px;
+  min-width: 160px;
+  padding: 0 20px;
+}
+
+.button-primary {
+  background-color: transparent;
+  border-color: $color-secondary;
+  color: $color-secondary;
+}

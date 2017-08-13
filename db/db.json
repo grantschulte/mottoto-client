@@ -1,24 +1,33 @@
 {
   "users": [
     {
-      "id": "1",
+      "id": 1,
       "handle": "avantgrant"
     },
     {
-      "id": "2",
+      "id": 2,
       "handle": "phantummm"
+    },
+    {
+      "id": 3,
+      "handle": "abelincoln"
     }
   ],
   "mottos": [
     {
-      "id": "1",
-      "user": "1",
-      "text": "Keep it tight, keep it right."
+      "id": 1,
+      "text": "Keep it easy, keep it breezy.",
+      "userId": 1
     },
     {
-      "id": "2",
-      "user": "2",
-      "text": "There is no greater day than this one."
+      "id": 2,
+      "text": "Keep it right, keep it tight.",
+      "userId": 2
+    },
+    {
+      "id": 3,
+      "text": "Nearly all men can stand adversity, but if you want to test a man's character, give him power.",
+      "userId": 3
     }
   ]
 }
