@@ -25,11 +25,11 @@ view model =
 infoText : ApiUrl -> NodeEnv -> Html Msg
 infoText apiUrl nodeEnv =
     p [ class "m0" ]
-        [ text "Your are running in "
+        [ text "Your are running a "
         , em [ class "underline" ]
             [ text nodeEnv
             ]
-        , text " and the api url is "
+        , text " environment and the api url is "
         , em [ class "underline" ]
             [ text apiUrl
             ]

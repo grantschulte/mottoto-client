@@ -12,7 +12,7 @@ import Models exposing (..)
 view : Html Msg
 view =
     div [ class "welcome-page flex items-center justify-center" ]
-        [ h1 []
+        [ h1 [ class "mt0" ]
             [ text "mottoto"
             ]
         ]
