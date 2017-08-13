@@ -19,8 +19,20 @@ module.exports = {
         test: /\.(css|scss)$/,
         use: [
           "style-loader",
-          "css-loader",
-        ]
+          "css-loader"
+        ],
+
+      },
+      {
+        test: /\.scss$/,
+        loader: "sass-loader",
+        options: {
+          sourceMap: true,
+          data: "@import 'vars';",
+          includePaths: [
+            path.join(__dirname, "./../src")
+          ]
+        }
       },
       {
         test:    /\.html$/,
