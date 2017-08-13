@@ -3,22 +3,17 @@ module Main exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Messages exposing (..)
-import Models exposing (ApiUrl, Flags, Greeting, Model, NodeEnv)
+import Models exposing (Flags, Model, initialModel)
 import Update exposing (update)
 import View exposing (view)
 
 
-initModel : Model
-initModel =
-    { greeting = "Hello from Mottoto"
-    , apiUrl = ""
-    , nodeEnv = ""
-    }
+-- INIT
 
 
 init : Flags -> ( Model, Cmd Msg )
 init flags =
-    ( { initModel
+    ( { initialModel
         | apiUrl = flags.apiUrl
         , nodeEnv = flags.nodeEnv
       }
