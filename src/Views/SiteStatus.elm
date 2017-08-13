@@ -11,10 +11,12 @@ import Models exposing (ApiUrl, Model, NodeEnv)
 
 view : Model -> Html Msg
 view model =
-    div [ class "page-wrapper" ]
-        [ Html.h3 [ class "mt0" ]
-            [ text model.greeting
-            , span [ class "material-icons color-warn" ] [ text "favorite" ]
+    div [ class "site-status-page" ]
+        [ Html.h3 [ class "mt0 flex items-center" ]
+            [ span [ class "material-icons color-warn mr1" ]
+                [ text "info_outline"
+                ]
+            , text "Mottoto Status"
             ]
         , infoText model.apiUrl model.nodeEnv
         ]
@@ -24,7 +26,11 @@ infoText : ApiUrl -> NodeEnv -> Html Msg
 infoText apiUrl nodeEnv =
     p [ class "m0" ]
         [ text "Your are running in "
-        , em [ class "underline" ] [ text nodeEnv ]
+        , em [ class "underline" ]
+            [ text nodeEnv
+            ]
         , text " and the api url is "
-        , em [ class "underline" ] [ text apiUrl ]
+        , em [ class "underline" ]
+            [ text apiUrl
+            ]
         ]

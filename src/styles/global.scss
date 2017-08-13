@@ -4,13 +4,17 @@
 
 html {
   -webkit-font-smoothing: antialiased;
+  margin: 0;
+  padding: 0;
+  height: 100%;
 }
 
 body {
   padding: 0;
   margin: 0;
+  height: 100%;
   font-size: 16px;
   font-family: "Faustina", "Georgia", serif;
-  background-color: $color-dark;
-  color: $color-accent;
+  background-color: $color-primary;
+  color: $color-secondary;
 }

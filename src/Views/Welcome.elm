@@ -2,11 +2,17 @@ module Views.Welcome exposing (..)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
+import Messages exposing (..)
+import Models exposing (..)
 
 
 -- VIEW: WELCOME
 
 
-view : Model -> Html Msg
-view model =
-    div [] [ text "Welcome" ]
+view : Html Msg
+view =
+    div [ class "welcome-page flex items-center justify-center" ]
+        [ h1 []
+            [ text "mottoto"
+            ]
+        ]

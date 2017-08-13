@@ -31,6 +31,7 @@ type alias Flags =
 
 type Route
     = WelcomeRoute
+    | SiteStatusRoute
     | NotFoundRoute
 
 

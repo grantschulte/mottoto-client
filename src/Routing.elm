@@ -9,6 +9,7 @@ matchers : Parser (Route -> a) a
 matchers =
     oneOf
         [ map WelcomeRoute top
+        , map SiteStatusRoute (s "site-status")
         ]
 
 
