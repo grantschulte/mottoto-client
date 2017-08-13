@@ -1,10 +1,24 @@
 {
-  "players": [
-    { "id": "1", "name": "Sally", "level": 2 },
-    { "id": "2", "name": "Lance", "level": 1 },
-    { "id": "3", "name": "Aki", "level": 3 },
-    { "id": "4", "name": "Maria", "level": 4 },
-    { "id": "5", "name": "Julian", "level": 1 },
-    { "id": "6", "name": "Jaime", "level": 1 }
+  "users": [
+    {
+      "id": "1",
+      "handle": "avantgrant"
+    },
+    {
+      "id": "2",
+      "handle": "phantummm"
+    }
+  ],
+  "mottos": [
+    {
+      "id": "1",
+      "user": "1",
+      "text": "Keep it tight, keep it right."
+    },
+    {
+      "id": "2",
+      "user": "2",
+      "text": "There is no greater day than this one."
+    }
   ]
 }
