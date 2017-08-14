@@ -11,10 +11,13 @@ import Models exposing (..)
 
 view : Html Msg
 view =
-    div [ class "welcome-page flex items-center justify-center" ]
+    div
+        [ id "welcome-page"
+        , class "flex items-center justify-center height-full"
+        ]
         [ div [ class "max-width-2 center" ]
             [ div [ class "mb3" ]
-                [ h1 [ class "mt0 mb2 h1" ] [ text "mottoto" ]
+                [ h1 [ class "mt0 mb2 h1 lh1" ] [ text "mottoto" ]
                 , div [ class "m2" ]
                     [ span [ class "dot" ] []
                     ]

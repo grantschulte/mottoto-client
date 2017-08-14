@@ -1,3 +1,7 @@
+:root {
+  --link-color: $color-secondary;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -17,6 +21,14 @@ body {
   font-family: $font-primary;
   background-color: $color-primary;
   color: $color-secondary;
+}
+
+a {
+  color: var(--link-color);
+
+  &:hover {
+    // color: darken(, 10%);
+  }
 }
 
 .dot {

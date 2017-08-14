@@ -26,7 +26,14 @@
  * Layout Helpers
  */
 
-.page-wrapper {
+.height-full {
   height: 100%;
-  padding: 1.2rem;
+}
+
+/*
+ * Type Helpers
+ */
+
+.lh-1 {
+  line-height: 1;
 }
