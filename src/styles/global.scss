@@ -18,3 +18,11 @@ body {
   background-color: $color-primary;
   color: $color-secondary;
 }
+
+.dot {
+  display: inline-block;
+  height: 5px;
+  width: 5px;
+  border-radius: 50%;
+  background-color: $color-secondary;
+}
