@@ -23,6 +23,11 @@ authorRoute handle =
     "#author/" ++ handle
 
 
+browseRoute : String
+browseRoute =
+    "#browse"
+
+
 
 -- FUNCTIONS
 
