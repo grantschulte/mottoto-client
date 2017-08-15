@@ -21,8 +21,8 @@ view =
             , div [ class "form my3" ]
                 [ label [ class "hide" ] [ text "handle" ]
                 , input
-                    [ type_ "text"
-                    , placeholder "johnkennedy"
+                    [ type_ "email"
+                    , placeholder "abrahamlincoln@gmail.com"
                     , class "mb1"
                     ]
                     []

@@ -6,6 +6,7 @@ import Messages exposing (..)
 import Models exposing (..)
 import RemoteData exposing (WebData)
 import String.Extra exposing (..)
+import Views.Loader exposing (..)
 
 
 view : Model -> Html Msg
@@ -25,7 +26,7 @@ page response =
             text ""
 
         RemoteData.Loading ->
-            text "Loading..."
+            Views.Loader.view
 
         RemoteData.Success author ->
             motto author
@@ -36,9 +37,9 @@ page response =
 
 motto : Author -> Html Msg
 motto author =
-    div [ class "col-12 md-col-8" ]
-        [ h1 [ class "font-big regular" ] [ mottoText author.motto ]
-        , p [ class "h3 right-align" ] [ authorText author.handle ]
+    div [ class "col-12 md-col-6" ]
+        [ h1 [ class "h1 regular" ] [ mottoText author.motto ]
+        , p [ class "h2 mt3 right-align" ] [ authorText author.handle ]
         ]
 
 
