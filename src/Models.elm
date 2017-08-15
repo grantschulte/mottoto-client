@@ -22,7 +22,8 @@ type alias NodeEnv =
 
 
 type alias Author =
-    { handle : AuthorHandle
+    { email : AuthorEmail
+    , handle : AuthorHandle
     , motto : AuthorMotto
     }
 
@@ -32,6 +33,10 @@ type alias AuthorHandle =
 
 
 type alias AuthorMotto =
+    String
+
+
+type alias AuthorEmail =
     String
 
 
@@ -68,5 +73,5 @@ initialModel flags route =
     { apiUrl = flags.apiUrl
     , nodeEnv = flags.nodeEnv
     , route = route
-    , author = Author "phantummm" "Keep it right, keep it tight."
+    , author = Author "phantummm@gmail.com" "phantummm" "Keep it right, keep it tight."
     }

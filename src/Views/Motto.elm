@@ -1,4 +1,4 @@
-module Authors.Motto exposing (..)
+module Views.Motto exposing (..)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
@@ -14,8 +14,8 @@ view model authorHandle =
         , class "flex items-center justify-center h100"
         ]
         [ div [ class "col-12 md-col-8" ]
-            [ h1 [ class "motto--text" ] [ mottoText model.author.motto ]
-            , p [ class "motto--handle h3 right-align" ] [ authorText model.author.handle ]
+            [ h1 [ class "font-big regular" ] [ mottoText model.author.motto ]
+            , p [ class "h3 right-align" ] [ authorText model.author.handle ]
             ]
         ]
 

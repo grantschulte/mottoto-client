@@ -2,15 +2,21 @@
   "users": [
     {
       "id": 1,
-      "handle": "avantgrant"
+      "email": "orjazzmic@gmail.com",
+      "handle": "avantgrant",
+      "motto": "Silly southern dances, passionate romances, kissing with the lights on, let's make this song our song."
     },
     {
       "id": 2,
-      "handle": "phantummm"
+      "email": "phantummm@gmail.com",
+      "handle": "phantummm",
+      "motto": "Keep it right, keep it tight."
     },
     {
       "id": 3,
-      "handle": "abelincoln"
+      "email": "abelincoln@gmail.com",
+      "handle": "abelincoln",
+      "motto": "Nearly all men can stand adversity, but if you want to test a man's character, give him power."
     }
   ],
   "mottos": [

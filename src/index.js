@@ -4,7 +4,7 @@
 // if you wish to keep this file clean.
 
 require("ace-css/css/ace.css");
-require("./styles/app.scss");
+require("./Styles/app.scss");
 
 // Require index.html so it gets copied to dist
 

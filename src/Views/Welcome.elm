@@ -17,7 +17,7 @@ view =
         , class "flex items-center justify-center h100"
         ]
         [ div [ class "col-12 md-col-5 center" ]
-            [ h1 [ class "mt0 mb2 h1 lh1" ] [ text "mottoto" ]
+            [ h1 [ class "mt0 mb2 h1 lh1" ] [ text "motto" ]
             , div [ class "m2" ]
                 [ span [ class "dot" ] []
                 ]
