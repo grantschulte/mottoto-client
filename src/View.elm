@@ -1,5 +1,6 @@
 module View exposing (..)
 
+import Authors.Motto exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Messages exposing (..)
@@ -29,6 +30,9 @@ view model =
 page : Model -> Html Msg
 page model =
     case model.route of
+        AuthorRoute authorId ->
+            Authors.Motto.view model authorId
+
         EntryRoute ->
             Views.Entry.view
 

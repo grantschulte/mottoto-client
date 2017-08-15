@@ -5,37 +5,38 @@ import Navigation exposing (Location)
 import UrlParser exposing (..)
 
 
--- ROUTES
+-- PATHS
 
 
-welcomeRoute : String
-welcomeRoute =
+welcomePath : String
+welcomePath =
     "#"
 
 
-entryRoute : String
-entryRoute =
+entryPath : String
+entryPath =
     "#entry"
 
 
-authorRoute : AuthorHandle -> String
-authorRoute handle =
+authorPath : AuthorHandle -> String
+authorPath handle =
     "#author/" ++ handle
 
 
-browseRoute : String
-browseRoute =
+browsePath : String
+browsePath =
     "#browse"
 
 
 
--- FUNCTIONS
+-- PARSING
 
 
 matchers : Parser (Route -> a) a
 matchers =
     oneOf
         [ map WelcomeRoute top
+        , map AuthorRoute (s "author" </> string)
         , map EntryRoute (s "entry")
         , map SiteStatusRoute (s "site-status")
         ]

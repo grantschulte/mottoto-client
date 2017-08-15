@@ -4,7 +4,7 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 import Messages exposing (..)
 import Models exposing (..)
-import Routing exposing (entryRoute)
+import Routing exposing (entryPath)
 
 
 -- VIEW: WELCOME
@@ -27,7 +27,7 @@ view =
                 [ span [ class "dot" ] []
                 ]
             , p [ class "h3" ]
-                [ a [ href entryRoute ] [ text "compose" ]
+                [ a [ href entryPath ] [ text "compose" ]
                 , text " a motto or "
                 , a [ href "" ] [ text "browse" ]
                 , text "."

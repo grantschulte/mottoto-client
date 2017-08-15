@@ -1,10 +1,12 @@
 module Models exposing (..)
 
--- TYPES
+-- TYPES: ENV
 
 
-type alias AuthorHandle =
-    String
+type alias Flags =
+    { apiUrl : ApiUrl
+    , nodeEnv : NodeEnv
+    }
 
 
 type alias ApiUrl =
@@ -15,29 +17,46 @@ type alias NodeEnv =
     String
 
 
-type alias Greeting =
+
+-- TYPES: AUTHOR
+
+
+type alias Author =
+    { handle : AuthorHandle
+    , motto : AuthorMotto
+    }
+
+
+type alias AuthorHandle =
     String
+
+
+type alias AuthorMotto =
+    String
+
+
+
+-- TYPES: MODEL
 
 
 type alias Model =
     { apiUrl : ApiUrl
     , nodeEnv : NodeEnv
     , route : Route
-    , author : AuthorHandle
+    , author : Author
     }
 
 
-type alias Flags =
-    { apiUrl : ApiUrl
-    , nodeEnv : NodeEnv
-    }
+
+-- TYPES: ROUTE
 
 
 type Route
-    = WelcomeRoute
+    = AuthorRoute AuthorHandle
     | EntryRoute
-    | SiteStatusRoute
     | NotFoundRoute
+    | SiteStatusRoute
+    | WelcomeRoute
 
 
 
@@ -49,5 +68,5 @@ initialModel flags route =
     { apiUrl = flags.apiUrl
     , nodeEnv = flags.nodeEnv
     , route = route
-    , author = ""
+    , author = Author "phantummm" "Keep it right, keep it tight."
     }

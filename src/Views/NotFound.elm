@@ -3,7 +3,7 @@ module Views.NotFound exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Messages exposing (..)
-import Routing exposing (welcomeRoute)
+import Routing exposing (welcomePath)
 
 
 -- VIEW: NOT FOUND
@@ -28,6 +28,6 @@ view =
                 [ span [ class "dot" ] []
                 ]
             , div [ class "h3" ]
-                [ a [ href welcomeRoute ] [ text "return home" ] ]
+                [ a [ href welcomePath ] [ text "return home" ] ]
             ]
         ]
