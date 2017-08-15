@@ -16,7 +16,7 @@ import Views.Welcome exposing (..)
 view : Model -> Html Msg
 view model =
     div [ class "site-wrapper" ]
-        [ div [ class "page-wrapper p2 height-full" ]
+        [ div [ class "page-wrapper p2 h100" ]
             [ page model
             ]
         ]

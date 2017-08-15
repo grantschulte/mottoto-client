@@ -7,9 +7,8 @@
   font-size: 16px;
   height: 40px;
   transition: $easeInOut;
-  
+
   &:focus {
-    border: none;
     outline: none;
   }
 }
@@ -29,5 +28,10 @@
   &:hover {
     border-color: darken($color-secondary, 10%);
     color: darken($color-secondary, 10%);
+  }
+
+  &:focus {
+    border-color: darken($color-secondary, 15%);
+    color: darken($color-secondary, 15%);
   }
 }
