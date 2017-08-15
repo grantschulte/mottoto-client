@@ -1,0 +1,31 @@
+input {
+  background-color: $color-secondary;
+  border: none;
+  border-bottom: 2px solid $color-secondary;
+  border-radius: $border-radius;
+  color: $color-primary;
+  font-size: 1.2rem;
+  font-family: $font-primary;
+  height: 50px;
+  padding: 1rem;
+  transition: $easeInOut;
+  width: 100%;
+  
+  &:focus {
+    box-shadow: none;
+    outline: none;
+    border-color: lighten($color-dark, 30%);
+  }
+
+  &::-webkit-input-placeholder {
+    color: $color-primary;
+  }
+
+  &::-moz-placeholder {
+    color: $color-primary;
+  }
+}
+
+input[type="password"] {
+  letter-spacing: 2px;
+}

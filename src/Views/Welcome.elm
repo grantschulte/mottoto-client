@@ -4,6 +4,7 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 import Messages exposing (..)
 import Models exposing (..)
+import Routing exposing (entryRoute)
 
 
 -- VIEW: WELCOME
@@ -13,7 +14,7 @@ view : Html Msg
 view =
     div
         [ id "welcome-page"
-        , class "flex items-center justify-center height-full"
+        , class "flex items-center justify-center h100"
         ]
         [ div [ class "col-12 md-col-5 center" ]
             [ h1 [ class "mt0 mb2 h1 lh1" ] [ text "mottoto" ]
@@ -26,9 +27,9 @@ view =
                 [ span [ class "dot" ] []
                 ]
             , p [ class "h3" ]
-                [ span [ class "underline" ] [ text "compose" ]
+                [ a [ href entryRoute ] [ text "compose" ]
                 , text " a motto or "
-                , span [ class "underline" ] [ text "browse" ]
+                , a [ href "" ] [ text "browse" ]
                 , text "."
                 ]
             ]

@@ -13,7 +13,7 @@ view : Html Msg
 view =
     div
         [ id "not-found-page"
-        , class "flex items-center justify-center height-full"
+        , class "flex items-center justify-center h100"
         ]
         [ div [ class "col-12 md-col-5 center" ]
             [ h1 [ class "mt0 mb2 h1 lh1" ] [ text "not found" ]

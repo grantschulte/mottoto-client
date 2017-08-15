@@ -13,27 +13,29 @@ view : Html Msg
 view =
     div
         [ id "entry-page"
-        , class "flex items-center justify-center height-full"
+        , class "flex items-center justify-center h100"
         ]
         [ div [ class "col-12 md-col-4 center m1-auto" ]
             [ h1 [ class "mt0 mb2 h1 lh1" ] [ text "login or create" ]
-            , div [ class "m2" ]
+            , div [ class "form" ]
                 [ label [ class "hide" ] [ text "handle" ]
                 , input
                     [ type_ "text"
                     , placeholder "johnkennedy"
-                    , class "block m0 width-full"
+                    , class "mb1"
                     ]
                     []
                 , label [ class "hide" ] [ text "password" ]
                 , input
                     [ type_ "password"
                     , placeholder "********"
-                    , class "block m0 width-full"
+                    , class ""
                     ]
                     []
                 ]
-            , div [ class "m2" ]
-                [ a [] [ text "proceed" ] ]
+            , div [ class "mt2" ]
+                [ button [ class "button button-large button-primary w100" ]
+                    [ text "proceed" ]
+                ]
             ]
         ]
