@@ -3,7 +3,6 @@ module Views.Entry exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Messages exposing (..)
-import Models exposing (..)
 
 
 -- VIEW: ENTRY

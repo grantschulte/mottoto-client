@@ -1,5 +1,6 @@
 module Update exposing (..)
 
+import Commands exposing (onLocationChangeCommand)
 import Messages exposing (..)
 import Models exposing (..)
 import Routing exposing (parseLocation)
@@ -14,9 +15,12 @@ update msg model =
         NoOp ->
             ( model, Cmd.none )
 
+        OnFetchAuthor response ->
+            ( { model | author = response }, Cmd.none )
+
         OnLocationChange location ->
             let
                 newRoute =
                     parseLocation location
             in
-            ( { model | route = newRoute }, Cmd.none )
+            ( { model | route = newRoute }, onLocationChangeCommand model newRoute )

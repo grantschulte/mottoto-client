@@ -3,7 +3,6 @@ module Views.Welcome exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Messages exposing (..)
-import Models exposing (..)
 import Routing exposing (entryPath)
 
 

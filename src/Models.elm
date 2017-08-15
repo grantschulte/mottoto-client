@@ -1,5 +1,8 @@
 module Models exposing (..)
 
+import RemoteData exposing (WebData)
+
+
 -- TYPES: ENV
 
 
@@ -46,9 +49,9 @@ type alias AuthorEmail =
 
 type alias Model =
     { apiUrl : ApiUrl
+    , author : WebData Author
     , nodeEnv : NodeEnv
     , route : Route
-    , author : Author
     }
 
 
@@ -71,7 +74,7 @@ type Route
 initialModel : Flags -> Route -> Model
 initialModel flags route =
     { apiUrl = flags.apiUrl
+    , author = RemoteData.Loading
     , nodeEnv = flags.nodeEnv
     , route = route
-    , author = Author "phantummm@gmail.com" "phantummm" "Keep it right, keep it tight."
     }

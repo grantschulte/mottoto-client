@@ -1,5 +1,6 @@
 module Main exposing (..)
 
+import Commands exposing (onInitCommand)
 import Messages exposing (..)
 import Models exposing (Flags, Model, initialModel)
 import Navigation exposing (..)
@@ -16,8 +17,11 @@ init flags location =
     let
         currentRoute =
             parseLocation location
+
+        model =
+            initialModel flags currentRoute
     in
-    ( initialModel flags currentRoute, Cmd.none )
+    ( model, onInitCommand model currentRoute )
 
 
 

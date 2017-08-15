@@ -43,8 +43,8 @@ header model =
 page : Model -> Html Msg
 page model =
     case model.route of
-        AuthorRoute authorId ->
-            Views.Motto.view model authorId
+        AuthorRoute authorHandle ->
+            Views.Motto.view model
 
         EntryRoute ->
             Views.Entry.view
