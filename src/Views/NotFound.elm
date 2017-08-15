@@ -3,6 +3,7 @@ module Views.NotFound exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Messages exposing (..)
+import Routing exposing (welcomeRoute)
 
 
 -- VIEW: NOT FOUND
@@ -14,7 +15,7 @@ view =
         [ id "not-found-page"
         , class "flex items-center justify-center height-full"
         ]
-        [ div [ class "max-width-2 center" ]
+        [ div [ class "col-12 md-col-5 center" ]
             [ h1 [ class "mt0 mb2 h1 lh1" ] [ text "not found" ]
             , div [ class "m2" ]
                 [ span [ class "dot" ] []
@@ -27,6 +28,6 @@ view =
                 [ span [ class "dot" ] []
                 ]
             , div [ class "h3" ]
-                [ a [ href "#/" ] [ text "return home" ] ]
+                [ a [ href welcomeRoute ] [ text "return home" ] ]
             ]
         ]

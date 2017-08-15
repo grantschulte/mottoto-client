@@ -15,7 +15,7 @@ view =
         [ id "welcome-page"
         , class "flex items-center justify-center height-full"
         ]
-        [ div [ class "max-width-2 center" ]
+        [ div [ class "col-12 md-col-5 center" ]
             [ h1 [ class "mt0 mb2 h1 lh1" ] [ text "mottoto" ]
             , div [ class "m2" ]
                 [ span [ class "dot" ] []
@@ -27,8 +27,9 @@ view =
                 ]
             , p [ class "h3" ]
                 [ span [ class "underline" ] [ text "compose" ]
-                , text " a motto "
-                , span [ class "underline" ] [ text "or explore." ]
+                , text " a motto or "
+                , span [ class "underline" ] [ text "browse" ]
+                , text "."
                 ]
             ]
         ]

@@ -1,14 +1,37 @@
 module Routing exposing (..)
 
-import Models exposing (Route(..))
+import Models exposing (AuthorHandle, Route(..))
 import Navigation exposing (Location)
 import UrlParser exposing (..)
+
+
+-- ROUTES
+
+
+welcomeRoute : String
+welcomeRoute =
+    "#"
+
+
+entryRoute : String
+entryRoute =
+    "#entry"
+
+
+authorRoute : AuthorHandle -> String
+authorRoute handle =
+    "#author/" ++ handle
+
+
+
+-- FUNCTIONS
 
 
 matchers : Parser (Route -> a) a
 matchers =
     oneOf
         [ map WelcomeRoute top
+        , map EntryRoute (s "entry")
         , map SiteStatusRoute (s "site-status")
         ]
 

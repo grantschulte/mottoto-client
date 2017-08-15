@@ -30,6 +30,16 @@
   height: 100%;
 }
 
+.width-full {
+  width: 100%;
+}
+
+.page {
+  &-medium {
+    width: 32rem;
+  }
+}
+
 /*
  * Type Helpers
  */

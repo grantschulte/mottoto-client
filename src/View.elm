@@ -4,6 +4,7 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 import Messages exposing (..)
 import Models exposing (..)
+import Views.Entry exposing (..)
 import Views.NotFound exposing (..)
 import Views.SiteStatus exposing (..)
 import Views.Welcome exposing (..)
@@ -28,11 +29,14 @@ view model =
 page : Model -> Html Msg
 page model =
     case model.route of
-        WelcomeRoute ->
-            Views.Welcome.view
+        EntryRoute ->
+            Views.Entry.view
+
+        NotFoundRoute ->
+            Views.NotFound.view
 
         SiteStatusRoute ->
             Views.SiteStatus.view model
 
-        NotFoundRoute ->
-            Views.NotFound.view
+        WelcomeRoute ->
+            Views.Welcome.view

@@ -3,6 +3,10 @@ module Models exposing (..)
 -- TYPES
 
 
+type alias AuthorHandle =
+    String
+
+
 type alias ApiUrl =
     String
 
@@ -16,10 +20,10 @@ type alias Greeting =
 
 
 type alias Model =
-    { greeting : Greeting
-    , apiUrl : ApiUrl
+    { apiUrl : ApiUrl
     , nodeEnv : NodeEnv
     , route : Route
+    , author : AuthorHandle
     }
 
 
@@ -31,6 +35,7 @@ type alias Flags =
 
 type Route
     = WelcomeRoute
+    | EntryRoute
     | SiteStatusRoute
     | NotFoundRoute
 
@@ -41,8 +46,8 @@ type Route
 
 initialModel : Flags -> Route -> Model
 initialModel flags route =
-    { greeting = "Hello from Mottoto"
-    , apiUrl = flags.apiUrl
+    { apiUrl = flags.apiUrl
     , nodeEnv = flags.nodeEnv
     , route = route
+    , author = ""
     }
