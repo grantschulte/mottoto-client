@@ -6,6 +6,7 @@ import Messages exposing (..)
 import Models exposing (..)
 import RemoteData exposing (WebData)
 import String.Extra exposing (..)
+import Views.Error exposing (..)
 import Views.Loader exposing (..)
 
 
@@ -32,7 +33,7 @@ page response =
             motto author
 
         RemoteData.Failure error ->
-            text (toString error)
+            Views.Error.view error
 
 
 motto : Author -> Html Msg
