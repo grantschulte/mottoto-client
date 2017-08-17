@@ -25,10 +25,14 @@ fetchAuthorUrl apiUrl authorHandle =
 
 authorDecoder : Decode.Decoder Author
 authorDecoder =
-    decode Author
-        |> required "email" Decode.string
-        |> required "handle" Decode.string
-        |> required "motto" Decode.string
+    let
+        decoder =
+            decode Author
+                |> required "email" Decode.string
+                |> required "handle" Decode.string
+                |> required "motto" Decode.string
+    in
+    Decode.index 0 decoder
 
 
 

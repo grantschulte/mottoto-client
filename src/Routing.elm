@@ -1,6 +1,6 @@
 module Routing exposing (..)
 
-import Models exposing (AuthorHandle, Route(..))
+import Models exposing (AuthorHandle, Route(..), UserHandle)
 import Navigation exposing (Location)
 import UrlParser exposing (..)
 
@@ -26,6 +26,16 @@ authorPath handle =
 browsePath : String
 browsePath =
     "#browse"
+
+
+userMottoPath : UserHandle -> String
+userMottoPath handle =
+    "#user/" ++ handle ++ "/motto"
+
+
+userEditPath : UserHandle -> String
+userEditPath handle =
+    "#user/" ++ handle ++ "/edit"
 
 
 

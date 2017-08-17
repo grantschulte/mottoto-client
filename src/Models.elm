@@ -44,12 +44,36 @@ type alias AuthorEmail =
 
 
 
+-- TYPES: USER
+
+
+type alias User =
+    { email : UserEmail
+    , handle : UserHandle
+    , token : UserToken
+    }
+
+
+type alias UserEmail =
+    String
+
+
+type alias UserHandle =
+    String
+
+
+type alias UserToken =
+    String
+
+
+
 -- TYPES: MODEL
 
 
 type alias Model =
     { apiUrl : ApiUrl
     , author : WebData Author
+    , user : User
     , nodeEnv : NodeEnv
     , route : Route
     }
@@ -75,6 +99,7 @@ initialModel : Flags -> Route -> Model
 initialModel flags route =
     { apiUrl = flags.apiUrl
     , author = RemoteData.Loading
+    , user = User "orjazzmic@gmail.com" "avantgrant" "111.aaa.222"
     , nodeEnv = flags.nodeEnv
     , route = route
     }

@@ -12,18 +12,8 @@ server.use(jsonServer.defaults());
 var router = jsonServer.router(path.join(__dirname, "db.json"));
 server.use(router);
 
-server.use(jsonServer.rewriter({
-  '/users/:id': '/users/:handle'
-}))
-
 router.render = (req, res) => {
-  var data;
-
-  data = req.query.hasOwnProperty("handle")
-    ? res.locals.data[0]
-    : res.locals.data;
-
-  res.jsonp(data);
+  res.jsonp(res.locals.data);
 }
 
 console.log("JSON Server: Listening on port 5000");
