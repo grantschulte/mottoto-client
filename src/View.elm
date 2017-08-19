@@ -32,6 +32,9 @@ view model =
 header : Model -> Html Msg
 header model =
     case model.route of
+        SiteStatusRoute ->
+            text ""
+
         _ ->
             Views.Header.view model
 

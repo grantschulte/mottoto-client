@@ -1,9 +1,10 @@
-module.exports = (env = "development") => {
-  let path = require("path");
-  let webpack = require("webpack");
-  let config = require("./config/env")(env);
+module.exports = (env) => {
+  const path = require("path");
+  const webpack = require("webpack");
+  const config = require("./config/env")(env);
 
-  console.log(config);
+  const outputPath = "/dist";
+  const sourcePath = "/src";
 
   return {
     entry: {
@@ -13,7 +14,7 @@ module.exports = (env = "development") => {
     },
 
     output: {
-      path: path.resolve(__dirname + "./../dist"),
+      path: path.resolve(__dirname + outputPath),
       filename: "[name].js",
     },
 
@@ -33,7 +34,7 @@ module.exports = (env = "development") => {
             sourceMap: true,
             data: "@import 'vars';",
             includePaths: [
-              path.join(__dirname, "./../src")
+              path.join(__dirname, sourcePath)
             ]
           }
         },
