@@ -3,7 +3,7 @@ module Views.Welcome exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Messages exposing (..)
-import Routing exposing (entryPath)
+import Routing exposing (entryPath, userEditMottoPath)
 
 
 -- VIEW: WELCOME

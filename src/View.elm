@@ -9,6 +9,8 @@ import Views.Header exposing (..)
 import Views.Motto exposing (..)
 import Views.NotFound exposing (..)
 import Views.SiteStatus exposing (..)
+import Views.UserEditMotto exposing (..)
+import Views.UserEditProfile exposing (..)
 import Views.Welcome exposing (..)
 
 
@@ -57,6 +59,12 @@ page model =
 
         SiteStatusRoute ->
             Views.SiteStatus.view model
+
+        UserEditProfileRoute userHandle ->
+            Views.UserEditProfile.view model
+
+        UserEditMottoRoute userHandle ->
+            Views.UserEditMotto.view model
 
         WelcomeRoute ->
             Views.Welcome.view

@@ -4,8 +4,7 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 import Messages exposing (..)
 import Models exposing (..)
-import RemoteData exposing (..)
-import Routing exposing (entryPath, userEditPath, userMottoPath, welcomePath)
+import Routing exposing (entryPath, userEditMottoPath, userEditProfilePath, welcomePath)
 
 
 view : Model -> Html Msg
@@ -18,7 +17,7 @@ view model =
             [ text "mottoto" ]
         , div [ class "right-align" ]
             [ a
-                [ href (createOrLoginHref model.user)
+                [ href (mottoOrLoginHref model.user)
                 , class "inline-block material-icons p1 header-icon ml1"
                 ]
                 [ text "create" ]
@@ -31,17 +30,17 @@ view model =
         ]
 
 
-createOrLoginHref : User -> String
-createOrLoginHref user =
+mottoOrLoginHref : User -> String
+mottoOrLoginHref user =
     if String.isEmpty user.token then
-        userMottoPath user.handle
-    else
         entryPath
+    else
+        userEditMottoPath user.handle
 
 
 editOrLoginHref : User -> String
 editOrLoginHref user =
     if String.isEmpty user.token then
-        userEditPath user.handle
-    else
         entryPath
+    else
+        userEditProfilePath user.handle

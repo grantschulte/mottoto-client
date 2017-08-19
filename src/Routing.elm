@@ -28,13 +28,13 @@ browsePath =
     "#browse"
 
 
-userMottoPath : UserHandle -> String
-userMottoPath handle =
+userEditMottoPath : UserHandle -> String
+userEditMottoPath handle =
     "#user/" ++ handle ++ "/motto"
 
 
-userEditPath : UserHandle -> String
-userEditPath handle =
+userEditProfilePath : UserHandle -> String
+userEditProfilePath handle =
     "#user/" ++ handle ++ "/edit"
 
 
@@ -46,6 +46,8 @@ matchers : Parser (Route -> a) a
 matchers =
     oneOf
         [ map WelcomeRoute top
+        , map UserEditMottoRoute (s "user" </> string </> s "motto")
+        , map UserEditProfileRoute (s "user" </> string </> s "edit")
         , map AuthorRoute (s "author" </> string)
         , map EntryRoute (s "entry")
         , map SiteStatusRoute (s "site-status")

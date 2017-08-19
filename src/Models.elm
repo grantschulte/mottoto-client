@@ -50,6 +50,7 @@ type alias AuthorEmail =
 type alias User =
     { email : UserEmail
     , handle : UserHandle
+    , motto : UserMotto
     , token : UserToken
     }
 
@@ -59,6 +60,10 @@ type alias UserEmail =
 
 
 type alias UserHandle =
+    String
+
+
+type alias UserMotto =
     String
 
 
@@ -88,6 +93,8 @@ type Route
     | EntryRoute
     | NotFoundRoute
     | SiteStatusRoute
+    | UserEditProfileRoute UserHandle
+    | UserEditMottoRoute UserHandle
     | WelcomeRoute
 
 
@@ -99,7 +106,7 @@ initialModel : Flags -> Route -> Model
 initialModel flags route =
     { apiUrl = flags.apiUrl
     , author = RemoteData.Loading
-    , user = User "orjazzmic@gmail.com" "avantgrant" "111.aaa.222"
+    , user = User "orjazzmic@gmail.com" "avantgrant" "Today is a great day." "111.aaa.222"
     , nodeEnv = flags.nodeEnv
     , route = route
     }
