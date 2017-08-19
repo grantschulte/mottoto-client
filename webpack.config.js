@@ -1,7 +1,9 @@
-module.exports = (env = "dev") => {
+module.exports = (env = "development") => {
   let path = require("path");
   let webpack = require("webpack");
   let config = require("./config/env")(env);
+
+  console.log(config);
 
   return {
     entry: {

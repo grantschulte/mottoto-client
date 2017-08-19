@@ -1,6 +1,6 @@
 module.exports = (env) => {
   let config = {
-    dev: {
+    development: {
       "API_URL": JSON.stringify("http://localhost:5000"),
       "NODE_ENV": JSON.stringify("development")
     },
@@ -10,12 +10,13 @@ module.exports = (env) => {
       "NODE_ENV": JSON.stringify("staging")
     },
 
-    prod: {
+    production: {
       "API_URL": JSON.stringify("http://prod.api.com"),
       "NODE_ENV": JSON.stringify("production")
     }
   };
 
-  console.log(env);
+  console.log("WEBPACK ENV", env);
+
   return config[env];
 }
