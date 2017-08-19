@@ -16,7 +16,7 @@ view model =
             [ span [ class "material-icons color-warn mr1" ]
                 [ text "info_outline"
                 ]
-            , text "Mottoto Status"
+            , h1 [ class "h2 m0" ] [ text "mottoto status" ]
             ]
         , infoText model.apiUrl model.nodeEnv
         ]
