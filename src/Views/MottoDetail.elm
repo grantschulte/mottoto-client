@@ -1,4 +1,4 @@
-module Views.Motto exposing (..)
+module Views.MottoDetail exposing (..)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)

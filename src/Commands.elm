@@ -42,7 +42,7 @@ authorDecoder =
 onLocationChangeCommand : Model -> Route -> Cmd Msg
 onLocationChangeCommand model route =
     case route of
-        Models.AuthorRoute authorHandle ->
+        Models.MottoDetailRoute authorHandle ->
             fetchAuthor model.apiUrl authorHandle
 
         _ ->
@@ -56,7 +56,7 @@ onLocationChangeCommand model route =
 onInitCommand : Model -> Route -> Cmd Msg
 onInitCommand model route =
     case route of
-        Models.AuthorRoute authorHandle ->
+        Models.MottoDetailRoute authorHandle ->
             fetchAuthor model.apiUrl authorHandle
 
         _ ->

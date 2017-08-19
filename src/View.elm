@@ -6,7 +6,8 @@ import Messages exposing (..)
 import Models exposing (..)
 import Views.Entry exposing (..)
 import Views.Header exposing (..)
-import Views.Motto exposing (..)
+import Views.MottoDetail exposing (..)
+import Views.MottoList exposing (..)
 import Views.NotFound exposing (..)
 import Views.SiteStatus exposing (..)
 import Views.UserEditMotto exposing (..)
@@ -48,11 +49,14 @@ header model =
 page : Model -> Html Msg
 page model =
     case model.route of
-        AuthorRoute authorHandle ->
-            Views.Motto.view model
-
         EntryRoute ->
             Views.Entry.view
+
+        MottoDetailRoute authorHandle ->
+            Views.MottoDetail.view model
+
+        MottoListRoute ->
+            Views.MottoList.view model
 
         NotFoundRoute ->
             Views.NotFound.view

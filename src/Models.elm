@@ -89,9 +89,10 @@ type alias Model =
 
 
 type Route
-    = AuthorRoute AuthorHandle
-    | EntryRoute
+    = EntryRoute
     | NotFoundRoute
+    | MottoDetailRoute AuthorHandle
+    | MottoListRoute
     | SiteStatusRoute
     | UserEditProfileRoute UserHandle
     | UserEditMottoRoute UserHandle

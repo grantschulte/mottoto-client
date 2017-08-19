@@ -18,14 +18,14 @@ entryPath =
     "#entry"
 
 
-authorPath : AuthorHandle -> String
-authorPath handle =
-    "#author/" ++ handle
+mottoDetailPath : AuthorHandle -> String
+mottoDetailPath handle =
+    "#mottos/" ++ handle
 
 
-browsePath : String
-browsePath =
-    "#browse"
+mottosPath : String
+mottosPath =
+    "#mottos"
 
 
 userEditMottoPath : UserHandle -> String
@@ -48,7 +48,8 @@ matchers =
         [ map WelcomeRoute top
         , map UserEditMottoRoute (s "user" </> string </> s "motto")
         , map UserEditProfileRoute (s "user" </> string </> s "edit")
-        , map AuthorRoute (s "author" </> string)
+        , map MottoListRoute (s "mottos")
+        , map MottoDetailRoute (s "mottos" </> string)
         , map EntryRoute (s "entry")
         , map SiteStatusRoute (s "site-status")
         ]
