@@ -8,7 +8,7 @@ import Models exposing (ApiUrl, Model, Motto, MottoId, Route)
 import RemoteData
 
 
--- FETCH AUTHOR
+-- FETCH MOTTO
 
 
 fetchMotto : ApiUrl -> MottoId -> Cmd Msg
@@ -32,6 +32,27 @@ mottoDecoder =
 
 
 
+-- FETCH MOTTO LIST
+
+
+fetchMottoList : ApiUrl -> Cmd Msg
+fetchMottoList apiUrl =
+    Http.get (fetchMottoListUrl apiUrl) mottoListDecoder
+        |> RemoteData.sendRequest
+        |> Cmd.map OnFetchMottoList
+
+
+fetchMottoListUrl : ApiUrl -> String
+fetchMottoListUrl apiUrl =
+    apiUrl ++ "/mottos"
+
+
+mottoListDecoder : Decode.Decoder (List Motto)
+mottoListDecoder =
+    Decode.list mottoDecoder
+
+
+
 -- ON LOCATION CHANGE
 
 
@@ -40,6 +61,9 @@ onLocationChangeCommand model route =
     case route of
         Models.MottoDetailRoute mottoId ->
             fetchMotto model.apiUrl mottoId
+
+        Models.MottoListRoute ->
+            fetchMottoList model.apiUrl
 
         _ ->
             Cmd.none
@@ -54,6 +78,9 @@ onInitCommand model route =
     case route of
         Models.MottoDetailRoute mottoId ->
             fetchMotto model.apiUrl mottoId
+
+        Models.MottoListRoute ->
+            fetchMottoList model.apiUrl
 
         _ ->
             Cmd.none

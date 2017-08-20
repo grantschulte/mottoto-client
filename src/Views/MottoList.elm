@@ -16,8 +16,7 @@ view mottos =
         [ id "motto-detail-page"
         , class "flex items-center justify-center h100"
         ]
-        [ div [ class "flex flex-wrap w100 mxn2" ]
-            [ page mottos ]
+        [ page mottos
         ]
 
 
@@ -39,15 +38,17 @@ page response =
 
 mottoList : List Motto -> Html Msg
 mottoList mottos =
-    div [] (List.map mottoColumn mottos)
+    div [ class "flex flex-wrap w100 mxn2" ] (List.map mottoColumn mottos)
 
 
 mottoColumn : Motto -> Html Msg
 mottoColumn motto =
-    a
-        [ href (mottoDetailPath motto.id)
-        , class "col-12 sm-col-12 md-col-4 p2 border-bottom text-decoration-none"
-        ]
-        [ h3 [ class "h3 m0" ] [ text motto.text ]
-        , div [ class "mt2 right-align h4" ] [ text (toString motto.userId) ]
+    div [ class "col-12 sm-col-12 md-col-4 p2" ]
+        [ a
+            [ href (mottoDetailPath motto.id)
+            , class "block p2 border-top text-decoration-none"
+            ]
+            [ h3 [ class "h3 m0" ] [ text motto.text ]
+            , div [ class "mt2 right-align h4" ] [ text (toString motto.userId) ]
+            ]
         ]

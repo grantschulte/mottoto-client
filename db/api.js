@@ -1,20 +1,11 @@
-var jsonServer = require("json-server");
-var path = require("path");
+const jsonServer = require("json-server");
+const path = require("path");
 
-// Returns an Express server
-
-var server = jsonServer.create();
-
-// Set default middlewares (logger, static, cors and no-cache)
+let server = jsonServer.create();
+let router = jsonServer.router(path.join(__dirname, "data.json"));
 
 server.use(jsonServer.defaults());
-
-var router = jsonServer.router(path.join(__dirname, "db.json"));
 server.use(router);
-
-router.render = (req, res) => {
-  res.jsonp(res.locals.data);
-}
+server.listen(5000);
 
 console.log("JSON Server: Listening on port 5000");
-server.listen(5000);

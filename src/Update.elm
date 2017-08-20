@@ -15,6 +15,9 @@ update msg model =
         NoOp ->
             ( model, Cmd.none )
 
+        OnFetchMottoList response ->
+            ( { model | mottos = response }, Cmd.none )
+
         OnFetchMotto response ->
             ( { model | motto = response }, Cmd.none )
 
