@@ -5,7 +5,7 @@ import Html.Attributes exposing (..)
 import Messages exposing (..)
 import Models exposing (..)
 import RemoteData exposing (WebData)
-import String.Extra exposing (..)
+import Utils.FormatText exposing (..)
 import Views.Error exposing (..)
 import Views.Loader exposing (..)
 
@@ -30,25 +30,15 @@ page response =
             Views.Loader.view
 
         RemoteData.Success user ->
-            userDisplay user
+            mottoDisplay user
 
         RemoteData.Failure error ->
             Views.Error.view error
 
 
-userDisplay : User -> Html Msg
-userDisplay user =
+mottoDisplay : User -> Html Msg
+mottoDisplay user =
     div [ class "col-12 md-col-6" ]
-        [ h1 [ class "h1 regular" ] [ mottoText user.motto ]
-        , p [ class "h2 mt3 right-align" ] [ mottoUser user.handle ]
+        [ h1 [ class "h1 regular" ] [ text (formatMottoText user.motto.text) ]
+        , p [ class "h2 mt3 right-align" ] [ text (formatUserHandle user.handle) ]
         ]
-
-
-mottoUser : UserHandle -> Html Msg
-mottoUser userHandle =
-    text ("— " ++ String.Extra.decapitalize userHandle)
-
-
-mottoText : Motto -> Html Msg
-mottoText motto =
-    text (String.Extra.decapitalize motto.text)

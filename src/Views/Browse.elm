@@ -6,7 +6,7 @@ import Messages exposing (..)
 import Models exposing (..)
 import RemoteData exposing (..)
 import Routing exposing (authorPath)
-import String.Extra exposing (decapitalize)
+import Utils.FormatText exposing (..)
 import Views.Error exposing (..)
 import Views.Loader exposing (..)
 
@@ -49,19 +49,7 @@ mottoColumn user =
             [ href (authorPath user.id)
             , class "block p2 text-decoration-none border-top w100"
             ]
-            [ h3 [ class "h3 m0" ] [ text (mottoText user.motto) ]
-            , div [ class "mt2 right-align h4" ] [ text (userHandle user.handle) ]
+            [ h3 [ class "h3 m0" ] [ text (formatMottoText user.motto.text) ]
+            , div [ class "mt2 right-align h4" ] [ text (formatUserHandle user.handle) ]
             ]
         ]
-
-
-mottoText : Motto -> String
-mottoText motto =
-    motto.text
-        |> String.Extra.decapitalize
-        |> String.Extra.ellipsis 50
-
-
-userHandle : UserHandle -> String
-userHandle handle =
-    "— " ++ String.Extra.decapitalize handle
