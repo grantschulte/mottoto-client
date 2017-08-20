@@ -4,14 +4,14 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 import Messages exposing (..)
 import Models exposing (..)
+import Views.Author exposing (..)
+import Views.Browse exposing (..)
+import Views.EditMotto exposing (..)
+import Views.EditProfile exposing (..)
 import Views.Entry exposing (..)
 import Views.Header exposing (..)
-import Views.MottoDetail exposing (..)
-import Views.MottoList exposing (..)
 import Views.NotFound exposing (..)
 import Views.SiteStatus exposing (..)
-import Views.UserEditMotto exposing (..)
-import Views.UserEditProfile exposing (..)
 import Views.Welcome exposing (..)
 
 
@@ -49,26 +49,26 @@ header model =
 page : Model -> Html Msg
 page model =
     case model.route of
+        AuthorRoute userHandle ->
+            Views.Author.view model
+
+        BrowseRoute ->
+            Views.Browse.view model.users
+
+        EditProfileRoute ->
+            Views.EditProfile.view model
+
+        EditMottoRoute ->
+            Views.EditMotto.view model
+
         EntryRoute ->
             Views.Entry.view
-
-        MottoDetailRoute authorHandle ->
-            Views.MottoDetail.view model
-
-        MottoListRoute ->
-            Views.MottoList.view model.mottos
 
         NotFoundRoute ->
             Views.NotFound.view
 
         SiteStatusRoute ->
             Views.SiteStatus.view model
-
-        UserEditProfileRoute userHandle ->
-            Views.UserEditProfile.view model
-
-        UserEditMottoRoute userHandle ->
-            Views.UserEditMotto.view model
 
         WelcomeRoute ->
             Views.Welcome.view

@@ -21,36 +21,12 @@ type alias NodeEnv =
 
 
 
--- TYPES: AUTHOR
-
-
-type alias Author =
-    { email : AuthorEmail
-    , handle : AuthorHandle
-    , motto : AuthorMotto
-    }
-
-
-type alias AuthorHandle =
-    String
-
-
-type alias AuthorMotto =
-    String
-
-
-type alias AuthorEmail =
-    String
-
-
-
 -- TYPES: MOTTO
 
 
 type alias Motto =
     { id : MottoId
     , text : MottoText
-    , userId : UserId
     }
 
 
@@ -70,8 +46,7 @@ type alias User =
     { id : UserId
     , email : UserEmail
     , handle : UserHandle
-    , motto : UserMotto
-    , token : UserToken
+    , motto : Motto
     }
 
 
@@ -83,16 +58,24 @@ type alias UserHandle =
     String
 
 
-type alias UserMotto =
-    String
-
-
-type alias UserToken =
-    String
-
-
 type alias UserId =
     Int
+
+
+
+-- TYPES: AUTHORIZED USER
+
+
+type alias AuthorizedUser =
+    { id : UserId
+    , email : UserEmail
+    , handle : UserHandle
+    , token : AuthToken
+    }
+
+
+type alias AuthToken =
+    String
 
 
 
@@ -101,12 +84,13 @@ type alias UserId =
 
 type alias Model =
     { apiUrl : ApiUrl
-    , author : WebData Author
-    , mottos : WebData (List Motto)
+    , authorizedUser : AuthorizedUser
     , motto : WebData Motto
+    , mottos : WebData (List Motto)
     , nodeEnv : NodeEnv
     , route : Route
-    , user : User
+    , user : WebData User
+    , users : WebData (List User)
     }
 
 
@@ -115,13 +99,13 @@ type alias Model =
 
 
 type Route
-    = EntryRoute
+    = AuthorRoute UserId
+    | BrowseRoute
+    | EditProfileRoute
+    | EditMottoRoute
+    | EntryRoute
     | NotFoundRoute
-    | MottoDetailRoute MottoId
-    | MottoListRoute
     | SiteStatusRoute
-    | UserEditProfileRoute UserHandle
-    | UserEditMottoRoute UserHandle
     | WelcomeRoute
 
 
@@ -132,10 +116,11 @@ type Route
 initialModel : Flags -> Route -> Model
 initialModel flags route =
     { apiUrl = flags.apiUrl
-    , author = RemoteData.Loading
+    , authorizedUser = AuthorizedUser 1 "orjazzmic@gmail.com" "avantgrant" "111.222.333"
     , mottos = RemoteData.Loading
     , motto = RemoteData.Loading
     , nodeEnv = flags.nodeEnv
     , route = route
-    , user = User 1 "orjazzmic@gmail.com" "avantgrant" "Today is a great day." "111.aaa.222"
+    , user = RemoteData.Loading
+    , users = RemoteData.Loading
     }

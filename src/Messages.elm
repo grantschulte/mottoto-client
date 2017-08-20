@@ -11,5 +11,6 @@ import RemoteData exposing (WebData)
 type Msg
     = NoOp
     | OnFetchMotto (WebData Motto)
-    | OnFetchMottoList (WebData (List Motto))
+    | OnFetchUserList (WebData (List User))
+    | OnFetchUser (WebData User)
     | OnLocationChange Location

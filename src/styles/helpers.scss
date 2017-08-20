@@ -60,3 +60,16 @@ a.border {
   border-color: $color-secondary;
   border-radius: $border-radius;
 }
+
+.background-secondary {
+  color: $color-primary;
+  background-color: $color-secondary;
+
+  a {
+    color: $color-primary;
+
+    &:hover {
+      color: darken($color-secondary, 10%);
+    }
+  }
+}

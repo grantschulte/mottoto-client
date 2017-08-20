@@ -1,6 +1,6 @@
 module Main exposing (..)
 
-import Commands exposing (onInitCommand)
+import Commands exposing (onLocationChangeCommand)
 import Messages exposing (..)
 import Models exposing (Flags, Model, initialModel)
 import Navigation exposing (..)
@@ -21,7 +21,7 @@ init flags location =
         model =
             initialModel flags currentRoute
     in
-    ( model, onInitCommand model currentRoute )
+    ( model, onLocationChangeCommand model currentRoute )
 
 
 

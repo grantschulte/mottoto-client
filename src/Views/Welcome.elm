@@ -3,7 +3,7 @@ module Views.Welcome exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Messages exposing (..)
-import Routing exposing (entryPath, mottosPath, userEditMottoPath)
+import Routing exposing (browsePath, editMottoPath, entryPath)
 
 
 -- VIEW: WELCOME
@@ -28,7 +28,7 @@ view =
             , p [ class "h3" ]
                 [ a [ href entryPath ] [ text "compose" ]
                 , text " a motto or "
-                , a [ href mottosPath ] [ text "browse" ]
+                , a [ href browsePath ] [ text "browse" ]
                 , text "."
                 ]
             ]

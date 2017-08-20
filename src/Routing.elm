@@ -1,6 +1,6 @@
 module Routing exposing (..)
 
-import Models exposing (AuthorHandle, MottoId, Route(..), UserHandle)
+import Models exposing (MottoId, Route(..), UserHandle, UserId)
 import Navigation exposing (Location)
 import UrlParser exposing (..)
 
@@ -18,24 +18,24 @@ entryPath =
     "#entry"
 
 
-mottoDetailPath : MottoId -> String
-mottoDetailPath mottoId =
-    "#mottos/" ++ toString mottoId
+browsePath : String
+browsePath =
+    "#browse"
 
 
-mottosPath : String
-mottosPath =
-    "#mottos"
+authorPath : UserId -> String
+authorPath userId =
+    "#author/" ++ toString userId
 
 
-userEditMottoPath : UserHandle -> String
-userEditMottoPath handle =
-    "#user/" ++ handle ++ "/motto"
+editMottoPath : String
+editMottoPath =
+    "#motto"
 
 
-userEditProfilePath : UserHandle -> String
-userEditProfilePath handle =
-    "#user/" ++ handle ++ "/edit"
+editProfilePath : String
+editProfilePath =
+    "#profile"
 
 
 
@@ -46,10 +46,10 @@ matchers : Parser (Route -> a) a
 matchers =
     oneOf
         [ map WelcomeRoute top
-        , map UserEditMottoRoute (s "user" </> string </> s "motto")
-        , map UserEditProfileRoute (s "user" </> string </> s "edit")
-        , map MottoListRoute (s "mottos")
-        , map MottoDetailRoute (s "mottos" </> int)
+        , map EditMottoRoute (s "motto")
+        , map EditProfileRoute (s "profile")
+        , map AuthorRoute (s "author" </> int)
+        , map BrowseRoute (s "browse")
         , map EntryRoute (s "entry")
         , map SiteStatusRoute (s "site-status")
         ]

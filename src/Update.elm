@@ -15,11 +15,14 @@ update msg model =
         NoOp ->
             ( model, Cmd.none )
 
-        OnFetchMottoList response ->
-            ( { model | mottos = response }, Cmd.none )
-
         OnFetchMotto response ->
             ( { model | motto = response }, Cmd.none )
+
+        OnFetchUser response ->
+            ( { model | user = response }, Cmd.none )
+
+        OnFetchUserList response ->
+            ( { model | users = response }, Cmd.none )
 
         OnLocationChange location ->
             let

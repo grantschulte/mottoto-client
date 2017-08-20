@@ -27,7 +27,7 @@ a {
   color: $color-secondary;
   transition: $easeInOut;
   cursor: pointer;
-  
+
   &:hover {
     color: darken($color-secondary, 10%);
   }
@@ -39,6 +39,11 @@ a {
   width: 5px;
   border-radius: 50%;
   background-color: $color-secondary;
+}
+
+header {
+  background-color: $color-primary;
+  z-index: 1;
 }
 
 .header-icon {

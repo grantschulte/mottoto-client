@@ -22,7 +22,7 @@
     "client": "webpack-dev-server --env=development --port 4200",
     "deploy:staging": "yarn build:staging; surge ./dist -d venomous-comb.surge.sh",
     "deploy:prod": "yarn build:prod; aws s3 sync --acl public-read --sse --delete ./dist s3://www.mottoto.com",
-    "seed": "node ./db/db.js",
+    "seed": "node ./db/seed.js",
     "start": "nf start"
   }
 }
