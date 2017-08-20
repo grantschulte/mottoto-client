@@ -1,6 +1,6 @@
 module Routing exposing (..)
 
-import Models exposing (AuthorHandle, Route(..), UserHandle)
+import Models exposing (AuthorHandle, MottoId, Route(..), UserHandle)
 import Navigation exposing (Location)
 import UrlParser exposing (..)
 
@@ -18,9 +18,9 @@ entryPath =
     "#entry"
 
 
-mottoDetailPath : AuthorHandle -> String
-mottoDetailPath handle =
-    "#mottos/" ++ handle
+mottoDetailPath : MottoId -> String
+mottoDetailPath mottoId =
+    "#mottos/" ++ toString mottoId
 
 
 mottosPath : String
@@ -49,7 +49,7 @@ matchers =
         , map UserEditMottoRoute (s "user" </> string </> s "motto")
         , map UserEditProfileRoute (s "user" </> string </> s "edit")
         , map MottoListRoute (s "mottos")
-        , map MottoDetailRoute (s "mottos" </> string)
+        , map MottoDetailRoute (s "mottos" </> int)
         , map EntryRoute (s "entry")
         , map SiteStatusRoute (s "site-status")
         ]

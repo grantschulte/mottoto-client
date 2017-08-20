@@ -44,11 +44,31 @@ type alias AuthorEmail =
 
 
 
+-- TYPES: MOTTO
+
+
+type alias Motto =
+    { id : MottoId
+    , text : MottoText
+    , userId : UserId
+    }
+
+
+type alias MottoId =
+    Int
+
+
+type alias MottoText =
+    String
+
+
+
 -- TYPES: USER
 
 
 type alias User =
-    { email : UserEmail
+    { id : UserId
+    , email : UserEmail
     , handle : UserHandle
     , motto : UserMotto
     , token : UserToken
@@ -71,6 +91,10 @@ type alias UserToken =
     String
 
 
+type alias UserId =
+    Int
+
+
 
 -- TYPES: MODEL
 
@@ -78,9 +102,11 @@ type alias UserToken =
 type alias Model =
     { apiUrl : ApiUrl
     , author : WebData Author
-    , user : User
+    , mottos : WebData (List Motto)
+    , motto : WebData Motto
     , nodeEnv : NodeEnv
     , route : Route
+    , user : User
     }
 
 
@@ -91,7 +117,7 @@ type alias Model =
 type Route
     = EntryRoute
     | NotFoundRoute
-    | MottoDetailRoute AuthorHandle
+    | MottoDetailRoute MottoId
     | MottoListRoute
     | SiteStatusRoute
     | UserEditProfileRoute UserHandle
@@ -107,7 +133,9 @@ initialModel : Flags -> Route -> Model
 initialModel flags route =
     { apiUrl = flags.apiUrl
     , author = RemoteData.Loading
-    , user = User "orjazzmic@gmail.com" "avantgrant" "Today is a great day." "111.aaa.222"
+    , mottos = RemoteData.Loading
+    , motto = RemoteData.Loading
     , nodeEnv = flags.nodeEnv
     , route = route
+    , user = User 1 "orjazzmic@gmail.com" "avantgrant" "Today is a great day." "111.aaa.222"
     }

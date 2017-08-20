@@ -16,11 +16,11 @@ view model =
         [ id "author-motto-page"
         , class "flex items-center justify-center h100"
         ]
-        [ page model.author
+        [ page model.motto
         ]
 
 
-page : WebData Author -> Html Msg
+page : WebData Motto -> Html Msg
 page response =
     case response of
         RemoteData.NotAsked ->
@@ -29,26 +29,26 @@ page response =
         RemoteData.Loading ->
             Views.Loader.view
 
-        RemoteData.Success author ->
-            motto author
+        RemoteData.Success motto ->
+            mottoDisplay motto
 
         RemoteData.Failure error ->
             Views.Error.view error
 
 
-motto : Author -> Html Msg
-motto author =
+mottoDisplay : Motto -> Html Msg
+mottoDisplay motto =
     div [ class "col-12 md-col-6" ]
-        [ h1 [ class "h1 regular" ] [ mottoText author.motto ]
-        , p [ class "h2 mt3 right-align" ] [ authorText author.handle ]
+        [ h1 [ class "h1 regular" ] [ mottoText motto.text ]
+        , p [ class "h2 mt3 right-align" ] [ mottoUser motto.userId ]
         ]
 
 
-authorText : AuthorHandle -> Html Msg
-authorText handle =
-    text ("—" ++ handle)
+mottoUser : UserId -> Html Msg
+mottoUser userId =
+    text ("—" ++ toString userId)
 
 
-mottoText : AuthorMotto -> Html Msg
+mottoText : MottoText -> Html Msg
 mottoText motto =
     text (String.Extra.decapitalize motto)

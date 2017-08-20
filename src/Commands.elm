@@ -4,35 +4,31 @@ import Http
 import Json.Decode as Decode
 import Json.Decode.Pipeline exposing (decode, required)
 import Messages exposing (..)
-import Models exposing (ApiUrl, Author, AuthorHandle, Model, Route)
+import Models exposing (ApiUrl, Model, Motto, MottoId, Route)
 import RemoteData
 
 
 -- FETCH AUTHOR
 
 
-fetchAuthor : ApiUrl -> AuthorHandle -> Cmd Msg
-fetchAuthor apiUrl authorHandle =
-    Http.get (fetchAuthorUrl apiUrl authorHandle) authorDecoder
+fetchMotto : ApiUrl -> MottoId -> Cmd Msg
+fetchMotto apiUrl mottoId =
+    Http.get (fetchMottoUrl apiUrl mottoId) mottoDecoder
         |> RemoteData.sendRequest
-        |> Cmd.map OnFetchAuthor
+        |> Cmd.map OnFetchMotto
 
 
-fetchAuthorUrl : ApiUrl -> AuthorHandle -> String
-fetchAuthorUrl apiUrl authorHandle =
-    apiUrl ++ "/users?handle=" ++ authorHandle
+fetchMottoUrl : ApiUrl -> MottoId -> String
+fetchMottoUrl apiUrl mottoId =
+    apiUrl ++ "/mottos/" ++ toString mottoId
 
 
-authorDecoder : Decode.Decoder Author
-authorDecoder =
-    let
-        decoder =
-            decode Author
-                |> required "email" Decode.string
-                |> required "handle" Decode.string
-                |> required "motto" Decode.string
-    in
-    Decode.index 0 decoder
+mottoDecoder : Decode.Decoder Motto
+mottoDecoder =
+    decode Motto
+        |> required "id" Decode.int
+        |> required "text" Decode.string
+        |> required "userId" Decode.int
 
 
 
@@ -42,8 +38,8 @@ authorDecoder =
 onLocationChangeCommand : Model -> Route -> Cmd Msg
 onLocationChangeCommand model route =
     case route of
-        Models.MottoDetailRoute authorHandle ->
-            fetchAuthor model.apiUrl authorHandle
+        Models.MottoDetailRoute mottoId ->
+            fetchMotto model.apiUrl mottoId
 
         _ ->
             Cmd.none
@@ -56,8 +52,8 @@ onLocationChangeCommand model route =
 onInitCommand : Model -> Route -> Cmd Msg
 onInitCommand model route =
     case route of
-        Models.MottoDetailRoute authorHandle ->
-            fetchAuthor model.apiUrl authorHandle
+        Models.MottoDetailRoute mottoId ->
+            fetchMotto model.apiUrl mottoId
 
         _ ->
             Cmd.none

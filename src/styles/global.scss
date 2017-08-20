@@ -26,7 +26,8 @@ body {
 a {
   color: $color-secondary;
   transition: $easeInOut;
-
+  cursor: pointer;
+  
   &:hover {
     color: darken($color-secondary, 10%);
   }

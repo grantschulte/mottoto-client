@@ -15,8 +15,8 @@ update msg model =
         NoOp ->
             ( model, Cmd.none )
 
-        OnFetchAuthor response ->
-            ( { model | author = response }, Cmd.none )
+        OnFetchMotto response ->
+            ( { model | motto = response }, Cmd.none )
 
         OnLocationChange location ->
             let

@@ -56,7 +56,7 @@ page model =
             Views.MottoDetail.view model
 
         MottoListRoute ->
-            Views.MottoList.view model
+            Views.MottoList.view model.mottos
 
         NotFoundRoute ->
             Views.NotFound.view

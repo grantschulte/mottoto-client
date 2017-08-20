@@ -45,3 +45,18 @@
 .font-big {
   font-size: 48px;
 }
+
+/*
+ * Element Helpers
+ */
+
+a.border {
+  &:hover {
+    border-color: darken($color-secondary, 10%);
+  }
+}
+
+.border {
+  border-color: $color-secondary;
+  border-radius: $border-radius;
+}
