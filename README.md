@@ -23,7 +23,7 @@ yarn
 ```
 
 ### Mock Data
-Run the seed command to generate the json file that json-server will use to seed the data. The seed generator function uses faker to generate random values for the model properties.
+Run the seed command to generate the JSON for `json-server` to serve. The generator functions use faker for creating random property values.
 ```
 yarn seed
 ```
