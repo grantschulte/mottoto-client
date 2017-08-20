@@ -22,6 +22,12 @@ This project uses [yarn](https://yarnpkg.com/en/) for external package managemen
 yarn
 ```
 
+### Mock Data
+Run the seed command to generate the json file that json-server will use to seed the data. The seed generator function uses faker to generate random values for the model properties.
+```
+yarn seed
+```
+
 ## Develop
 In development we use Webpack Dev Server to serve our `index.html`. The app uses JSON Server to serve mock data from a JSON file.
 
