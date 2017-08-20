@@ -14,7 +14,7 @@ import Views.Loader exposing (..)
 view : WebData (List User) -> Html Msg
 view users =
     div
-        [ id "motto-detail-page"
+        [ id "browse-page"
         , class "pt4"
         ]
         [ page users
@@ -44,7 +44,7 @@ mottoList users =
 
 mottoColumn : User -> Html Msg
 mottoColumn user =
-    div [ class "col-12 sm-col-12 md-col-6 lg-col-4 px2 mb3 flex" ]
+    div [ class "col-12 sm-col-6 md-col-4 px2 mb3 flex" ]
         [ a
             [ href (authorPath user.id)
             , class "block p2 text-decoration-none border-top w100"

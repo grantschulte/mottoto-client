@@ -9,13 +9,13 @@ import Routing exposing (editMottoPath, editProfilePath, entryPath, welcomePath)
 
 view : Model -> Html Msg
 view model =
-    header [ class "flex justify-center items-center fixed block w100 p2" ]
+    header [ class "flex justify-center items-center fixed top-0 right-0 left-0 p2" ]
         [ a
             [ href welcomePath
             , class "h1 bold flex-auto text-decoration-none lh1"
             ]
             [ text "mottoto" ]
-        , div [ class "right-align" ]
+        , div []
             [ a
                 [ href (editMottoOrLoginHref model.authorizedUser)
                 , class "inline-block material-icons p1 header-icon ml1"

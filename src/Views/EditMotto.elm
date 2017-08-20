@@ -9,7 +9,7 @@ import Models exposing (..)
 view : Model -> Html Msg
 view model =
     div
-        [ id "user-motto-page"
+        [ id "edit-motto-page"
         , class "flex items-center justify-center h100"
         ]
         [ page ]
