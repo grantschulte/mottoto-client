@@ -28,7 +28,7 @@ page user =
             , input [ type_ "email", class "mb2", placeholder user.email ] []
             , label [ class "block left-align h5 mb1" ]
                 [ text "password" ]
-            , input [ type_ "password", class "mb2", placeholder "********" ] []
+            , input [ type_ "password", placeholder "********" ] []
             ]
         , div []
             [ button [ class "button button-large button-primary w100" ]

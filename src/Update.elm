@@ -1,10 +1,10 @@
 module Update exposing (..)
 
-import Commands exposing (onLocationChangeCommand, saveMottoCmd)
+import Commands exposing (navigateTo, onLocationChangeCommand, saveMottoCmd)
 import Messages exposing (..)
 import Models exposing (..)
 import RemoteData exposing (..)
-import Routing exposing (parseLocation)
+import Routing exposing (authorPath, parseLocation)
 
 
 getMottoFromResponse : Model -> WebData Motto -> Motto
@@ -54,9 +54,14 @@ update msg model =
                 newRoute =
                     parseLocation location
             in
-            ( { model | route = newRoute }, onLocationChangeCommand model newRoute )
+            ( { model | route = newRoute }
+            , onLocationChangeCommand model newRoute
+            )
 
-        OnSaveMotto response ->
+        OnSaveMotto (Ok motto) ->
+            ( model, navigateTo (authorPath motto.userId) )
+
+        OnSaveMotto (Err error) ->
             ( model, Cmd.none )
 
         SaveMotto motto ->

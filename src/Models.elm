@@ -27,6 +27,7 @@ type alias NodeEnv =
 type alias Motto =
     { id : MottoId
     , text : MottoText
+    , userId : UserId
     }
 
 
@@ -121,7 +122,7 @@ initAuthorizedUser =
 
 initMotto : Motto
 initMotto =
-    Motto "100" "New Motto"
+    Motto "100" "New Motto" "100"
 
 
 initialModel : Flags -> Route -> Model

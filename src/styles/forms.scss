@@ -7,7 +7,7 @@ input {
   font-size: 1.2rem;
   font-family: $font-primary;
   height: 50px;
-  padding: 1rem;
+  padding: 0.5rem;
   transition: $easeInOut;
   width: 100%;
 
@@ -39,7 +39,7 @@ textarea {
   font-size: 1.2rem;
   font-family: $font-primary;
   // height: 120px;
-  padding: 1rem;
+  padding: 0.75rem 0.5rem;
   transition: $easeInOut;
   width: 100%;
   resize: none;

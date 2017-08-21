@@ -6,6 +6,7 @@ import Json.Decode.Pipeline exposing (decode, required)
 import Json.Encode as Encode
 import Messages exposing (..)
 import Models exposing (ApiUrl, AuthorizedUser, Model, Motto, MottoId, Route, User, UserId)
+import Navigation exposing (..)
 import RemoteData
 
 
@@ -29,6 +30,7 @@ mottoDecoder =
     decode Motto
         |> required "id" Decode.string
         |> required "text" Decode.string
+        |> required "userId" Decode.string
 
 
 
@@ -111,9 +113,19 @@ mottoEncoder motto =
         attributes =
             [ ( "id", Encode.string motto.id )
             , ( "text", Encode.string motto.text )
+            , ( "userId", Encode.string motto.userId )
             ]
     in
     Encode.object attributes
+
+
+
+-- NAVIGATE
+
+
+navigateTo : String -> Cmd Msg
+navigateTo newPath =
+    Navigation.newUrl newPath
 
 
 
