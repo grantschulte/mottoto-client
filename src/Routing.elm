@@ -25,7 +25,7 @@ browsePath =
 
 authorPath : UserId -> String
 authorPath userId =
-    "#author/" ++ toString userId
+    "#author/" ++ userId
 
 
 editMottoPath : String
@@ -48,7 +48,7 @@ matchers =
         [ map WelcomeRoute top
         , map EditMottoRoute (s "motto")
         , map EditProfileRoute (s "profile")
-        , map AuthorRoute (s "author" </> int)
+        , map AuthorRoute (s "author" </> string)
         , map BrowseRoute (s "browse")
         , map EntryRoute (s "entry")
         , map SiteStatusRoute (s "site-status")

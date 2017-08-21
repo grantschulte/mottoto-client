@@ -24,18 +24,18 @@ function getModelBase(k, i) {
   switch (k) {
     case "users":
       return {
-        "id": i,
+        "id": (i).toString(),
         "email": faker.internet.email(),
         "handle": faker.internet.userName(),
-        "mottoId": i
+        "mottoId": (i).toString()
       }
       break;
 
     case "mottos":
       return {
-        "id": i,
+        "id": (i).toString(),
         "text": faker.lorem.sentence(),
-        "userId": i
+        "userId": (i).toString()
       }
       break;
 

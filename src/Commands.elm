@@ -3,6 +3,7 @@ module Commands exposing (..)
 import Http
 import Json.Decode as Decode
 import Json.Decode.Pipeline exposing (decode, required)
+import Json.Encode as Encode
 import Messages exposing (..)
 import Models exposing (ApiUrl, Model, Motto, MottoId, Route, User, UserId)
 import RemoteData
@@ -20,33 +21,17 @@ fetchMotto apiUrl mottoId =
 
 fetchMottoUrl : ApiUrl -> MottoId -> String
 fetchMottoUrl apiUrl mottoId =
-    apiUrl ++ "/mottos/" ++ toString mottoId ++ "?_expand=user"
+    apiUrl ++ "/mottos/" ++ mottoId
 
 
 mottoDecoder : Decode.Decoder Motto
 mottoDecoder =
     decode Motto
-        |> required "id" Decode.int
+        |> required "id" Decode.string
         |> required "text" Decode.string
 
 
 
--- FETCH MOTTO LIST
--- fetchMottoList : ApiUrl -> Cmd Msg
--- fetchMottoList apiUrl =
---     Http.get (fetchMottoListUrl apiUrl) mottoListDecoder
---         |> RemoteData.sendRequest
---         |> Cmd.map OnFetchMottoList
---
---
--- fetchMottoListUrl : ApiUrl -> String
--- fetchMottoListUrl apiUrl =
---     apiUrl ++ "/mottos" ++ "?_expand=user"
---
---
--- mottoListDecoder : Decode.Decoder (List Motto)
--- mottoListDecoder =
---     Decode.list mottoDecoder
 -- FETCH USER
 
 
@@ -59,13 +44,13 @@ fetchUser apiUrl userId =
 
 fetchUserUrl : ApiUrl -> UserId -> String
 fetchUserUrl apiUrl userId =
-    apiUrl ++ "/users/" ++ toString userId ++ "?_expand=motto"
+    apiUrl ++ "/users/" ++ userId ++ "?_expand=motto"
 
 
 userDecoder : Decode.Decoder User
 userDecoder =
     decode User
-        |> required "id" Decode.int
+        |> required "id" Decode.string
         |> required "email" Decode.string
         |> required "handle" Decode.string
         |> required "motto" mottoDecoder
@@ -93,6 +78,45 @@ userListDecoder =
 
 
 
+-- UPDATE MOTTO
+
+
+saveMottoCmd : Model -> Motto -> Cmd Msg
+saveMottoCmd model motto =
+    saveMottoRequest model.apiUrl motto
+        |> Http.send OnSaveMotto
+
+
+saveMottoRequest : ApiUrl -> Motto -> Http.Request Motto
+saveMottoRequest apiUrl motto =
+    Http.request
+        { body = mottoEncoder motto |> Http.jsonBody
+        , expect = Http.expectJson mottoDecoder
+        , headers = []
+        , method = "PATCH"
+        , timeout = Nothing
+        , url = saveMottoUrl apiUrl motto.id
+        , withCredentials = False
+        }
+
+
+saveMottoUrl : ApiUrl -> MottoId -> String
+saveMottoUrl apiUrl mottoId =
+    apiUrl ++ "/mottos/" ++ mottoId
+
+
+mottoEncoder : Motto -> Encode.Value
+mottoEncoder motto =
+    let
+        attributes =
+            [ ( "id", Encode.string motto.id )
+            , ( "text", Encode.string motto.text )
+            ]
+    in
+    Encode.object attributes
+
+
+
 -- ON LOCATION CHANGE
 
 
@@ -104,6 +128,9 @@ onLocationChangeCommand model route =
 
         Models.AuthorRoute userId ->
             fetchUser model.apiUrl userId
+
+        Models.EditMottoRoute ->
+            fetchMotto model.apiUrl "99"
 
         _ ->
             Cmd.none

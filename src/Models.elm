@@ -31,7 +31,7 @@ type alias Motto =
 
 
 type alias MottoId =
-    Int
+    String
 
 
 type alias MottoText =
@@ -59,7 +59,7 @@ type alias UserHandle =
 
 
 type alias UserId =
-    Int
+    String
 
 
 
@@ -85,7 +85,7 @@ type alias AuthToken =
 type alias Model =
     { apiUrl : ApiUrl
     , authorizedUser : AuthorizedUser
-    , motto : WebData Motto
+    , motto : Motto
     , mottos : WebData (List Motto)
     , nodeEnv : NodeEnv
     , route : Route
@@ -116,9 +116,9 @@ type Route
 initialModel : Flags -> Route -> Model
 initialModel flags route =
     { apiUrl = flags.apiUrl
-    , authorizedUser = AuthorizedUser 1 "orjazzmic@gmail.com" "avantgrant" "111.222.333"
+    , authorizedUser = AuthorizedUser "100" "orjazzmic@gmail.com" "avantgrant" "111.222.333"
     , mottos = RemoteData.Loading
-    , motto = RemoteData.Loading
+    , motto = Motto "99" "New Motto"
     , nodeEnv = flags.nodeEnv
     , route = route
     , user = RemoteData.Loading

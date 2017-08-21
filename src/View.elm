@@ -49,7 +49,7 @@ header model =
 page : Model -> Html Msg
 page model =
     case model.route of
-        AuthorRoute userHandle ->
+        AuthorRoute userId ->
             Views.Author.view model
 
         BrowseRoute ->
