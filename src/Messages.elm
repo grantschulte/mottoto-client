@@ -10,11 +10,14 @@ import RemoteData exposing (WebData)
 
 
 type Msg
-    = NoOp
-    | UpdateMotto MottoText
-    | SaveMotto Motto
-    | OnSaveMotto (Result Http.Error Motto)
+    = AuthenticateUser
+    | CreateUser
+    | OnAuthenticateUser
+    | OnCreateUser
     | OnFetchMotto (WebData Motto)
     | OnFetchUserList (WebData (List User))
     | OnFetchUser (WebData User)
     | OnLocationChange Location
+    | OnSaveMotto (Result Http.Error Motto)
+    | SaveMotto Motto
+    | UpdateMotto MottoText

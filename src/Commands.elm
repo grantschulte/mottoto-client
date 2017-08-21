@@ -14,14 +14,14 @@ import RemoteData
 
 fetchMotto : ApiUrl -> AuthorizedUser -> Cmd Msg
 fetchMotto apiUrl user =
-    Http.get (fetchMottoUrl apiUrl user.mottoId) mottoDecoder
+    Http.get (fetchMottoUrl apiUrl user.motto) mottoDecoder
         |> RemoteData.sendRequest
         |> Cmd.map OnFetchMotto
 
 
-fetchMottoUrl : ApiUrl -> MottoId -> String
-fetchMottoUrl apiUrl mottoId =
-    apiUrl ++ "/mottos/" ++ mottoId
+fetchMottoUrl : ApiUrl -> Motto -> String
+fetchMottoUrl apiUrl motto =
+    apiUrl ++ "/mottos/" ++ motto.id
 
 
 mottoDecoder : Decode.Decoder Motto

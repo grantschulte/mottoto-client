@@ -70,7 +70,7 @@ type alias AuthorizedUser =
     { id : UserId
     , email : UserEmail
     , handle : UserHandle
-    , mottoId : MottoId
+    , motto : Motto
     , token : AuthToken
     }
 
@@ -114,12 +114,22 @@ type Route
 -- INITIAL MODEL
 
 
+initAuthorizedUser : AuthorizedUser
+initAuthorizedUser =
+    AuthorizedUser "100" "orjazzmic@gmail.com" "avantgrant" initMotto "111.222.333"
+
+
+initMotto : Motto
+initMotto =
+    Motto "100" "New Motto"
+
+
 initialModel : Flags -> Route -> Model
 initialModel flags route =
     { apiUrl = flags.apiUrl
-    , authorizedUser = AuthorizedUser "100" "orjazzmic@gmail.com" "avantgrant" "100" "111.222.333"
+    , authorizedUser = initAuthorizedUser
     , mottos = RemoteData.Loading
-    , motto = Motto "100" "New Motto"
+    , motto = initMotto
     , nodeEnv = flags.nodeEnv
     , route = route
     , user = RemoteData.Loading

@@ -24,7 +24,16 @@ getMottoFromResponse model response =
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
-        NoOp ->
+        AuthenticateUser ->
+            ( model, Cmd.none )
+
+        CreateUser ->
+            ( model, Cmd.none )
+
+        OnAuthenticateUser ->
+            ( model, Cmd.none )
+
+        OnCreateUser ->
             ( model, Cmd.none )
 
         OnFetchMotto response ->
@@ -39,6 +48,13 @@ update msg model =
 
         OnFetchUserList response ->
             ( { model | users = response }, Cmd.none )
+
+        OnLocationChange location ->
+            let
+                newRoute =
+                    parseLocation location
+            in
+            ( { model | route = newRoute }, onLocationChangeCommand model newRoute )
 
         OnSaveMotto response ->
             ( model, Cmd.none )
@@ -55,10 +71,3 @@ update msg model =
                     { oldMotto | text = updatedText }
             in
             ( { model | motto = newMotto }, Cmd.none )
-
-        OnLocationChange location ->
-            let
-                newRoute =
-                    parseLocation location
-            in
-            ( { model | route = newRoute }, onLocationChangeCommand model newRoute )
