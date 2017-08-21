@@ -2,8 +2,21 @@ const faker = require("faker");
 const fs = require("fs");
 
 const data = {
-  mottos: [],
-  users: []
+  mottos: [
+    {
+      "id": "100",
+      "text": "She's my honey bunny, she's my honey bunny.",
+      "userId": "100"
+    }
+  ],
+  users: [
+    {
+      "id": "100",
+      "email": "orjazzmic@gmail.com",
+      "handle": "avantgrant",
+      "mottoId": "100"
+    }
+  ]
 };
 
 function makeData() {
@@ -42,11 +55,6 @@ function getModelBase(k, i) {
     default:
       return {};
   }
-}
-
-function findMottoText(i) {
-  let motto = data.mottos.find(m => m.userId === i);
-  return motto.text || "";
 }
 
 makeData();

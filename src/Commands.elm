@@ -5,16 +5,16 @@ import Json.Decode as Decode
 import Json.Decode.Pipeline exposing (decode, required)
 import Json.Encode as Encode
 import Messages exposing (..)
-import Models exposing (ApiUrl, Model, Motto, MottoId, Route, User, UserId)
+import Models exposing (ApiUrl, AuthorizedUser, Model, Motto, MottoId, Route, User, UserId)
 import RemoteData
 
 
 -- FETCH MOTTO
 
 
-fetchMotto : ApiUrl -> MottoId -> Cmd Msg
-fetchMotto apiUrl mottoId =
-    Http.get (fetchMottoUrl apiUrl mottoId) mottoDecoder
+fetchMotto : ApiUrl -> AuthorizedUser -> Cmd Msg
+fetchMotto apiUrl user =
+    Http.get (fetchMottoUrl apiUrl user.mottoId) mottoDecoder
         |> RemoteData.sendRequest
         |> Cmd.map OnFetchMotto
 
@@ -130,7 +130,7 @@ onLocationChangeCommand model route =
             fetchUser model.apiUrl userId
 
         Models.EditMottoRoute ->
-            fetchMotto model.apiUrl "99"
+            fetchMotto model.apiUrl model.authorizedUser
 
         _ ->
             Cmd.none

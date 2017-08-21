@@ -15,4 +15,6 @@ formatUserHandle handle =
 
 formatMottoText : MottoText -> String
 formatMottoText mottoText =
-    String.Extra.decapitalize mottoText
+    mottoText
+        |> String.Extra.decapitalize
+        |> String.toLower

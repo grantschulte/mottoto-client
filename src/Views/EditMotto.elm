@@ -19,7 +19,7 @@ view model =
 page : Motto -> Html Msg
 page motto =
     div [ class "col-12 md-col-4 center m1-auto" ]
-        [ h1 [ class "mt0 mb2 h1 lh1" ] [ text "update motto" ]
+        [ h1 [ class "mt0 mb2 h1 lh1" ] [ text "what's your motto?" ]
         , div [ class "form my3" ]
             [ textarea [ rows 4, onInput UpdateMotto ] [ text motto.text ]
             ]

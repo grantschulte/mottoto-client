@@ -4,6 +4,7 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 import Messages exposing (..)
 import Models exposing (..)
+import String exposing (isEmpty)
 import Views.Author exposing (..)
 import Views.Browse exposing (..)
 import Views.EditMotto exposing (..)
@@ -56,10 +57,30 @@ page model =
             Views.Browse.view model.users
 
         EditProfileRoute ->
-            Views.EditProfile.view model
+            let
+                user =
+                    model.authorizedUser
+
+                authorizedView =
+                    Views.EditProfile.view model
+
+                unauthorizedView =
+                    Views.Entry.view
+            in
+            checkForAuthorizedUser user unauthorizedView authorizedView
 
         EditMottoRoute ->
-            Views.EditMotto.view model
+            let
+                user =
+                    model.authorizedUser
+
+                authorizedView =
+                    Views.EditMotto.view model
+
+                unauthorizedView =
+                    Views.Entry.view
+            in
+            checkForAuthorizedUser user unauthorizedView authorizedView
 
         EntryRoute ->
             Views.Entry.view
@@ -72,3 +93,13 @@ page model =
 
         WelcomeRoute ->
             Views.Welcome.view
+
+
+checkForAuthorizedUser : AuthorizedUser -> Html Msg -> Html Msg -> Html Msg
+checkForAuthorizedUser authorizedUser unauthorizedView authorizedView =
+    case isEmpty authorizedUser.token of
+        True ->
+            unauthorizedView
+
+        False ->
+            authorizedView

@@ -26,7 +26,7 @@ view =
                 [ span [ class "dot" ] []
                 ]
             , p [ class "h3" ]
-                [ a [ href entryPath ] [ text "compose" ]
+                [ a [ href editMottoPath ] [ text "compose" ]
                 , text " a motto or "
                 , a [ href browsePath ] [ text "browse" ]
                 , text "."
