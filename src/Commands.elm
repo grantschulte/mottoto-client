@@ -85,7 +85,7 @@ userListDecoder =
 
 saveMottoCmd : Model -> Motto -> Cmd Msg
 saveMottoCmd model motto =
-    saveMottoRequest model.apiUrl motto
+    saveMottoRequest model.env.apiUrl motto
         |> Http.send OnSaveMotto
 
 
@@ -136,13 +136,13 @@ onLocationChangeCommand : Model -> Route -> Cmd Msg
 onLocationChangeCommand model route =
     case route of
         Models.BrowseRoute ->
-            fetchUserList model.apiUrl
+            fetchUserList model.env.apiUrl
 
         Models.AuthorRoute userId ->
-            fetchUser model.apiUrl userId
+            fetchUser model.env.apiUrl userId
 
         Models.EditMottoRoute ->
-            fetchMotto model.apiUrl model.authorizedUser
+            fetchMotto model.env.apiUrl model.authorizedUser
 
         _ ->
             Cmd.none

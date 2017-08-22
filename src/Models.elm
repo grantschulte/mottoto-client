@@ -81,15 +81,27 @@ type alias AuthToken =
 
 
 
+-- EDIT PROFILE FORM
+
+
+type alias EditProfileForm =
+    { handle : UserHandle
+    , email : UserEmail
+    , password : String
+    , errors : Maybe (List String)
+    }
+
+
+
 -- TYPES: MODEL
 
 
 type alias Model =
-    { apiUrl : ApiUrl
-    , authorizedUser : AuthorizedUser
+    { authorizedUser : AuthorizedUser
+    , editProfileForm : EditProfileForm
+    , env : Flags
     , motto : Motto
     , mottos : WebData (List Motto)
-    , nodeEnv : NodeEnv
     , route : Route
     , user : WebData User
     , users : WebData (List User)
@@ -127,11 +139,11 @@ initMotto =
 
 initialModel : Flags -> Route -> Model
 initialModel flags route =
-    { apiUrl = flags.apiUrl
-    , authorizedUser = initAuthorizedUser
+    { authorizedUser = initAuthorizedUser
+    , editProfileForm = EditProfileForm "" "" "" Nothing
+    , env = flags
     , mottos = RemoteData.Loading
     , motto = initMotto
-    , nodeEnv = flags.nodeEnv
     , route = route
     , user = RemoteData.Loading
     , users = RemoteData.Loading

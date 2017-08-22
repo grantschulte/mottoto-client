@@ -20,4 +20,6 @@ type Msg
     | OnLocationChange Location
     | OnSaveMotto (Result Http.Error Motto)
     | SaveMotto Motto
+    | SaveProfile EditProfileForm
     | UpdateMotto MottoText
+    | UpdateProfile String String

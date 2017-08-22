@@ -7,32 +7,25 @@ import RemoteData exposing (..)
 import Routing exposing (authorPath, parseLocation)
 
 
-getMottoFromResponse : Model -> WebData Motto -> Motto
-getMottoFromResponse model response =
-    case response of
-        RemoteData.Success motto ->
-            motto
-
-        _ ->
-            model.motto
-
-
-
 -- UPDATE
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
+        -- TODO AUTHENTICATE USER
         AuthenticateUser ->
             ( model, Cmd.none )
 
+        -- TODO CREATE USER
         CreateUser ->
             ( model, Cmd.none )
 
+        -- TODO ON AUTHENTICATE USER
         OnAuthenticateUser ->
             ( model, Cmd.none )
 
+        -- TODO ON CREATE USER
         OnCreateUser ->
             ( model, Cmd.none )
 
@@ -64,15 +57,59 @@ update msg model =
         OnSaveMotto (Err error) ->
             ( model, Cmd.none )
 
+        -- TODO SAVE PROFILE
+        SaveProfile profile ->
+            ( model, Cmd.none )
+
         SaveMotto motto ->
             ( model, saveMottoCmd model motto )
 
-        UpdateMotto updatedText ->
+        UpdateProfile field updatedValue ->
             let
-                oldMotto =
-                    model.motto
+                oldProfileForm =
+                    model.editProfileForm
 
-                newMotto =
-                    { oldMotto | text = updatedText }
+                newProfileForm =
+                    updateProfileForm field updatedValue oldProfileForm
             in
-            ( { model | motto = newMotto }, Cmd.none )
+            ( { model | editProfileForm = newProfileForm }, Cmd.none )
+
+        UpdateMotto updatedText ->
+            ( updatedModelMotto updatedText model, Cmd.none )
+
+
+
+-- HELPERS
+
+
+updatedModelMotto : String -> Model -> Model
+updatedModelMotto updatedText ({ motto } as model) =
+    { model
+        | motto = { motto | text = updatedText }
+    }
+
+
+getMottoFromResponse : Model -> WebData Motto -> Motto
+getMottoFromResponse model response =
+    case response of
+        RemoteData.Success motto ->
+            motto
+
+        _ ->
+            model.motto
+
+
+updateProfileForm : String -> String -> EditProfileForm -> EditProfileForm
+updateProfileForm field updatedValue oldProfileForm =
+    case field of
+        "email" ->
+            { oldProfileForm | email = updatedValue }
+
+        "handle" ->
+            { oldProfileForm | handle = updatedValue }
+
+        "password" ->
+            { oldProfileForm | password = updatedValue }
+
+        _ ->
+            oldProfileForm

@@ -18,7 +18,7 @@ view model =
                 ]
             , h1 [ class "h2 m0" ] [ text "mottoto status" ]
             ]
-        , infoText model.apiUrl model.nodeEnv
+        , infoText model.env.apiUrl model.env.nodeEnv
         ]
 
 
