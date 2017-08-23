@@ -11,7 +11,7 @@ import "./index.html";
 
 // Initialize Elm App
 
-const Elm = require("./Main.elm");
+const Elm = require("./app/Main.elm");
 const mountNode = document.getElementById("main");
 const app = Elm.Main.embed(mountNode, {
   nodeEnv: NODE_ENV,

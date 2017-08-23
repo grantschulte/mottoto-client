@@ -10,7 +10,7 @@ module.exports = (env) => {
   return {
     entry: {
       app: [
-        `.${sourcePath}/app/index.js`
+        `.${sourcePath}/index.js`
       ]
     },
 
