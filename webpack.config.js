@@ -5,11 +5,12 @@ module.exports = (env) => {
 
   const outputPath = "/dist";
   const sourcePath = "/src";
+  const assetPath = "/assets";
 
   return {
     entry: {
       app: [
-        "./src/index.js"
+        `.${sourcePath}/app/index.js`
       ]
     },
 
@@ -54,11 +55,21 @@ module.exports = (env) => {
         },
         {
           test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-          loader: "file-loader",
+          loader: `file-loader?name=.${assetPath}/fonts/[name].[ext]`
         },
+        { test: /\.(ico|png|jpg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+          loader: `file-loader?name=.${assetPath}/images/[name].[ext]`
+        }
       ],
 
       noParse: /\.elm$/,
+    },
+
+    resolve: {
+      modules: [
+        "assets",
+        "node_modules"
+      ]
     },
 
   	plugins: [
