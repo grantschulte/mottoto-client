@@ -65,6 +65,11 @@ module.exports = (env) => {
       noParse: /\.elm$/,
     },
 
+    /*
+     * Resolve module folders. This allows us to import files into
+     * other files without messy relative paths.
+     */
+
     resolve: {
       modules: [
         "assets",
