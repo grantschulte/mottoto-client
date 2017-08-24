@@ -1,4 +1,4 @@
-module Views.EditProfile exposing (..)
+module Users.Edit exposing (..)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
@@ -26,7 +26,7 @@ page model =
             , input
                 [ type_ "text"
                 , class "mb2"
-                , onInput (UpdateProfile "text")
+                , onInput (UpdateUser "handle")
                 , placeholder model.authorizedUser.handle
                 ]
                 []
@@ -36,24 +36,15 @@ page model =
                 [ type_ "email"
                 , class "mb2"
                 , placeholder model.authorizedUser.email
-                , onInput (UpdateProfile "email")
-                ]
-                []
-            , label [ class "block left-align h5 mb1" ]
-                [ text "password" ]
-            , input
-                [ type_ "password"
-                , onInput (UpdateProfile "password")
-                , placeholder "********"
+                , onInput (UpdateUser "email")
                 ]
                 []
             ]
         , div []
             [ button
                 [ class "button button-large button-primary w100"
-                , onClick (SaveProfile model.editProfileForm)
+                , onClick (SaveUser model.editUserForm)
                 ]
                 [ text "update" ]
             ]
-        , div [] [ text model.editProfileForm.email ]
         ]

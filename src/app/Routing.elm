@@ -35,7 +35,7 @@ editMottoPath =
 
 editProfilePath : String
 editProfilePath =
-    "#profile"
+    "#users/edit"
 
 
 
@@ -47,7 +47,7 @@ matchers =
     oneOf
         [ map WelcomeRoute top
         , map EditMottoRoute (s "motto")
-        , map EditProfileRoute (s "profile")
+        , map EditUserRoute (s "users" </> s "edit")
         , map AuthorRoute (s "author" </> string)
         , map BrowseRoute (s "browse")
         , map EntryRoute (s "entry")

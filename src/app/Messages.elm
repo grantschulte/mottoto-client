@@ -19,7 +19,8 @@ type Msg
     | OnFetchUser (WebData User)
     | OnLocationChange Location
     | OnSaveMotto (Result Http.Error Motto)
+    | OnSaveUser (Result Http.Error User)
     | SaveMotto Motto
-    | SaveProfile EditProfileForm
+    | SaveUser EditUserForm
     | UpdateMotto MottoText
-    | UpdateProfile String String
+    | UpdateUser String String

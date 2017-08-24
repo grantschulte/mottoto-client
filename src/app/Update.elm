@@ -5,6 +5,7 @@ import Messages exposing (..)
 import Models exposing (..)
 import RemoteData exposing (..)
 import Routing exposing (authorPath, parseLocation)
+import Users.Commands exposing (saveUserCmd)
 
 
 -- UPDATE
@@ -57,22 +58,27 @@ update msg model =
         OnSaveMotto (Err error) ->
             ( model, Cmd.none )
 
-        -- TODO SAVE PROFILE
-        SaveProfile profile ->
+        OnSaveUser (Ok user) ->
+            ( model, navigateTo (authorPath user.id) )
+
+        OnSaveUser (Err error) ->
             ( model, Cmd.none )
+
+        SaveUser userForm ->
+            ( model, saveUserCmd model userForm )
 
         SaveMotto motto ->
             ( model, saveMottoCmd model motto )
 
-        UpdateProfile field updatedValue ->
+        UpdateUser field updatedValue ->
             let
-                oldProfileForm =
-                    model.editProfileForm
+                oldUserForm =
+                    model.editUserForm
 
-                newProfileForm =
-                    updateProfileForm field updatedValue oldProfileForm
+                editedUserForm =
+                    updateUserForm field updatedValue oldUserForm
             in
-            ( { model | editProfileForm = newProfileForm }, Cmd.none )
+            ( { model | editUserForm = editedUserForm }, Cmd.none )
 
         UpdateMotto updatedText ->
             ( updatedModelMotto updatedText model, Cmd.none )
@@ -99,17 +105,14 @@ getMottoFromResponse model response =
             model.motto
 
 
-updateProfileForm : String -> String -> EditProfileForm -> EditProfileForm
-updateProfileForm field updatedValue oldProfileForm =
+updateUserForm : String -> String -> EditUserForm -> EditUserForm
+updateUserForm field updatedValue oldUserForm =
     case field of
         "email" ->
-            { oldProfileForm | email = updatedValue }
+            { oldUserForm | email = updatedValue }
 
         "handle" ->
-            { oldProfileForm | handle = updatedValue }
-
-        "password" ->
-            { oldProfileForm | password = updatedValue }
+            { oldUserForm | handle = updatedValue }
 
         _ ->
-            oldProfileForm
+            oldUserForm

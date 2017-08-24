@@ -84,11 +84,10 @@ type alias AuthToken =
 -- EDIT PROFILE FORM
 
 
-type alias EditProfileForm =
-    { handle : UserHandle
-    , email : UserEmail
-    , password : String
+type alias EditUserForm =
+    { email : UserEmail
     , errors : Maybe (List String)
+    , handle : UserHandle
     }
 
 
@@ -98,7 +97,7 @@ type alias EditProfileForm =
 
 type alias Model =
     { authorizedUser : AuthorizedUser
-    , editProfileForm : EditProfileForm
+    , editUserForm : EditUserForm
     , env : Flags
     , motto : Motto
     , mottos : WebData (List Motto)
@@ -115,7 +114,7 @@ type alias Model =
 type Route
     = AuthorRoute UserId
     | BrowseRoute
-    | EditProfileRoute
+    | EditUserRoute
     | EditMottoRoute
     | EntryRoute
     | NotFoundRoute
@@ -140,7 +139,7 @@ initMotto =
 initialModel : Flags -> Route -> Model
 initialModel flags route =
     { authorizedUser = initAuthorizedUser
-    , editProfileForm = EditProfileForm "" "" "" Nothing
+    , editUserForm = EditUserForm "" Nothing ""
     , env = flags
     , mottos = RemoteData.Loading
     , motto = initMotto

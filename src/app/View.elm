@@ -5,10 +5,10 @@ import Html.Attributes exposing (..)
 import Messages exposing (..)
 import Models exposing (..)
 import String exposing (isEmpty)
+import Users.Edit exposing (..)
 import Views.Author exposing (..)
 import Views.Browse exposing (..)
 import Views.EditMotto exposing (..)
-import Views.EditProfile exposing (..)
 import Views.Entry exposing (..)
 import Views.Header exposing (..)
 import Views.NotFound exposing (..)
@@ -56,13 +56,13 @@ page model =
         BrowseRoute ->
             Views.Browse.view model.users
 
-        EditProfileRoute ->
+        EditUserRoute ->
             let
                 user =
                     model.authorizedUser
 
                 authorizedView =
-                    Views.EditProfile.view model
+                    Users.Edit.view model
 
                 unauthorizedView =
                     Views.Entry.view
