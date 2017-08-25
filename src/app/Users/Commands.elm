@@ -12,9 +12,9 @@ import Models exposing (..)
 -- UPDATE USER
 
 
-saveUserCmd : Model -> EditUserForm -> Cmd Msg
-saveUserCmd model userForm =
-    saveUserRequest model.env.apiUrl userForm model.authorizedUser
+saveUserCmd : Model -> AuthorizedUser -> EditUserForm -> Cmd Msg
+saveUserCmd model user userForm =
+    saveUserRequest model.env.apiUrl userForm user
         |> Http.send OnSaveUser
 
 

@@ -33,8 +33,8 @@ editMottoPath =
     "#motto"
 
 
-editProfilePath : String
-editProfilePath =
+editUserPath : String
+editUserPath =
     "#users/edit"
 
 

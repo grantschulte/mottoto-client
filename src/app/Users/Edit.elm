@@ -18,6 +18,16 @@ view model =
 
 page : Model -> Html Msg
 page model =
+    case model.authorizedUser of
+        Nothing ->
+            div [] []
+
+        Just user ->
+            authorizedPage model user
+
+
+authorizedPage : Model -> AuthorizedUser -> Html Msg
+authorizedPage model user =
     div [ class "col-12 md-col-4 center m1-auto" ]
         [ h1 [ class "mt0 mb2 h1 lh1" ] [ text "edit profile" ]
         , div [ class "form my3" ]
@@ -27,7 +37,7 @@ page model =
                 [ type_ "text"
                 , class "mb2"
                 , onInput (UpdateUser "handle")
-                , placeholder model.authorizedUser.handle
+                , placeholder user.handle
                 ]
                 []
             , label [ class "block left-align h5 mb1" ]
@@ -35,7 +45,7 @@ page model =
             , input
                 [ type_ "email"
                 , class "mb2"
-                , placeholder model.authorizedUser.email
+                , placeholder user.email
                 , onInput (UpdateUser "email")
                 ]
                 []

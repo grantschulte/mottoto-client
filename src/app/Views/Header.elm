@@ -4,7 +4,7 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 import Messages exposing (..)
 import Models exposing (..)
-import Routing exposing (editMottoPath, editProfilePath, entryPath, welcomePath)
+import Routing exposing (editMottoPath, editUserPath, entryPath, welcomePath)
 
 
 view : Model -> Html Msg
@@ -17,12 +17,12 @@ view model =
             [ text "mottoto" ]
         , div []
             [ a
-                [ href (editMottoOrLoginHref model.authorizedUser)
+                [ href editMottoPath
                 , class "inline-block material-icons p1 header-icon ml1"
                 ]
                 [ text "create" ]
             , a
-                [ href (editUserOrLoginHref model.authorizedUser)
+                [ href editUserPath
                 , class "inline-block material-icons p1 header-icon ml1"
                 ]
                 [ text "person" ]
@@ -30,17 +30,21 @@ view model =
         ]
 
 
-editMottoOrLoginHref : AuthorizedUser -> String
+editMottoOrLoginHref : Maybe AuthorizedUser -> String
 editMottoOrLoginHref user =
-    if String.isEmpty user.token then
-        entryPath
-    else
-        editMottoPath
+    case user of
+        Nothing ->
+            entryPath
+
+        Just user ->
+            editMottoPath
 
 
-editUserOrLoginHref : AuthorizedUser -> String
+editUserOrLoginHref : Maybe AuthorizedUser -> String
 editUserOrLoginHref user =
-    if String.isEmpty user.token then
-        entryPath
-    else
-        editProfilePath
+    case user of
+        Nothing ->
+            entryPath
+
+        Just user ->
+            editMottoPath

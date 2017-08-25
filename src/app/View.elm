@@ -61,26 +61,20 @@ page model =
                 user =
                     model.authorizedUser
 
-                authorizedView =
+                editUserView =
                     Users.Edit.view model
-
-                unauthorizedView =
-                    Views.Entry.view
             in
-            checkForAuthorizedUser user unauthorizedView authorizedView
+            isAuthorized user editUserView
 
         EditMottoRoute ->
             let
                 user =
                     model.authorizedUser
 
-                authorizedView =
+                editMottoView =
                     Views.EditMotto.view model
-
-                unauthorizedView =
-                    Views.Entry.view
             in
-            checkForAuthorizedUser user unauthorizedView authorizedView
+            isAuthorized user editMottoView
 
         EntryRoute ->
             Views.Entry.view
@@ -95,11 +89,11 @@ page model =
             Views.Welcome.view
 
 
-checkForAuthorizedUser : AuthorizedUser -> Html Msg -> Html Msg -> Html Msg
-checkForAuthorizedUser authorizedUser unauthorizedView authorizedView =
-    case isEmpty authorizedUser.token of
-        True ->
-            unauthorizedView
+isAuthorized : Maybe AuthorizedUser -> Html Msg -> Html Msg
+isAuthorized user authorizedView =
+    case user of
+        Nothing ->
+            Views.Entry.view
 
-        False ->
+        Just user ->
             authorizedView

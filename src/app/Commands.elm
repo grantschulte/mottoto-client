@@ -8,6 +8,7 @@ import Messages exposing (..)
 import Models exposing (ApiUrl, AuthorizedUser, Model, Motto, MottoId, Route, User, UserId)
 import Navigation exposing (..)
 import RemoteData
+import Routing exposing (entryPath)
 
 
 -- FETCH MOTTO
@@ -142,7 +143,34 @@ onLocationChangeCommand model route =
             fetchUser model.env.apiUrl userId
 
         Models.EditMottoRoute ->
-            fetchMotto model.env.apiUrl model.authorizedUser
+            case model.authorizedUser of
+                Nothing ->
+                    navigateTo entryPath
+
+                Just user ->
+                    fetchMotto model.env.apiUrl user
+
+        Models.EditUserRoute ->
+            case model.authorizedUser of
+                Nothing ->
+                    navigateTo entryPath
+
+                Just user ->
+                    Cmd.none
 
         _ ->
             Cmd.none
+
+
+
+-- USER LOGGED IN
+
+
+userLoggedIn : Model -> Cmd Msg
+userLoggedIn model =
+    case model.authorizedUser of
+        Nothing ->
+            navigateTo entryPath
+
+        Just user ->
+            fetchMotto model.env.apiUrl user

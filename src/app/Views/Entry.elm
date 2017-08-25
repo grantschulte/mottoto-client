@@ -19,18 +19,20 @@ view =
             , div [ class "dot" ] []
             , p [ class "my2 h3" ] [ text "enter your handle and password. if you don't have an account, we'll create it." ]
             , div [ class "form my3" ]
-                [ label [ class "hide" ] [ text "handle" ]
+                [ label [ class "block left-align h5 mb1" ]
+                    [ text "email" ]
                 , input
                     [ type_ "email"
                     , placeholder "abrahamlincoln@gmail.com"
-                    , class "mb1"
+                    , class "mb2"
                     ]
                     []
-                , label [ class "hide" ] [ text "password" ]
+                , label [ class "block left-align h5 mb1" ]
+                    [ text "password" ]
                 , input
                     [ type_ "password"
                     , placeholder "********"
-                    , class ""
+                    , class "mb2"
                     ]
                     []
                 ]

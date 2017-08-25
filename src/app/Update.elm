@@ -65,7 +65,7 @@ update msg model =
             ( model, Cmd.none )
 
         SaveUser userForm ->
-            ( model, saveUserCmd model userForm )
+            ( model, isLoggedIn model userForm )
 
         SaveMotto motto ->
             ( model, saveMottoCmd model motto )
@@ -86,6 +86,16 @@ update msg model =
 
 
 -- HELPERS
+
+
+isLoggedIn : Model -> EditUserForm -> Cmd Msg
+isLoggedIn model userForm =
+    case model.authorizedUser of
+        Nothing ->
+            Cmd.none
+
+        Just user ->
+            saveUserCmd model user userForm
 
 
 updatedModelMotto : String -> Model -> Model

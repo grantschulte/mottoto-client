@@ -96,7 +96,7 @@ type alias EditUserForm =
 
 
 type alias Model =
-    { authorizedUser : AuthorizedUser
+    { authorizedUser : Maybe AuthorizedUser
     , editUserForm : EditUserForm
     , env : Flags
     , motto : Motto
@@ -138,7 +138,7 @@ initMotto =
 
 initialModel : Flags -> Route -> Model
 initialModel flags route =
-    { authorizedUser = initAuthorizedUser
+    { authorizedUser = Just initAuthorizedUser
     , editUserForm = EditUserForm "" Nothing ""
     , env = flags
     , mottos = RemoteData.Loading
