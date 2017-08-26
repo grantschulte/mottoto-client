@@ -17,6 +17,7 @@ type Msg
     | OnFetchUserList (WebData (List User))
     | OnFetchUser (WebData User)
     | OnLocationChange Location
+    | NavigateTo String
     | OnSaveMotto (Result Http.Error Motto)
     | OnSaveUser (Result Http.Error User)
     | SaveMotto EditMottoForm

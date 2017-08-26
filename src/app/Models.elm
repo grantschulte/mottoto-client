@@ -147,7 +147,7 @@ initMotto =
 
 initialModel : Flags -> Route -> Model
 initialModel flags route =
-    { authorizedUser = Just initAuthorizedUser
+    { authorizedUser = Nothing
     , editMottoForm = EditMottoForm Nothing ""
     , editUserForm = EditUserForm "" Nothing ""
     , env = flags

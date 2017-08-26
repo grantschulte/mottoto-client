@@ -22,6 +22,9 @@ update msg model =
         CreateUser ->
             ( model, Cmd.none )
 
+        NavigateTo pathName ->
+            ( model, navigateTo pathName )
+
         -- TODO ON AUTHENTICATE USER
         OnAuthenticateUser ->
             ( model, Cmd.none )
