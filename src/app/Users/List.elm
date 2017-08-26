@@ -1,4 +1,4 @@
-module Views.Browse exposing (..)
+module Users.List exposing (..)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)

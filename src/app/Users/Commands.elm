@@ -1,12 +1,52 @@
 module Users.Commands exposing (..)
 
-import Commands exposing (mottoDecoder)
+-- import Json.Decode.Pipeline exposing (decode, required)
+-- import Json.Encode as Encode
+
 import Http
 import Json.Decode as Decode
-import Json.Decode.Pipeline exposing (decode, required)
-import Json.Encode as Encode
 import Messages exposing (..)
 import Models exposing (..)
+import RemoteData exposing (..)
+import Users.Decoder exposing (userDecoder)
+import Users.Encoder exposing (userFormEncoder)
+
+
+-- FETCH USER
+
+
+fetchUser : ApiUrl -> UserId -> Cmd Msg
+fetchUser apiUrl userId =
+    Http.get (fetchUserUrl apiUrl userId) userDecoder
+        |> RemoteData.sendRequest
+        |> Cmd.map OnFetchUser
+
+
+fetchUserUrl : ApiUrl -> UserId -> String
+fetchUserUrl apiUrl userId =
+    apiUrl ++ "/users/" ++ userId ++ "?_expand=motto"
+
+
+
+-- FETCH USER LIST
+
+
+fetchUserList : ApiUrl -> Cmd Msg
+fetchUserList apiUrl =
+    Http.get (fetchUserListUrl apiUrl) userListDecoder
+        |> RemoteData.sendRequest
+        |> Cmd.map OnFetchUserList
+
+
+fetchUserListUrl : ApiUrl -> String
+fetchUserListUrl apiUrl =
+    apiUrl ++ "/users" ++ "?_expand=motto"
+
+
+userListDecoder : Decode.Decoder (List User)
+userListDecoder =
+    Decode.list userDecoder
+
 
 
 -- UPDATE USER
@@ -42,31 +82,3 @@ saveUserRequest apiUrl userForm authorizedUser =
 saveUserUrl : ApiUrl -> UserId -> String
 saveUserUrl apiUrl userId =
     apiUrl ++ "/users/" ++ userId
-
-
-
--- USER DECODER
-
-
-userDecoder : Decode.Decoder User
-userDecoder =
-    decode User
-        |> required "id" Decode.string
-        |> required "email" Decode.string
-        |> required "handle" Decode.string
-        |> required "motto" mottoDecoder
-
-
-
--- EDIT USER FORM ENCODER
-
-
-userFormEncoder : EditUserForm -> Encode.Value
-userFormEncoder userForm =
-    let
-        attributes =
-            [ ( "email", Encode.string userForm.email )
-            , ( "handle", Encode.string userForm.handle )
-            ]
-    in
-    Encode.object attributes

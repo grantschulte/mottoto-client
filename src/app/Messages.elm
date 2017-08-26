@@ -14,13 +14,12 @@ type Msg
     | CreateUser
     | OnAuthenticateUser
     | OnCreateUser
-    | OnFetchMotto (WebData Motto)
     | OnFetchUserList (WebData (List User))
     | OnFetchUser (WebData User)
     | OnLocationChange Location
     | OnSaveMotto (Result Http.Error Motto)
     | OnSaveUser (Result Http.Error User)
-    | SaveMotto Motto
+    | SaveMotto EditMottoForm
     | SaveUser EditUserForm
     | UpdateMotto MottoText
     | UpdateUser String String

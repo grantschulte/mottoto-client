@@ -4,11 +4,10 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 import Messages exposing (..)
 import Models exposing (..)
-import String exposing (isEmpty)
+import Motto.Edit exposing (..)
+import Users.Detail exposing (..)
 import Users.Edit exposing (..)
-import Views.Author exposing (..)
-import Views.Browse exposing (..)
-import Views.EditMotto exposing (..)
+import Users.List exposing (..)
 import Views.Entry exposing (..)
 import Views.Header exposing (..)
 import Views.NotFound exposing (..)
@@ -51,30 +50,26 @@ page : Model -> Html Msg
 page model =
     case model.route of
         AuthorRoute userId ->
-            Views.Author.view model
+            Users.Detail.view model
 
         BrowseRoute ->
-            Views.Browse.view model.users
+            Users.List.view model.users
 
         EditUserRoute ->
-            let
-                user =
-                    model.authorizedUser
+            case model.authorizedUser of
+                Nothing ->
+                    Views.Entry.view
 
-                editUserView =
-                    Users.Edit.view model
-            in
-            isAuthorized user editUserView
+                Just authUser ->
+                    Users.Edit.view model authUser
 
         EditMottoRoute ->
-            let
-                user =
-                    model.authorizedUser
+            case model.authorizedUser of
+                Nothing ->
+                    Views.Entry.view
 
-                editMottoView =
-                    Views.EditMotto.view model
-            in
-            isAuthorized user editMottoView
+                Just authUser ->
+                    Motto.Edit.view model authUser
 
         EntryRoute ->
             Views.Entry.view
@@ -87,13 +82,3 @@ page model =
 
         WelcomeRoute ->
             Views.Welcome.view
-
-
-isAuthorized : Maybe AuthorizedUser -> Html Msg -> Html Msg
-isAuthorized user authorizedView =
-    case user of
-        Nothing ->
-            Views.Entry.view
-
-        Just user ->
-            authorizedView

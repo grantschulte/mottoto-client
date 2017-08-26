@@ -1,9 +1,9 @@
 module Update exposing (..)
 
-import Commands exposing (navigateTo, onLocationChangeCommand, saveMottoCmd)
+import Commands exposing (navigateTo, onLocationChangeCmd)
 import Messages exposing (..)
 import Models exposing (..)
-import RemoteData exposing (..)
+import Motto.Commands exposing (saveMottoCmd)
 import Routing exposing (authorPath, parseLocation)
 import Users.Commands exposing (saveUserCmd)
 
@@ -30,13 +30,6 @@ update msg model =
         OnCreateUser ->
             ( model, Cmd.none )
 
-        OnFetchMotto response ->
-            let
-                fetchedMotto =
-                    getMottoFromResponse model response
-            in
-            ( { model | motto = fetchedMotto }, Cmd.none )
-
         OnFetchUser response ->
             ( { model | user = response }, Cmd.none )
 
@@ -49,7 +42,7 @@ update msg model =
                     parseLocation location
             in
             ( { model | route = newRoute }
-            , onLocationChangeCommand model newRoute
+            , onLocationChangeCmd model newRoute
             )
 
         OnSaveMotto (Ok motto) ->
@@ -65,10 +58,10 @@ update msg model =
             ( model, Cmd.none )
 
         SaveUser userForm ->
-            ( model, isLoggedIn model userForm )
+            ( model, saveUser model userForm )
 
-        SaveMotto motto ->
-            ( model, saveMottoCmd model motto )
+        SaveMotto mottoForm ->
+            ( model, saveMotto model mottoForm )
 
         UpdateUser field updatedValue ->
             let
@@ -81,15 +74,15 @@ update msg model =
             ( { model | editUserForm = editedUserForm }, Cmd.none )
 
         UpdateMotto updatedText ->
-            ( updatedModelMotto updatedText model, Cmd.none )
+            ( updatedMottoForm updatedText model, Cmd.none )
 
 
 
 -- HELPERS
 
 
-isLoggedIn : Model -> EditUserForm -> Cmd Msg
-isLoggedIn model userForm =
+saveUser : Model -> EditUserForm -> Cmd Msg
+saveUser model userForm =
     case model.authorizedUser of
         Nothing ->
             Cmd.none
@@ -98,21 +91,21 @@ isLoggedIn model userForm =
             saveUserCmd model user userForm
 
 
-updatedModelMotto : String -> Model -> Model
-updatedModelMotto updatedText ({ motto } as model) =
+saveMotto : Model -> EditMottoForm -> Cmd Msg
+saveMotto model mottoForm =
+    case model.authorizedUser of
+        Nothing ->
+            Cmd.none
+
+        Just user ->
+            saveMottoCmd model user mottoForm
+
+
+updatedMottoForm : String -> Model -> Model
+updatedMottoForm updatedText ({ editMottoForm } as model) =
     { model
-        | motto = { motto | text = updatedText }
+        | editMottoForm = { editMottoForm | text = updatedText }
     }
-
-
-getMottoFromResponse : Model -> WebData Motto -> Motto
-getMottoFromResponse model response =
-    case response of
-        RemoteData.Success motto ->
-            motto
-
-        _ ->
-            model.motto
 
 
 updateUserForm : String -> String -> EditUserForm -> EditUserForm

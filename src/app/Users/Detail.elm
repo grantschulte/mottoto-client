@@ -1,4 +1,4 @@
-module Views.Author exposing (..)
+module Users.Detail exposing (..)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)

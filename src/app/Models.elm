@@ -81,7 +81,17 @@ type alias AuthToken =
 
 
 
--- EDIT PROFILE FORM
+-- EDIT MOTTO FORM
+
+
+type alias EditMottoForm =
+    { errors : Maybe (List String)
+    , text : MottoText
+    }
+
+
+
+-- EDIT USER FORM
 
 
 type alias EditUserForm =
@@ -97,10 +107,9 @@ type alias EditUserForm =
 
 type alias Model =
     { authorizedUser : Maybe AuthorizedUser
+    , editMottoForm : EditMottoForm
     , editUserForm : EditUserForm
     , env : Flags
-    , motto : Motto
-    , mottos : WebData (List Motto)
     , route : Route
     , user : WebData User
     , users : WebData (List User)
@@ -139,10 +148,9 @@ initMotto =
 initialModel : Flags -> Route -> Model
 initialModel flags route =
     { authorizedUser = Just initAuthorizedUser
+    , editMottoForm = EditMottoForm Nothing ""
     , editUserForm = EditUserForm "" Nothing ""
     , env = flags
-    , mottos = RemoteData.Loading
-    , motto = initMotto
     , route = route
     , user = RemoteData.Loading
     , users = RemoteData.Loading
