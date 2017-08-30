@@ -102,6 +102,17 @@ type alias EditUserForm =
 
 
 
+-- ENTRY FORM
+
+
+type alias EntryForm =
+    { email : UserEmail
+    , errors : Maybe (List String)
+    , password : String
+    }
+
+
+
 -- TYPES: MODEL
 
 
@@ -109,6 +120,7 @@ type alias Model =
     { authorizedUser : Maybe AuthorizedUser
     , editMottoForm : EditMottoForm
     , editUserForm : EditUserForm
+    , entryForm : EntryForm
     , env : Flags
     , route : Route
     , user : WebData User
@@ -145,11 +157,27 @@ initMotto =
     Motto "100" "New Motto" "100"
 
 
+initEntryForm : EntryForm
+initEntryForm =
+    EntryForm "" Nothing ""
+
+
+initEditMottoForm : EditMottoForm
+initEditMottoForm =
+    EditMottoForm Nothing ""
+
+
+initEditUserForm : EditUserForm
+initEditUserForm =
+    EditUserForm "" Nothing ""
+
+
 initialModel : Flags -> Route -> Model
 initialModel flags route =
     { authorizedUser = Nothing
-    , editMottoForm = EditMottoForm Nothing ""
-    , editUserForm = EditUserForm "" Nothing ""
+    , editMottoForm = initEditMottoForm
+    , editUserForm = initEditUserForm
+    , entryForm = initEntryForm
     , env = flags
     , route = route
     , user = RemoteData.Loading

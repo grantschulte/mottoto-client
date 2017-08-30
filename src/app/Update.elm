@@ -14,24 +14,11 @@ import Users.Commands exposing (saveUserCmd)
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
-        -- TODO AUTHENTICATE USER
-        AuthenticateUser ->
-            ( model, Cmd.none )
-
-        -- TODO CREATE USER
-        CreateUser ->
+        Login entryForm ->
             ( model, Cmd.none )
 
         NavigateTo pathName ->
             ( model, navigateTo pathName )
-
-        -- TODO ON AUTHENTICATE USER
-        OnAuthenticateUser ->
-            ( model, Cmd.none )
-
-        -- TODO ON CREATE USER
-        OnCreateUser ->
-            ( model, Cmd.none )
 
         OnFetchUser response ->
             ( { model | user = response }, Cmd.none )
@@ -47,6 +34,12 @@ update msg model =
             ( { model | route = newRoute }
             , onLocationChangeCmd model newRoute
             )
+
+        OnLogin (Ok user) ->
+            ( model, Cmd.none )
+
+        OnLogin (Err error) ->
+            ( model, Cmd.none )
 
         OnSaveMotto (Ok motto) ->
             ( model, navigateTo (authorPath motto.userId) )
@@ -66,6 +59,19 @@ update msg model =
         SaveMotto mottoForm ->
             ( model, saveMotto model mottoForm )
 
+        UpdateEntryForm field updatedValue ->
+            let
+                oldEntryForm =
+                    model.entryForm
+
+                editedEntryForm =
+                    updateEntryForm field updatedValue oldEntryForm
+            in
+            ( { model | entryForm = editedEntryForm }, Cmd.none )
+
+        UpdateMotto updatedText ->
+            ( updatedMottoForm updatedText model, Cmd.none )
+
         UpdateUser field updatedValue ->
             let
                 oldUserForm =
@@ -75,9 +81,6 @@ update msg model =
                     updateUserForm field updatedValue oldUserForm
             in
             ( { model | editUserForm = editedUserForm }, Cmd.none )
-
-        UpdateMotto updatedText ->
-            ( updatedMottoForm updatedText model, Cmd.none )
 
 
 
@@ -102,6 +105,19 @@ saveMotto model mottoForm =
 
         Just user ->
             saveMottoCmd model user mottoForm
+
+
+updateEntryForm : String -> String -> EntryForm -> EntryForm
+updateEntryForm field updatedValue oldEntryForm =
+    case field of
+        "email" ->
+            { oldEntryForm | email = updatedValue }
+
+        "password" ->
+            { oldEntryForm | password = updatedValue }
+
+        _ ->
+            oldEntryForm
 
 
 updatedMottoForm : String -> Model -> Model

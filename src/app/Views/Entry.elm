@@ -2,14 +2,16 @@ module Views.Entry exposing (..)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
+import Html.Events exposing (onClick, onInput)
 import Messages exposing (..)
+import Models exposing (..)
 
 
 -- VIEW: ENTRY
 
 
-view : Html Msg
-view =
+view : Model -> Html Msg
+view model =
     div
         [ id "entry-page"
         , class "flex items-center justify-center h100"
@@ -25,6 +27,7 @@ view =
                     [ type_ "email"
                     , placeholder "abrahamlincoln@gmail.com"
                     , class "mb2"
+                    , onInput (UpdateEntryForm "email")
                     ]
                     []
                 , label [ class "block left-align h5 mb1" ]
@@ -33,11 +36,15 @@ view =
                     [ type_ "password"
                     , placeholder "********"
                     , class "mb2"
+                    , onInput (UpdateEntryForm "password")
                     ]
                     []
                 ]
             , div []
-                [ button [ class "button button-large button-primary w100" ]
+                [ button
+                    [ class "button button-large button-primary w100"
+                    , onClick (Login model.entryForm)
+                    ]
                     [ text "proceed" ]
                 ]
             ]

@@ -58,7 +58,7 @@ page model =
         EditUserRoute ->
             case model.authorizedUser of
                 Nothing ->
-                    Views.Entry.view
+                    Views.Entry.view model
 
                 Just authUser ->
                     Users.Edit.view model authUser
@@ -66,13 +66,13 @@ page model =
         EditMottoRoute ->
             case model.authorizedUser of
                 Nothing ->
-                    Views.Entry.view
+                    Views.Entry.view model
 
                 Just authUser ->
                     Motto.Edit.view model authUser
 
         EntryRoute ->
-            Views.Entry.view
+            Views.Entry.view model
 
         NotFoundRoute ->
             Views.NotFound.view
