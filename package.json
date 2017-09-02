@@ -1,4 +1,14 @@
 {
+  "name": "mottoto-client",
+  "version": "0.0.1",
+  "description": "An Elm App for expressing a motto.",
+  "main": "./src/index.js",
+  "author": "Grant J. Schulte <schulte.grant@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/grantschulte/mottoto-client.git"
+  },
   "dependencies": {
     "ace-css": "1.1",
     "css-loader": "^0.28.4",
@@ -24,5 +34,8 @@
     "deploy:prod": "yarn build:prod; aws s3 sync --acl public-read --sse --delete ./dist s3://www.mottoto.com",
     "seed": "node ./db/seed.js",
     "start": "nf start"
+  },
+  "engines": {
+    "node": "8.4.0"
   }
 }
