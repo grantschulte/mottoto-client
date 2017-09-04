@@ -1,4 +1,4 @@
-module Users.Detail exposing (..)
+module Authors.Detail exposing (..)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
@@ -16,11 +16,11 @@ view model =
         [ id "user-page"
         , class "flex items-center justify-center h100"
         ]
-        [ page model.user
+        [ page model.author
         ]
 
 
-page : WebData User -> Html Msg
+page : WebData Author -> Html Msg
 page response =
     case response of
         RemoteData.NotAsked ->
@@ -29,16 +29,16 @@ page response =
         RemoteData.Loading ->
             Views.Loader.view
 
-        RemoteData.Success user ->
-            mottoDisplay user
+        RemoteData.Success author ->
+            mottoDisplay author
 
         RemoteData.Failure error ->
             Views.Error.view error
 
 
-mottoDisplay : User -> Html Msg
-mottoDisplay user =
+mottoDisplay : Author -> Html Msg
+mottoDisplay author =
     div [ class "col-12 md-col-6" ]
-        [ h1 [ class "h1 regular" ] [ text (formatMottoText user.motto.text) ]
-        , p [ class "h2 mt3 right-align" ] [ text (formatUserHandle user.handle) ]
+        [ h1 [ class "h1 regular" ] [ text (formatMottoText author.motto.text) ]
+        , p [ class "h2 mt3 right-align" ] [ text (formatHandle author.handle) ]
         ]

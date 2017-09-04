@@ -1,13 +1,13 @@
 module View exposing (..)
 
+import Authors.Detail exposing (..)
+import Authors.List exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Messages exposing (..)
 import Models exposing (..)
-import Motto.Edit exposing (..)
-import Users.Detail exposing (..)
+import Mottos.Edit exposing (..)
 import Users.Edit exposing (..)
-import Users.List exposing (..)
 import Views.Entry exposing (..)
 import Views.Header exposing (..)
 import Views.NotFound exposing (..)
@@ -49,27 +49,27 @@ header model =
 page : Model -> Html Msg
 page model =
     case model.route of
-        AuthorRoute userId ->
-            Users.Detail.view model
+        AuthorsDetailRoute userHandle ->
+            Authors.Detail.view model
 
-        BrowseRoute ->
-            Users.List.view model.users
+        AuthorsIndexRoute ->
+            Authors.List.view model.authors
 
         EditUserRoute ->
-            case model.authorizedUser of
+            case model.user of
                 Nothing ->
                     Views.Entry.view model
 
-                Just authUser ->
-                    Users.Edit.view model authUser
+                Just user ->
+                    Users.Edit.view model user
 
         EditMottoRoute ->
-            case model.authorizedUser of
+            case model.user of
                 Nothing ->
                     Views.Entry.view model
 
-                Just authUser ->
-                    Motto.Edit.view model authUser
+                Just user ->
+                    Mottos.Edit.view model user
 
         EntryRoute ->
             Views.Entry.view model

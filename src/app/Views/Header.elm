@@ -30,7 +30,7 @@ view model =
         ]
 
 
-editMottoOrLoginHref : Maybe AuthorizedUser -> String
+editMottoOrLoginHref : Maybe User -> String
 editMottoOrLoginHref user =
     case user of
         Nothing ->
@@ -40,7 +40,7 @@ editMottoOrLoginHref user =
             editMottoPath
 
 
-editUserOrLoginHref : Maybe AuthorizedUser -> String
+editUserOrLoginHref : Maybe User -> String
 editUserOrLoginHref user =
     case user of
         Nothing ->

@@ -48,8 +48,8 @@ matchers =
         [ map WelcomeRoute top
         , map EditMottoRoute (s "motto")
         , map EditUserRoute (s "users" </> s "edit")
-        , map AuthorRoute (s "author" </> string)
-        , map BrowseRoute (s "browse")
+        , map AuthorsDetailRoute (s "author" </> string)
+        , map AuthorsIndexRoute (s "browse")
         , map EntryRoute (s "entry")
         , map SiteStatusRoute (s "site-status")
         ]

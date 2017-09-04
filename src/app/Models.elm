@@ -27,16 +27,27 @@ type alias NodeEnv =
 type alias Motto =
     { id : MottoId
     , text : MottoText
-    , userId : UserId
+    , user : UserId
     }
+
+
+type alias MottoText =
+    String
 
 
 type alias MottoId =
     String
 
 
-type alias MottoText =
-    String
+
+-- TYPES: AUTHOR
+
+
+type alias Author =
+    { id : UserId
+    , handle : UserHandle
+    , motto : Motto
+    }
 
 
 
@@ -48,7 +59,12 @@ type alias User =
     , email : UserEmail
     , handle : UserHandle
     , motto : Motto
+    , token : Token
     }
+
+
+type alias Token =
+    String
 
 
 type alias UserEmail =
@@ -64,29 +80,12 @@ type alias UserId =
 
 
 
--- TYPES: AUTHORIZED USER
-
-
-type alias AuthorizedUser =
-    { id : UserId
-    , email : UserEmail
-    , handle : UserHandle
-    , motto : Motto
-    , token : AuthToken
-    }
-
-
-type alias AuthToken =
-    String
-
-
-
 -- EDIT MOTTO FORM
 
 
 type alias EditMottoForm =
     { errors : Maybe (List String)
-    , text : MottoText
+    , text : String
     }
 
 
@@ -117,14 +116,14 @@ type alias EntryForm =
 
 
 type alias Model =
-    { authorizedUser : Maybe AuthorizedUser
+    { author : WebData Author
+    , authors : WebData (List Author)
     , editMottoForm : EditMottoForm
     , editUserForm : EditUserForm
     , entryForm : EntryForm
     , env : Flags
     , route : Route
-    , user : WebData User
-    , users : WebData (List User)
+    , user : Maybe User
     }
 
 
@@ -133,8 +132,8 @@ type alias Model =
 
 
 type Route
-    = AuthorRoute UserId
-    | BrowseRoute
+    = AuthorsDetailRoute UserHandle
+    | AuthorsIndexRoute
     | EditUserRoute
     | EditMottoRoute
     | EntryRoute
@@ -145,16 +144,6 @@ type Route
 
 
 -- INITIAL MODEL
-
-
-initAuthorizedUser : AuthorizedUser
-initAuthorizedUser =
-    AuthorizedUser "100" "orjazzmic@gmail.com" "avantgrant" initMotto "111.222.333"
-
-
-initMotto : Motto
-initMotto =
-    Motto "100" "New Motto" "100"
 
 
 initEntryForm : EntryForm
@@ -174,12 +163,12 @@ initEditUserForm =
 
 initialModel : Flags -> Route -> Model
 initialModel flags route =
-    { authorizedUser = Nothing
+    { author = RemoteData.Loading
+    , authors = RemoteData.Loading
     , editMottoForm = initEditMottoForm
     , editUserForm = initEditUserForm
     , entryForm = initEntryForm
     , env = flags
     , route = route
-    , user = RemoteData.Loading
-    , users = RemoteData.Loading
+    , user = Nothing
     }

@@ -1,4 +1,4 @@
-module Users.List exposing (..)
+module Authors.List exposing (..)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
@@ -11,7 +11,7 @@ import Views.Error exposing (..)
 import Views.Loader exposing (..)
 
 
-view : WebData (List User) -> Html Msg
+view : WebData (List Author) -> Html Msg
 view users =
     div
         [ id "browse-page"
@@ -21,7 +21,7 @@ view users =
         ]
 
 
-page : WebData (List User) -> Html Msg
+page : WebData (List Author) -> Html Msg
 page response =
     case response of
         RemoteData.NotAsked ->
@@ -30,26 +30,26 @@ page response =
         RemoteData.Loading ->
             Views.Loader.view
 
-        RemoteData.Success users ->
-            mottoList users
+        RemoteData.Success authors ->
+            mottoList authors
 
         RemoteData.Failure error ->
             Views.Error.view error
 
 
-mottoList : List User -> Html Msg
-mottoList users =
-    div [ class "flex flex-wrap mxn2" ] (List.map mottoColumn users)
+mottoList : List Author -> Html Msg
+mottoList authors =
+    div [ class "flex flex-wrap mxn2" ] (List.map mottoColumn authors)
 
 
-mottoColumn : User -> Html Msg
-mottoColumn user =
+mottoColumn : Author -> Html Msg
+mottoColumn author =
     div [ class "col-12 sm-col-6 md-col-4 px2 mb3 flex" ]
         [ a
-            [ href (authorPath user.id)
+            [ href (authorPath author.handle)
             , class "block p2 text-decoration-none border-top w100"
             ]
-            [ h3 [ class "h3 m0" ] [ text (formatMottoText user.motto.text) ]
-            , div [ class "mt2 right-align h4" ] [ text (formatUserHandle user.handle) ]
+            [ h3 [ class "h3 m0" ] [ text (formatMottoText author.motto.text) ]
+            , div [ class "mt2 right-align h4" ] [ text (formatHandle author.handle) ]
             ]
         ]

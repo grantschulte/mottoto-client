@@ -7,7 +7,7 @@ import Messages exposing (..)
 import Models exposing (..)
 
 
-view : Model -> AuthorizedUser -> Html Msg
+view : Model -> User -> Html Msg
 view model user =
     div
         [ id "edit-profile-page"
@@ -21,7 +21,7 @@ view model user =
                 , input
                     [ type_ "text"
                     , class "mb2"
-                    , onInput (UpdateUser "handle")
+                    , onInput (UpdateUserForm "handle")
                     , placeholder user.handle
                     ]
                     []
@@ -31,7 +31,7 @@ view model user =
                     [ type_ "email"
                     , class "mb2"
                     , placeholder user.email
-                    , onInput (UpdateUser "email")
+                    , onInput (UpdateUserForm "email")
                     ]
                     []
                 ]

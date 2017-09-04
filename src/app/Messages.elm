@@ -11,15 +11,15 @@ import RemoteData exposing (WebData)
 
 type Msg
     = Login EntryForm
-    | OnFetchUserList (WebData (List User))
-    | OnFetchUser (WebData User)
+    | OnFetchAuthors (WebData (List Author))
+    | OnFetchAuthor (WebData Author)
     | OnLocationChange Location
-    | OnLogin (Result Http.Error AuthorizedUser)
+    | OnLogin (Result Http.Error User)
     | NavigateTo String
     | OnSaveMotto (Result Http.Error Motto)
     | OnSaveUser (Result Http.Error User)
     | SaveMotto EditMottoForm
     | SaveUser EditUserForm
-    | UpdateMotto MottoText
-    | UpdateUser String String
+    | UpdateMottoForm MottoText
+    | UpdateUserForm String String
     | UpdateEntryForm String String

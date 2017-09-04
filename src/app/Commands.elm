@@ -1,10 +1,10 @@
 module Commands exposing (..)
 
+import Authors.Commands exposing (fetchAuthor, fetchAuthors)
 import Messages exposing (..)
-import Models exposing (ApiUrl, AuthorizedUser, Model, Motto, MottoId, Route, User, UserId)
+import Models exposing (..)
 import Navigation exposing (..)
 import Routing exposing (entryPath)
-import Users.Commands exposing (fetchUser, fetchUserList)
 
 
 -- NAVIGATE
@@ -22,14 +22,14 @@ navigateTo newPath =
 onLocationChangeCmd : Model -> Route -> Cmd Msg
 onLocationChangeCmd model route =
     case route of
-        Models.BrowseRoute ->
-            fetchUserList model.env.apiUrl
+        Models.AuthorsIndexRoute ->
+            fetchAuthors model.env.apiUrl
 
-        Models.AuthorRoute userId ->
-            fetchUser model.env.apiUrl userId
+        Models.AuthorsDetailRoute userHandle ->
+            fetchAuthor model.env.apiUrl userHandle
 
         Models.EditMottoRoute ->
-            case model.authorizedUser of
+            case model.user of
                 Nothing ->
                     navigateTo entryPath
 
@@ -37,7 +37,7 @@ onLocationChangeCmd model route =
                     Cmd.none
 
         Models.EditUserRoute ->
-            case model.authorizedUser of
+            case model.user of
                 Nothing ->
                     navigateTo entryPath
 

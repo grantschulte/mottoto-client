@@ -1,22 +1,22 @@
-module Motto.Commands exposing (..)
+module Mottos.Commands exposing (..)
 
 import Http
 import Messages exposing (..)
 import Models exposing (..)
-import Motto.Decoder exposing (mottoDecoder)
-import Motto.Encoder exposing (mottoFormEncoder)
+import Mottos.Decoder exposing (mottoDecoder)
+import Mottos.Encoder exposing (mottoFormEncoder)
 
 
 -- UPDATE MOTTO
 
 
-saveMottoCmd : Model -> AuthorizedUser -> EditMottoForm -> Cmd Msg
+saveMottoCmd : Model -> User -> EditMottoForm -> Cmd Msg
 saveMottoCmd model user mottoForm =
     saveMottoRequest model.env.apiUrl mottoForm user
         |> Http.send OnSaveMotto
 
 
-saveMottoRequest : ApiUrl -> EditMottoForm -> AuthorizedUser -> Http.Request Motto
+saveMottoRequest : ApiUrl -> EditMottoForm -> User -> Http.Request Motto
 saveMottoRequest apiUrl mottoForm user =
     Http.request
         { body = mottoFormEncoder mottoForm |> Http.jsonBody

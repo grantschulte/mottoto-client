@@ -1,7 +1,7 @@
-module Motto.Encoder exposing (..)
+module Mottos.Encoder exposing (..)
 
 import Json.Encode as Encode
-import Models exposing (AuthorizedUser, EditMottoForm, Motto)
+import Models exposing (EditMottoForm)
 
 
 -- EDIT MOTTO FORM ENCODER

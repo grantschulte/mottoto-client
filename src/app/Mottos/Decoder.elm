@@ -1,4 +1,4 @@
-module Motto.Decoder exposing (..)
+module Mottos.Decoder exposing (..)
 
 import Json.Decode as Decode
 import Json.Decode.Pipeline exposing (decode, required)
@@ -11,6 +11,6 @@ import Models exposing (Motto)
 mottoDecoder : Decode.Decoder Motto
 mottoDecoder =
     decode Motto
-        |> required "id" Decode.string
+        |> required "_id" Decode.string
         |> required "text" Decode.string
-        |> required "userId" Decode.string
+        |> required "user" Decode.string

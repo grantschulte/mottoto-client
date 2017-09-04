@@ -3,7 +3,7 @@ module Update exposing (..)
 import Commands exposing (navigateTo, onLocationChangeCmd)
 import Messages exposing (..)
 import Models exposing (..)
-import Motto.Commands exposing (saveMottoCmd)
+import Mottos.Commands exposing (saveMottoCmd)
 import Routing exposing (authorPath, parseLocation)
 import Users.Commands exposing (saveUserCmd)
 
@@ -20,11 +20,11 @@ update msg model =
         NavigateTo pathName ->
             ( model, navigateTo pathName )
 
-        OnFetchUser response ->
-            ( { model | user = response }, Cmd.none )
+        OnFetchAuthor response ->
+            ( { model | author = response }, Cmd.none )
 
-        OnFetchUserList response ->
-            ( { model | users = response }, Cmd.none )
+        OnFetchAuthors response ->
+            ( { model | authors = response }, Cmd.none )
 
         OnLocationChange location ->
             let
@@ -42,7 +42,7 @@ update msg model =
             ( model, Cmd.none )
 
         OnSaveMotto (Ok motto) ->
-            ( model, navigateTo (authorPath motto.userId) )
+            ( model, navigateTo (authorPath motto.user) )
 
         OnSaveMotto (Err error) ->
             ( model, Cmd.none )
@@ -69,10 +69,10 @@ update msg model =
             in
             ( { model | entryForm = editedEntryForm }, Cmd.none )
 
-        UpdateMotto updatedText ->
+        UpdateMottoForm updatedText ->
             ( updatedMottoForm updatedText model, Cmd.none )
 
-        UpdateUser field updatedValue ->
+        UpdateUserForm field updatedValue ->
             let
                 oldUserForm =
                     model.editUserForm
@@ -89,7 +89,7 @@ update msg model =
 
 saveUser : Model -> EditUserForm -> Cmd Msg
 saveUser model userForm =
-    case model.authorizedUser of
+    case model.user of
         Nothing ->
             Cmd.none
 
@@ -99,7 +99,7 @@ saveUser model userForm =
 
 saveMotto : Model -> EditMottoForm -> Cmd Msg
 saveMotto model mottoForm =
-    case model.authorizedUser of
+    case model.user of
         Nothing ->
             Cmd.none
 

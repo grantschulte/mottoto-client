@@ -5,16 +5,12 @@ import String exposing (..)
 import String.Extra exposing (..)
 
 
-formatUserHandle : UserHandle -> String
-formatUserHandle handle =
+formatHandle : UserHandle -> String
+formatHandle handle =
     handle
         |> String.append "— "
-        |> String.Extra.decapitalize
-        |> String.toLower
 
 
 formatMottoText : MottoText -> String
 formatMottoText mottoText =
     mottoText
-        |> String.Extra.decapitalize
-        |> String.toLower
