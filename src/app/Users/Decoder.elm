@@ -12,7 +12,7 @@ import Mottos.Decoder exposing (mottoDecoder)
 userDecoder : Decode.Decoder User
 userDecoder =
     decode User
-        |> required "id" Decode.string
+        |> required "_id" Decode.string
         |> required "email" Decode.string
         |> required "handle" Decode.string
         |> required "motto" mottoDecoder
