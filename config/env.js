@@ -12,7 +12,7 @@ module.exports = (env = defaultEnvironment) => {
     },
 
     staging: {
-      "API_URL": JSON.stringify("http://staging.api.com"),
+      "API_URL": JSON.stringify("https://mottoto-api-staging.herokuapp.com/"),
       "NODE_ENV": JSON.stringify("staging")
     },
 
