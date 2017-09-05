@@ -22,7 +22,7 @@ view model user =
                     [ type_ "text"
                     , class "mb2"
                     , onInput (UpdateUserForm "handle")
-                    , placeholder user.handle
+                    , value user.handle
                     ]
                     []
                 , label [ class "block left-align h5 mb1" ]
@@ -30,7 +30,7 @@ view model user =
                 , input
                     [ type_ "email"
                     , class "mb2"
-                    , placeholder user.email
+                    , value user.email
                     , onInput (UpdateUserForm "email")
                     ]
                     []

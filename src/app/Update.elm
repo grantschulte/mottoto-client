@@ -55,7 +55,9 @@ update msg model =
             ( { model | loginForm = updatedLoginForm }, Cmd.none )
 
         OnSaveMotto (Ok motto) ->
-            ( model, navigateTo (authorPath motto.user) )
+            ( { model | user = updateUserWithMotto model.user motto }
+            , navigateTo (authorPath (userHandle model.user))
+            )
 
         OnSaveMotto (Err error) ->
             ( model, Cmd.none )
@@ -108,6 +110,34 @@ update msg model =
 
 
 -- HELPERS
+-- getUserFromMaybe : Maybe User -> Maybe User
+-- getUserFromMaybe user =
+--     case user of
+--         Nothing ->
+--           Nothing
+--
+--         Just user ->
+--             Just user
+
+
+userHandle : Maybe User -> UserHandle
+userHandle user =
+    case user of
+        Nothing ->
+            ""
+
+        Just user ->
+            user.handle
+
+
+updateUserWithMotto : Maybe User -> Motto -> Maybe User
+updateUserWithMotto user motto =
+    case user of
+        Nothing ->
+            Nothing
+
+        Just user ->
+            Just { user | motto = motto }
 
 
 loginFormErrors : LoginUserForm -> Http.Error -> LoginUserForm

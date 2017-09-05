@@ -21,14 +21,14 @@ saveMottoRequest apiUrl mottoForm user =
     Http.request
         { body = mottoFormEncoder mottoForm |> Http.jsonBody
         , expect = Http.expectJson mottoDecoder
-        , headers = []
-        , method = "PATCH"
+        , headers = [ Http.header "x-access-token" user.token ]
+        , method = "PUT"
         , timeout = Nothing
-        , url = saveMottoUrl apiUrl user.motto.id
+        , url = saveMottoUrl apiUrl
         , withCredentials = False
         }
 
 
-saveMottoUrl : ApiUrl -> MottoId -> String
-saveMottoUrl apiUrl mottoId =
-    apiUrl ++ "/mottos/" ++ mottoId
+saveMottoUrl : ApiUrl -> String
+saveMottoUrl apiUrl =
+    apiUrl ++ "/api/mottos/"
