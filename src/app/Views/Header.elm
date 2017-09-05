@@ -4,7 +4,7 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 import Messages exposing (..)
 import Models exposing (..)
-import Routing exposing (editMottoPath, editUserPath, entryPath, welcomePath)
+import Routing exposing (editMottoPath, editUserPath, loginPath, welcomePath)
 
 
 view : Model -> Html Msg
@@ -34,7 +34,7 @@ editMottoOrLoginHref : Maybe User -> String
 editMottoOrLoginHref user =
     case user of
         Nothing ->
-            entryPath
+            loginPath
 
         Just user ->
             editMottoPath
@@ -44,7 +44,7 @@ editUserOrLoginHref : Maybe User -> String
 editUserOrLoginHref user =
     case user of
         Nothing ->
-            entryPath
+            loginPath
 
         Just user ->
             editMottoPath

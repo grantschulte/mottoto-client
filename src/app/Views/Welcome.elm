@@ -4,7 +4,7 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onClick)
 import Messages exposing (..)
-import Routing exposing (browsePath, editMottoPath, entryPath)
+import Routing exposing (browsePath, editMottoPath)
 
 
 -- VIEW: WELCOME
@@ -14,7 +14,7 @@ view : Html Msg
 view =
     div
         [ id "welcome-page"
-        , class "flex items-center justify-center h100"
+        , class "flex items-center justify-center max-width-4 mx-auto h100"
         ]
         [ div [ class "col-12 md-col-5 center" ]
             [ h1 [ class "mt0 mb2 oversized lh1" ] [ text "motto" ]

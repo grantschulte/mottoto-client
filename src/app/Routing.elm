@@ -13,9 +13,14 @@ welcomePath =
     "#"
 
 
-entryPath : String
-entryPath =
-    "#entry"
+loginPath : String
+loginPath =
+    "#login"
+
+
+createPath : String
+createPath =
+    "#create"
 
 
 browsePath : String
@@ -30,12 +35,12 @@ authorPath userId =
 
 editMottoPath : String
 editMottoPath =
-    "#motto"
+    "#motto/edit"
 
 
 editUserPath : String
 editUserPath =
-    "#users/edit"
+    "#user/edit"
 
 
 
@@ -46,11 +51,12 @@ matchers : Parser (Route -> a) a
 matchers =
     oneOf
         [ map WelcomeRoute top
-        , map EditMottoRoute (s "motto")
-        , map EditUserRoute (s "users" </> s "edit")
+        , map EditMottoRoute (s "motto" </> s "edit")
+        , map EditUserRoute (s "user" </> s "edit")
         , map AuthorsDetailRoute (s "author" </> string)
         , map AuthorsIndexRoute (s "browse")
-        , map EntryRoute (s "entry")
+        , map LoginUserRoute (s "login")
+        , map CreateUserRoute (s "create")
         , map SiteStatusRoute (s "site-status")
         ]
 

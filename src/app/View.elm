@@ -1,5 +1,7 @@
 module View exposing (..)
 
+import Auth.Create exposing (..)
+import Auth.Login exposing (..)
 import Authors.Detail exposing (..)
 import Authors.List exposing (..)
 import Html exposing (..)
@@ -8,7 +10,6 @@ import Messages exposing (..)
 import Models exposing (..)
 import Mottos.Edit exposing (..)
 import Users.Edit exposing (..)
-import Views.Entry exposing (..)
 import Views.Header exposing (..)
 import Views.NotFound exposing (..)
 import Views.SiteStatus exposing (..)
@@ -55,10 +56,13 @@ page model =
         AuthorsIndexRoute ->
             Authors.List.view model.authors
 
+        CreateUserRoute ->
+            Auth.Create.view model
+
         EditUserRoute ->
             case model.user of
                 Nothing ->
-                    Views.Entry.view model
+                    Auth.Login.view model
 
                 Just user ->
                     Users.Edit.view model user
@@ -66,13 +70,13 @@ page model =
         EditMottoRoute ->
             case model.user of
                 Nothing ->
-                    Views.Entry.view model
+                    Auth.Login.view model
 
                 Just user ->
                     Mottos.Edit.view model user
 
-        EntryRoute ->
-            Views.Entry.view model
+        LoginUserRoute ->
+            Auth.Login.view model
 
         NotFoundRoute ->
             Views.NotFound.view

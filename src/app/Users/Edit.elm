@@ -11,7 +11,7 @@ view : Model -> User -> Html Msg
 view model user =
     div
         [ id "edit-profile-page"
-        , class "flex items-center justify-center h100"
+        , class "flex items-center justify-center max-width-4 mx-auto h100"
         ]
         [ div [ class "col-12 md-col-4 center m1-auto" ]
             [ h1 [ class "mt0 mb2 h1 lh1" ] [ text "edit profile" ]

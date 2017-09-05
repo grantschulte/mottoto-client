@@ -4,7 +4,7 @@ import Authors.Commands exposing (fetchAuthor, fetchAuthors)
 import Messages exposing (..)
 import Models exposing (..)
 import Navigation exposing (..)
-import Routing exposing (entryPath)
+import Routing exposing (loginPath)
 
 
 -- NAVIGATE
@@ -31,7 +31,7 @@ onLocationChangeCmd model route =
         Models.EditMottoRoute ->
             case model.user of
                 Nothing ->
-                    navigateTo entryPath
+                    navigateTo loginPath
 
                 Just user ->
                     Cmd.none
@@ -39,7 +39,7 @@ onLocationChangeCmd model route =
         Models.EditUserRoute ->
             case model.user of
                 Nothing ->
-                    navigateTo entryPath
+                    navigateTo loginPath
 
                 Just user ->
                     Cmd.none

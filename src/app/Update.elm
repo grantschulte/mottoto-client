@@ -14,7 +14,10 @@ import Users.Commands exposing (saveUserCmd)
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
-        Login entryForm ->
+        CreateUser createForm ->
+            ( model, Cmd.none )
+
+        LoginUser loginForm ->
             ( model, Cmd.none )
 
         NavigateTo pathName ->
@@ -59,15 +62,25 @@ update msg model =
         SaveMotto mottoForm ->
             ( model, saveMotto model mottoForm )
 
-        UpdateEntryForm field updatedValue ->
+        UpdateCreateForm field updatedValue ->
             let
-                oldEntryForm =
-                    model.entryForm
+                oldCreateForm =
+                    model.createForm
 
-                editedEntryForm =
-                    updateEntryForm field updatedValue oldEntryForm
+                editedCreateForm =
+                    updateCreateForm field updatedValue oldCreateForm
             in
-            ( { model | entryForm = editedEntryForm }, Cmd.none )
+            ( { model | createForm = editedCreateForm }, Cmd.none )
+
+        UpdateLoginForm field updatedValue ->
+            let
+                oldLoginForm =
+                    model.loginForm
+
+                editedLoginForm =
+                    updateLoginForm field updatedValue oldLoginForm
+            in
+            ( { model | loginForm = editedLoginForm }, Cmd.none )
 
         UpdateMottoForm updatedText ->
             ( updatedMottoForm updatedText model, Cmd.none )
@@ -107,17 +120,33 @@ saveMotto model mottoForm =
             saveMottoCmd model user mottoForm
 
 
-updateEntryForm : String -> String -> EntryForm -> EntryForm
-updateEntryForm field updatedValue oldEntryForm =
+updateLoginForm : String -> String -> LoginUserForm -> LoginUserForm
+updateLoginForm field updatedValue oldLoginForm =
     case field of
         "email" ->
-            { oldEntryForm | email = updatedValue }
+            { oldLoginForm | email = updatedValue }
 
         "password" ->
-            { oldEntryForm | password = updatedValue }
+            { oldLoginForm | password = updatedValue }
 
         _ ->
-            oldEntryForm
+            oldLoginForm
+
+
+updateCreateForm : String -> String -> CreateUserForm -> CreateUserForm
+updateCreateForm field updatedValue oldCreateForm =
+    case field of
+        "email" ->
+            { oldCreateForm | email = updatedValue }
+
+        "handle" ->
+            { oldCreateForm | handle = updatedValue }
+
+        "password" ->
+            { oldCreateForm | password = updatedValue }
+
+        _ ->
+            oldCreateForm
 
 
 updatedMottoForm : String -> Model -> Model

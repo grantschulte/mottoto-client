@@ -11,7 +11,7 @@ view : Model -> User -> Html Msg
 view model user =
     div
         [ id "edit-motto-page"
-        , class "flex items-center justify-center h100"
+        , class "flex items-center justify-center max-width-4 mx-auto h100"
         ]
         [ page model user ]
 

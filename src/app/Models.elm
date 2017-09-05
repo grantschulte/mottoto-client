@@ -101,12 +101,24 @@ type alias EditUserForm =
 
 
 
--- ENTRY FORM
+-- LOGIN USER FORM
 
 
-type alias EntryForm =
+type alias LoginUserForm =
     { email : UserEmail
     , errors : Maybe (List String)
+    , password : String
+    }
+
+
+
+-- CREATE USER FORM
+
+
+type alias CreateUserForm =
+    { email : UserEmail
+    , errors : Maybe (List String)
+    , handle : UserHandle
     , password : String
     }
 
@@ -118,9 +130,10 @@ type alias EntryForm =
 type alias Model =
     { author : WebData Author
     , authors : WebData (List Author)
+    , createForm : CreateUserForm
     , editMottoForm : EditMottoForm
     , editUserForm : EditUserForm
-    , entryForm : EntryForm
+    , loginForm : LoginUserForm
     , env : Flags
     , route : Route
     , user : Maybe User
@@ -134,9 +147,10 @@ type alias Model =
 type Route
     = AuthorsDetailRoute UserHandle
     | AuthorsIndexRoute
+    | CreateUserRoute
     | EditUserRoute
     | EditMottoRoute
-    | EntryRoute
+    | LoginUserRoute
     | NotFoundRoute
     | SiteStatusRoute
     | WelcomeRoute
@@ -146,9 +160,14 @@ type Route
 -- INITIAL MODEL
 
 
-initEntryForm : EntryForm
-initEntryForm =
-    EntryForm "" Nothing ""
+initLoginUserForm : LoginUserForm
+initLoginUserForm =
+    LoginUserForm "" Nothing ""
+
+
+initCreateUserForm : CreateUserForm
+initCreateUserForm =
+    CreateUserForm "" Nothing "" ""
 
 
 initEditMottoForm : EditMottoForm
@@ -165,9 +184,10 @@ initialModel : Flags -> Route -> Model
 initialModel flags route =
     { author = RemoteData.Loading
     , authors = RemoteData.Loading
+    , createForm = initCreateUserForm
     , editMottoForm = initEditMottoForm
     , editUserForm = initEditUserForm
-    , entryForm = initEntryForm
+    , loginForm = initLoginUserForm
     , env = flags
     , route = route
     , user = Nothing

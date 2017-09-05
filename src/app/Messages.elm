@@ -10,7 +10,8 @@ import RemoteData exposing (WebData)
 
 
 type Msg
-    = Login EntryForm
+    = CreateUser CreateUserForm
+    | LoginUser LoginUserForm
     | OnFetchAuthors (WebData (List Author))
     | OnFetchAuthor (WebData Author)
     | OnLocationChange Location
@@ -20,6 +21,7 @@ type Msg
     | OnSaveUser (Result Http.Error User)
     | SaveMotto EditMottoForm
     | SaveUser EditUserForm
+    | UpdateCreateForm String String
     | UpdateMottoForm MottoText
     | UpdateUserForm String String
-    | UpdateEntryForm String String
+    | UpdateLoginForm String String
