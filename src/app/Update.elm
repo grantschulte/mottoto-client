@@ -110,14 +110,6 @@ update msg model =
 
 
 -- HELPERS
--- getUserFromMaybe : Maybe User -> Maybe User
--- getUserFromMaybe user =
---     case user of
---         Nothing ->
---           Nothing
---
---         Just user ->
---             Just user
 
 
 userHandle : Maybe User -> UserHandle
