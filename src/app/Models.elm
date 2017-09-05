@@ -1,5 +1,6 @@
 module Models exposing (..)
 
+import Http
 import RemoteData exposing (WebData)
 
 
@@ -84,7 +85,7 @@ type alias UserId =
 
 
 type alias EditMottoForm =
-    { errors : Maybe (List String)
+    { error : Maybe String
     , text : String
     }
 
@@ -95,7 +96,7 @@ type alias EditMottoForm =
 
 type alias EditUserForm =
     { email : UserEmail
-    , errors : Maybe (List String)
+    , error : Maybe String
     , handle : UserHandle
     }
 
@@ -106,7 +107,7 @@ type alias EditUserForm =
 
 type alias LoginUserForm =
     { email : UserEmail
-    , errors : Maybe (List String)
+    , error : Maybe String
     , password : String
     }
 
@@ -117,10 +118,18 @@ type alias LoginUserForm =
 
 type alias CreateUserForm =
     { email : UserEmail
-    , errors : Maybe (List String)
+    , error : Maybe String
     , handle : UserHandle
     , password : String
     }
+
+
+
+-- TYPES: ERRORS
+
+
+type alias RequestError =
+    Http.Error
 
 
 

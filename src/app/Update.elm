@@ -1,11 +1,14 @@
 module Update exposing (..)
 
+import Auth.Commands exposing (loginUserCmd)
 import Commands exposing (navigateTo, onLocationChangeCmd)
+import Http
 import Messages exposing (..)
 import Models exposing (..)
 import Mottos.Commands exposing (saveMottoCmd)
-import Routing exposing (authorPath, parseLocation)
+import Routing exposing (authorPath, editMottoPath, parseLocation)
 import Users.Commands exposing (saveUserCmd)
+import Utils.Errors exposing (httpError)
 
 
 -- UPDATE
@@ -18,7 +21,7 @@ update msg model =
             ( model, Cmd.none )
 
         LoginUser loginForm ->
-            ( model, Cmd.none )
+            ( model, loginUserCmd model loginForm )
 
         NavigateTo pathName ->
             ( model, navigateTo pathName )
@@ -38,11 +41,18 @@ update msg model =
             , onLocationChangeCmd model newRoute
             )
 
-        OnLogin (Ok user) ->
-            ( model, Cmd.none )
+        OnLoginUser (Ok user) ->
+            ( { model | user = Just user }, navigateTo editMottoPath )
 
-        OnLogin (Err error) ->
-            ( model, Cmd.none )
+        OnLoginUser (Err error) ->
+            let
+                oldLoginForm =
+                    model.loginForm
+
+                updatedLoginForm =
+                    loginFormErrors oldLoginForm error
+            in
+            ( { model | loginForm = updatedLoginForm }, Cmd.none )
 
         OnSaveMotto (Ok motto) ->
             ( model, navigateTo (authorPath motto.user) )
@@ -98,6 +108,11 @@ update msg model =
 
 
 -- HELPERS
+
+
+loginFormErrors : LoginUserForm -> Http.Error -> LoginUserForm
+loginFormErrors loginForm error =
+    { loginForm | error = Just (httpError error) }
 
 
 saveUser : Model -> EditUserForm -> Cmd Msg

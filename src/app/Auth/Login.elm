@@ -19,6 +19,8 @@ view model =
         ]
         [ div [ class "col-12 md-col-4 center m1-auto" ]
             [ h1 [ class "mt0 mb2 h1 lh1" ] [ text "login" ]
+            , div [ class "errors" ]
+                [ errors model.loginForm.error ]
             , div [ class "form my2" ]
                 [ label [ class "block left-align h5 mb1" ]
                     [ text "email" ]
@@ -52,3 +54,13 @@ view model =
                 ]
             ]
         ]
+
+
+errors : Maybe String -> Html Msg
+errors error =
+    case error of
+        Nothing ->
+            div [] []
+
+        Just message ->
+            p [] [ text message ]
