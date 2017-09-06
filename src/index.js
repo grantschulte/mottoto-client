@@ -24,8 +24,12 @@ const app = Elm.Mottoto.embed(mountNode, {
   apiUrl: API_URL
 });
 
+app.ports.removeToken.subscribe(() => {
+  window.localStorage.removeItem(TOKEN_STORAGE_KEY);
+});
+
 app.ports.getToken.subscribe(() => {
-  const token = window.localStorage.getItem("mottoto-user-token");
+  const token = window.localStorage.getItem(TOKEN_STORAGE_KEY);
   if (token) {
     app.ports.getUserFromToken.send(token);
   }
@@ -33,6 +37,6 @@ app.ports.getToken.subscribe(() => {
 
 app.ports.setToken.subscribe((token) => {
   if (token) {
-    window.localStorage.setItem("mottoto-user-token", token);
+    window.localStorage.setItem(TOKEN_STORAGE_KEY, token);
   }
 });

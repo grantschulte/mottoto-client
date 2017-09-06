@@ -6,7 +6,7 @@ import Http
 import Messages exposing (..)
 import Models exposing (..)
 import Mottos.Commands exposing (saveMottoCmd)
-import Ports exposing (getToken, setToken)
+import Ports exposing (getToken, removeToken, setToken)
 import Routing exposing (authorPath, editMottoPath, parseLocation, welcomePath)
 import Users.Commands exposing (getUserFromTokenCmd, saveUserCmd)
 import Utils.Errors exposing (httpError)
@@ -31,7 +31,14 @@ update msg model =
             ( model, loginUserCmd model loginForm )
 
         LogoutUser ->
-            ( { model | user = Nothing }, navigateTo welcomePath )
+            ( { model
+                | user = Nothing
+              }
+            , Cmd.batch
+                [ navigateTo welcomePath
+                , removeToken ()
+                ]
+            )
 
         NavigateTo pathName ->
             ( model, navigateTo pathName )
