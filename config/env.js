@@ -1,6 +1,6 @@
 // Set your default environment here. This value will
-// be overwritten by env settings passed to webpack via
-// when it it called.
+// be overwritten by env settings passed to webpack
+// via npm scripts
 
 const defaultEnvironment = "development";
 
@@ -17,7 +17,7 @@ module.exports = (env = defaultEnvironment) => {
     },
 
     production: {
-      "API_URL": JSON.stringify("http://prod.api.com"),
+      "API_URL": JSON.stringify("https://mottoto-api.herokuapp.com"),
       "NODE_ENV": JSON.stringify("production")
     }
   };

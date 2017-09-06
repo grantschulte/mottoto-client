@@ -4,19 +4,29 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 import Messages exposing (..)
 import Models exposing (..)
-import Routing exposing (createPath, editMottoPath, editUserPath, loginPath, welcomePath)
+import Routing exposing (browsePath, createPath, editMottoPath, editUserPath, loginPath, welcomePath)
 
 
 view : Model -> Html Msg
 view model =
     header [ class "flex justify-center items-center fixed top-0 right-0 left-0 p2" ]
         [ a
-            [ href welcomePath
+            [ href (logoPath model.user)
             , class "h1 bold flex-auto text-decoration-none lh1"
             ]
             [ text "mottoto" ]
         , userActions model.user
         ]
+
+
+logoPath : Maybe User -> String
+logoPath user =
+    case user of
+        Nothing ->
+            welcomePath
+
+        Just user ->
+            browsePath
 
 
 userActions : Maybe User -> Html Msg
