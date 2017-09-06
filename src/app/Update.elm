@@ -1,6 +1,6 @@
 module Update exposing (..)
 
-import Auth.Commands exposing (loginUserCmd)
+import Auth.Commands exposing (createUserCmd, loginUserCmd)
 import Commands exposing (navigateTo, onLocationChangeCmd)
 import Http
 import Messages exposing (..)
@@ -18,13 +18,26 @@ update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         CreateUser createForm ->
-            ( model, Cmd.none )
+            ( model, createUserCmd model createForm )
 
         LoginUser loginForm ->
             ( model, loginUserCmd model loginForm )
 
         NavigateTo pathName ->
             ( model, navigateTo pathName )
+
+        OnCreateUser (Ok user) ->
+            ( { model | user = Just user }, navigateTo editMottoPath )
+
+        OnCreateUser (Err error) ->
+            let
+                oldCreateForm =
+                    model.createForm
+
+                updatedCreateForm =
+                    createFormErrors oldCreateForm error
+            in
+            ( { model | createForm = updatedCreateForm }, Cmd.none )
 
         OnFetchAuthor response ->
             ( { model | author = response }, Cmd.none )
@@ -42,7 +55,12 @@ update msg model =
             )
 
         OnLoginUser (Ok user) ->
-            ( { model | user = Just user }, navigateTo editMottoPath )
+            ( { model
+                | user = Just user
+                , editUserForm = editFormToUser model.editUserForm user
+              }
+            , navigateTo editMottoPath
+            )
 
         OnLoginUser (Err error) ->
             let
@@ -63,7 +81,7 @@ update msg model =
             ( model, Cmd.none )
 
         OnSaveUser (Ok user) ->
-            ( model, navigateTo (authorPath user.id) )
+            ( model, navigateTo (authorPath user.handle) )
 
         OnSaveUser (Err error) ->
             ( model, Cmd.none )
@@ -112,6 +130,14 @@ update msg model =
 -- HELPERS
 
 
+editFormToUser : EditUserForm -> User -> EditUserForm
+editFormToUser editUserForm user =
+    { editUserForm
+        | email = user.email
+        , handle = user.handle
+    }
+
+
 userHandle : Maybe User -> UserHandle
 userHandle user =
     case user of
@@ -130,6 +156,11 @@ updateUserWithMotto user motto =
 
         Just user ->
             Just { user | motto = motto }
+
+
+createFormErrors : CreateUserForm -> Http.Error -> CreateUserForm
+createFormErrors createForm error =
+    { createForm | error = Just (httpError error) }
 
 
 loginFormErrors : LoginUserForm -> Http.Error -> LoginUserForm
@@ -201,6 +232,9 @@ updateUserForm field updatedValue oldUserForm =
 
         "handle" ->
             { oldUserForm | handle = updatedValue }
+
+        "password" ->
+            { oldUserForm | password = updatedValue }
 
         _ ->
             oldUserForm

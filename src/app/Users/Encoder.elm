@@ -13,6 +13,7 @@ userFormEncoder userForm =
         attributes =
             [ ( "email", Encode.string userForm.email )
             , ( "handle", Encode.string userForm.handle )
+            , ( "password", Encode.string userForm.password )
             ]
     in
     Encode.object attributes

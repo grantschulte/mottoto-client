@@ -12,6 +12,7 @@ import RemoteData exposing (WebData)
 type Msg
     = CreateUser CreateUserForm
     | LoginUser LoginUserForm
+    | OnCreateUser (Result Http.Error User)
     | OnFetchAuthors (WebData (List Author))
     | OnFetchAuthor (WebData Author)
     | OnLocationChange Location

@@ -1,9 +1,11 @@
 module Utils.Errors exposing (..)
 
+import Html exposing (..)
+import Html.Attributes exposing (..)
 import Http exposing (..)
 import Json.Decode as Decode
-import Json.Decode.Pipeline exposing (decode, required)
-import Models exposing (..)
+import Messages exposing (..)
+import String exposing (..)
 
 
 genericError : String
@@ -35,9 +37,16 @@ httpError error =
             toString message
 
 
+errorElement : Maybe String -> Html Msg
+errorElement error =
+    case error of
+        Nothing ->
+            text ""
 
--- errorDecoder : Decode.Decoder -> ErrorResponse
--- errorDecoder =
---     decode ErrorResponse
---         |> required "status" Decode.string
---         |> required "message" Decode.string
+        Just message ->
+            div [ class "errors" ] (List.map errorItem (String.lines message))
+
+
+errorItem : String -> Html Msg
+errorItem message =
+    div [] [ text message ]

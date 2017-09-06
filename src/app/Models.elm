@@ -98,6 +98,7 @@ type alias EditUserForm =
     { email : UserEmail
     , error : Maybe String
     , handle : UserHandle
+    , password : String
     }
 
 
@@ -186,7 +187,7 @@ initEditMottoForm =
 
 initEditUserForm : EditUserForm
 initEditUserForm =
-    EditUserForm "" Nothing ""
+    EditUserForm "" Nothing "" ""
 
 
 initialModel : Flags -> Route -> Model

@@ -21,13 +21,18 @@ page model user =
     div [ class "col-12 md-col-4 center m1-auto" ]
         [ h1 [ class "mt0 mb2 h1 lh1" ] [ text "what's your motto?" ]
         , div [ class "form my3" ]
-            [ textarea [ rows 4, onInput UpdateMottoForm ] [ text user.motto.text ]
+            [ textarea
+                [ rows 4
+                , onInput UpdateMottoForm
+                , placeholder "Express yourself..."
+                ]
+                [ text user.motto.text ]
             ]
         , div []
             [ button
                 [ onClick (SaveMotto model.editMottoForm)
                 , class "button button-large button-primary w100"
                 ]
-                [ text "update" ]
+                [ text "publish" ]
             ]
         ]

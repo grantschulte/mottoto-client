@@ -25,7 +25,7 @@ saveUserRequest apiUrl userForm user =
     Http.request
         { body = userFormEncoder userForm |> Http.jsonBody
         , expect = Http.expectJson userDecoder
-        , headers = []
+        , headers = [ Http.header "x-access-token" user.token ]
         , method = "PUT"
         , timeout = Nothing
         , url = saveUserUrl apiUrl
