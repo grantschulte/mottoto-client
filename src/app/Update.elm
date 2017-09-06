@@ -84,7 +84,14 @@ update msg model =
             ( model, navigateTo (authorPath user.handle) )
 
         OnSaveUser (Err error) ->
-            ( model, Cmd.none )
+            let
+                oldEditUserForm =
+                    model.editUserForm
+
+                updatedEditUserForm =
+                    editUserFormErrors oldEditUserForm error
+            in
+            ( { model | editUserForm = updatedEditUserForm }, Cmd.none )
 
         SaveUser userForm ->
             ( model, saveUser model userForm )
@@ -166,6 +173,11 @@ createFormErrors createForm error =
 loginFormErrors : LoginUserForm -> Http.Error -> LoginUserForm
 loginFormErrors loginForm error =
     { loginForm | error = Just (httpError error) }
+
+
+editUserFormErrors : EditUserForm -> Http.Error -> EditUserForm
+editUserFormErrors editUserForm error =
+    { editUserForm | error = Just (httpError error) }
 
 
 saveUser : Model -> EditUserForm -> Cmd Msg

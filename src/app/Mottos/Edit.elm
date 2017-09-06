@@ -21,7 +21,7 @@ page : Model -> User -> Html Msg
 page model user =
     div [ class "col-12 md-col-4 center m1-auto" ]
         [ h1 [ class "mt0 mb2 h1 lh1" ] [ text "what's your motto?" ]
-        , errorElement model.createForm.error
+        , errorElement model.editMottoForm.error
         , div [ class "form my3" ]
             [ textarea
                 [ rows 4
