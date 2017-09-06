@@ -6,7 +6,7 @@ import Http
 import Messages exposing (..)
 import Models exposing (..)
 import Mottos.Commands exposing (saveMottoCmd)
-import Routing exposing (authorPath, editMottoPath, parseLocation)
+import Routing exposing (authorPath, editMottoPath, parseLocation, welcomePath)
 import Users.Commands exposing (saveUserCmd)
 import Utils.Errors exposing (httpError)
 
@@ -22,6 +22,9 @@ update msg model =
 
         LoginUser loginForm ->
             ( model, loginUserCmd model loginForm )
+
+        LogoutUser ->
+            ( { model | user = Nothing }, navigateTo welcomePath )
 
         NavigateTo pathName ->
             ( model, navigateTo pathName )

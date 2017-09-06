@@ -53,5 +53,7 @@ view model user =
                     ]
                     [ text "update" ]
                 ]
+            , p [ class "h4 regular mt3" ]
+                [ a [ onClick LogoutUser ] [ text "logout" ] ]
             ]
         ]
