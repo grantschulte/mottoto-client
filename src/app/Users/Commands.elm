@@ -40,3 +40,39 @@ saveUserRequest apiUrl userForm user =
 saveUserUrl : ApiUrl -> String
 saveUserUrl apiUrl =
     apiUrl ++ "/api/users"
+
+
+
+-- GET USER FROM TOKEN
+
+
+getUserFromTokenCmd : Model -> Token -> Cmd Msg
+getUserFromTokenCmd model token =
+    getUserFromTokenRequest model.env.apiUrl token
+        |> Http.send OnGetUserFromToken
+
+
+
+-- GET USER FROM TOKEN REQUEST
+
+
+getUserFromTokenRequest : ApiUrl -> Token -> Http.Request User
+getUserFromTokenRequest apiUrl token =
+    Http.request
+        { body = Http.emptyBody
+        , expect = Http.expectJson userDecoder
+        , headers = []
+        , method = "GET"
+        , timeout = Nothing
+        , url = getUserFromTokenUrl apiUrl token
+        , withCredentials = False
+        }
+
+
+
+-- GET USER FROM TOKEN URL
+
+
+getUserFromTokenUrl : ApiUrl -> String -> String
+getUserFromTokenUrl apiUrl token =
+    apiUrl ++ "/auth/me/from/token?token=" ++ token

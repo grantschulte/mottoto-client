@@ -1,9 +1,10 @@
-module Main exposing (..)
+port module Mottoto exposing (..)
 
 import Commands exposing (onLocationChangeCmd)
 import Messages exposing (..)
 import Models exposing (Flags, Model, initialModel)
 import Navigation exposing (..)
+import Ports exposing (getToken, getUserFromToken)
 import Routing exposing (parseLocation)
 import Update exposing (update)
 import View exposing (view)
@@ -21,7 +22,12 @@ init flags location =
         model =
             initialModel flags currentRoute
     in
-    ( model, onLocationChangeCmd model currentRoute )
+    ( model
+    , Cmd.batch
+        [ onLocationChangeCmd model currentRoute
+        , getToken ()
+        ]
+    )
 
 
 
@@ -30,7 +36,9 @@ init flags location =
 
 subscriptions : Model -> Sub Msg
 subscriptions model =
-    Sub.none
+    Sub.batch
+        [ getUserFromToken GetUserFromToken
+        ]
 
 
 

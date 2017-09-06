@@ -11,9 +11,13 @@ import RemoteData exposing (WebData)
 
 type Msg
     = CreateUser CreateUserForm
+    | GetToken
+    | GetUserFromToken String
+    | SetToken String
     | LoginUser LoginUserForm
     | LogoutUser
     | OnCreateUser (Result Http.Error User)
+    | OnGetUserFromToken (Result Http.Error User)
     | OnFetchAuthors (WebData (List Author))
     | OnFetchAuthor (WebData Author)
     | OnLocationChange Location

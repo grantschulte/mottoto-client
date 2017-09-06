@@ -17,9 +17,22 @@ import "./index.html";
 
 // Initialize Elm App
 
-const Elm = require("./app/Main.elm");
+const Elm = require("./app/Mottoto.elm");
 const mountNode = document.getElementById("main");
-const app = Elm.Main.embed(mountNode, {
+const app = Elm.Mottoto.embed(mountNode, {
   nodeEnv: NODE_ENV,
   apiUrl: API_URL
+});
+
+app.ports.getToken.subscribe(() => {
+  const token = window.localStorage.getItem("mottoto-user-token");
+  if (token) {
+    app.ports.getUserFromToken.send(token);
+  }
+});
+
+app.ports.setToken.subscribe((token) => {
+  if (token) {
+    window.localStorage.setItem("mottoto-user-token", token);
+  }
 });

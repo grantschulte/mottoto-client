@@ -6,8 +6,9 @@ import Http
 import Messages exposing (..)
 import Models exposing (..)
 import Mottos.Commands exposing (saveMottoCmd)
+import Ports exposing (getToken, setToken)
 import Routing exposing (authorPath, editMottoPath, parseLocation, welcomePath)
-import Users.Commands exposing (saveUserCmd)
+import Users.Commands exposing (getUserFromTokenCmd, saveUserCmd)
 import Utils.Errors exposing (httpError)
 
 
@@ -20,6 +21,12 @@ update msg model =
         CreateUser createForm ->
             ( model, createUserCmd model createForm )
 
+        GetToken ->
+            ( model, Cmd.none )
+
+        GetUserFromToken token ->
+            ( model, getUserFromTokenCmd model token )
+
         LoginUser loginForm ->
             ( model, loginUserCmd model loginForm )
 
@@ -30,7 +37,14 @@ update msg model =
             ( model, navigateTo pathName )
 
         OnCreateUser (Ok user) ->
-            ( { model | user = Just user }, navigateTo editMottoPath )
+            ( { model
+                | user = Just user
+              }
+            , Cmd.batch
+                [ navigateTo editMottoPath
+                , setToken user.token
+                ]
+            )
 
         OnCreateUser (Err error) ->
             let
@@ -48,6 +62,20 @@ update msg model =
         OnFetchAuthors response ->
             ( { model | authors = response }, Cmd.none )
 
+        OnGetUserFromToken (Ok user) ->
+            ( { model
+                | user = Just user
+                , editUserForm = editFormToUser model.editUserForm user
+              }
+            , Cmd.batch
+                [ navigateTo editMottoPath
+                , setToken user.token
+                ]
+            )
+
+        OnGetUserFromToken (Err error) ->
+            ( model, Cmd.none )
+
         OnLocationChange location ->
             let
                 newRoute =
@@ -62,7 +90,10 @@ update msg model =
                 | user = Just user
                 , editUserForm = editFormToUser model.editUserForm user
               }
-            , navigateTo editMottoPath
+            , Cmd.batch
+                [ navigateTo editMottoPath
+                , setToken user.token
+                ]
             )
 
         OnLoginUser (Err error) ->
@@ -84,7 +115,12 @@ update msg model =
             ( model, Cmd.none )
 
         OnSaveUser (Ok user) ->
-            ( model, navigateTo (authorPath user.handle) )
+            ( model
+            , Cmd.batch
+                [ navigateTo (authorPath user.handle)
+                , setToken user.token
+                ]
+            )
 
         OnSaveUser (Err error) ->
             let
@@ -95,6 +131,9 @@ update msg model =
                     editUserFormErrors oldEditUserForm error
             in
             ( { model | editUserForm = updatedEditUserForm }, Cmd.none )
+
+        SetToken token ->
+            ( model, Cmd.none )
 
         SaveUser userForm ->
             ( model, saveUser model userForm )
@@ -138,6 +177,16 @@ update msg model =
 
 
 -- HELPERS
+
+
+getTokenFromUser : Maybe User -> String
+getTokenFromUser user =
+    case user of
+        Nothing ->
+            ""
+
+        Just user ->
+            user.token
 
 
 editFormToUser : EditUserForm -> User -> EditUserForm
@@ -201,6 +250,16 @@ saveMotto model mottoForm =
 
         Just user ->
             saveMottoCmd model user mottoForm
+
+
+setTokenOnUser : Maybe User -> Token -> Maybe User
+setTokenOnUser user newToken =
+    case user of
+        Nothing ->
+            Nothing
+
+        Just user ->
+            Just { user | token = newToken }
 
 
 updateLoginForm : String -> String -> LoginUserForm -> LoginUserForm
