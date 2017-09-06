@@ -12,12 +12,12 @@ import Views.Loader exposing (..)
 
 
 view : WebData (List Author) -> Html Msg
-view users =
+view authors =
     div
         [ id "browse-page"
         , class "pt4"
         ]
-        [ page users
+        [ page authors
         ]
 
 
@@ -39,7 +39,7 @@ page response =
 
 mottoList : List Author -> Html Msg
 mottoList authors =
-    div [ class "flex flex-wrap mxn2" ] (List.map mottoColumn authors)
+    div [ class "flex flex-wrap mxn2" ] (filterMottos authors)
 
 
 mottoColumn : Author -> Html Msg
@@ -53,3 +53,15 @@ mottoColumn author =
             , div [ class "mt2 right-align h4" ] [ text (formatHandle author.handle) ]
             ]
         ]
+
+
+filterMottos : List Author -> List (Html Msg)
+filterMottos authors =
+    authors
+        |> List.filter hasText
+        |> List.map mottoColumn
+
+
+hasText : Author -> Bool
+hasText author =
+    not (String.isEmpty author.motto.text)
