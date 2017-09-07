@@ -12395,7 +12395,11 @@ var _user$project$Auth_Create$view = function (model) {
 										{
 											ctor: '::',
 											_0: _elm_lang$html$Html_Attributes$class('block left-align h5 mb1'),
-											_1: {ctor: '[]'}
+											_1: {
+												ctor: '::',
+												_0: _elm_lang$html$Html_Attributes$for('create-email'),
+												_1: {ctor: '[]'}
+											}
 										},
 										{
 											ctor: '::',
@@ -12411,15 +12415,23 @@ var _user$project$Auth_Create$view = function (model) {
 												_0: _elm_lang$html$Html_Attributes$type_('email'),
 												_1: {
 													ctor: '::',
-													_0: _elm_lang$html$Html_Attributes$placeholder('abrahamlincoln@gmail.com'),
+													_0: _elm_lang$html$Html_Attributes$id('create-email'),
 													_1: {
 														ctor: '::',
-														_0: _elm_lang$html$Html_Attributes$class('mb2'),
+														_0: _elm_lang$html$Html_Attributes$value(model.createForm.email),
 														_1: {
 															ctor: '::',
-															_0: _elm_lang$html$Html_Events$onInput(
-																_user$project$Messages$UpdateCreateForm('email')),
-															_1: {ctor: '[]'}
+															_0: _elm_lang$html$Html_Attributes$placeholder('abrahamlincoln@email.com'),
+															_1: {
+																ctor: '::',
+																_0: _elm_lang$html$Html_Attributes$class('mb2'),
+																_1: {
+																	ctor: '::',
+																	_0: _elm_lang$html$Html_Events$onInput(
+																		_user$project$Messages$UpdateCreateForm('create-email')),
+																	_1: {ctor: '[]'}
+																}
+															}
 														}
 													}
 												}
@@ -12432,7 +12444,11 @@ var _user$project$Auth_Create$view = function (model) {
 												{
 													ctor: '::',
 													_0: _elm_lang$html$Html_Attributes$class('block left-align h5 mb1'),
-													_1: {ctor: '[]'}
+													_1: {
+														ctor: '::',
+														_0: _elm_lang$html$Html_Attributes$for('create-handle'),
+														_1: {ctor: '[]'}
+													}
 												},
 												{
 													ctor: '::',
@@ -12448,15 +12464,23 @@ var _user$project$Auth_Create$view = function (model) {
 														_0: _elm_lang$html$Html_Attributes$type_('text'),
 														_1: {
 															ctor: '::',
-															_0: _elm_lang$html$Html_Attributes$placeholder('abeLincoln'),
+															_0: _elm_lang$html$Html_Attributes$id('create-handle'),
 															_1: {
 																ctor: '::',
-																_0: _elm_lang$html$Html_Attributes$class('mb2'),
+																_0: _elm_lang$html$Html_Attributes$value(model.createForm.handle),
 																_1: {
 																	ctor: '::',
-																	_0: _elm_lang$html$Html_Events$onInput(
-																		_user$project$Messages$UpdateCreateForm('handle')),
-																	_1: {ctor: '[]'}
+																	_0: _elm_lang$html$Html_Attributes$placeholder('HonestAbe'),
+																	_1: {
+																		ctor: '::',
+																		_0: _elm_lang$html$Html_Attributes$class('mb2'),
+																		_1: {
+																			ctor: '::',
+																			_0: _elm_lang$html$Html_Events$onInput(
+																				_user$project$Messages$UpdateCreateForm('create-handle')),
+																			_1: {ctor: '[]'}
+																		}
+																	}
 																}
 															}
 														}
@@ -12469,7 +12493,11 @@ var _user$project$Auth_Create$view = function (model) {
 														{
 															ctor: '::',
 															_0: _elm_lang$html$Html_Attributes$class('block left-align h5 mb1'),
-															_1: {ctor: '[]'}
+															_1: {
+																ctor: '::',
+																_0: _elm_lang$html$Html_Attributes$for('create-password'),
+																_1: {ctor: '[]'}
+															}
 														},
 														{
 															ctor: '::',
@@ -12485,15 +12513,23 @@ var _user$project$Auth_Create$view = function (model) {
 																_0: _elm_lang$html$Html_Attributes$type_('password'),
 																_1: {
 																	ctor: '::',
-																	_0: _elm_lang$html$Html_Attributes$placeholder('********'),
+																	_0: _elm_lang$html$Html_Attributes$id('create-password'),
 																	_1: {
 																		ctor: '::',
-																		_0: _elm_lang$html$Html_Attributes$class('mb2'),
+																		_0: _elm_lang$html$Html_Attributes$value(model.createForm.password),
 																		_1: {
 																			ctor: '::',
-																			_0: _elm_lang$html$Html_Events$onInput(
-																				_user$project$Messages$UpdateCreateForm('password')),
-																			_1: {ctor: '[]'}
+																			_0: _elm_lang$html$Html_Attributes$placeholder('********'),
+																			_1: {
+																				ctor: '::',
+																				_0: _elm_lang$html$Html_Attributes$class('mb2'),
+																				_1: {
+																					ctor: '::',
+																					_0: _elm_lang$html$Html_Events$onInput(
+																						_user$project$Messages$UpdateCreateForm('create-password')),
+																					_1: {ctor: '[]'}
+																				}
+																			}
 																		}
 																	}
 																}
@@ -12625,7 +12661,11 @@ var _user$project$Auth_Login$view = function (model) {
 										{
 											ctor: '::',
 											_0: _elm_lang$html$Html_Attributes$class('block left-align h5 mb1'),
-											_1: {ctor: '[]'}
+											_1: {
+												ctor: '::',
+												_0: _elm_lang$html$Html_Attributes$for('login-email'),
+												_1: {ctor: '[]'}
+											}
 										},
 										{
 											ctor: '::',
@@ -12641,15 +12681,23 @@ var _user$project$Auth_Login$view = function (model) {
 												_0: _elm_lang$html$Html_Attributes$type_('email'),
 												_1: {
 													ctor: '::',
-													_0: _elm_lang$html$Html_Attributes$placeholder('abrahamlincoln@gmail.com'),
+													_0: _elm_lang$html$Html_Attributes$id('login-email'),
 													_1: {
 														ctor: '::',
-														_0: _elm_lang$html$Html_Attributes$class('mb2'),
+														_0: _elm_lang$html$Html_Attributes$value(model.loginForm.email),
 														_1: {
 															ctor: '::',
-															_0: _elm_lang$html$Html_Events$onInput(
-																_user$project$Messages$UpdateLoginForm('email')),
-															_1: {ctor: '[]'}
+															_0: _elm_lang$html$Html_Attributes$placeholder('abrahamlincoln@email.com'),
+															_1: {
+																ctor: '::',
+																_0: _elm_lang$html$Html_Attributes$class('mb2'),
+																_1: {
+																	ctor: '::',
+																	_0: _elm_lang$html$Html_Events$onInput(
+																		_user$project$Messages$UpdateLoginForm('login-email')),
+																	_1: {ctor: '[]'}
+																}
+															}
 														}
 													}
 												}
@@ -12662,7 +12710,11 @@ var _user$project$Auth_Login$view = function (model) {
 												{
 													ctor: '::',
 													_0: _elm_lang$html$Html_Attributes$class('block left-align h5 mb1'),
-													_1: {ctor: '[]'}
+													_1: {
+														ctor: '::',
+														_0: _elm_lang$html$Html_Attributes$for('login-password'),
+														_1: {ctor: '[]'}
+													}
 												},
 												{
 													ctor: '::',
@@ -12678,15 +12730,23 @@ var _user$project$Auth_Login$view = function (model) {
 														_0: _elm_lang$html$Html_Attributes$type_('password'),
 														_1: {
 															ctor: '::',
-															_0: _elm_lang$html$Html_Attributes$placeholder('********'),
+															_0: _elm_lang$html$Html_Attributes$id('login-password'),
 															_1: {
 																ctor: '::',
-																_0: _elm_lang$html$Html_Attributes$class('mb2'),
+																_0: _elm_lang$html$Html_Attributes$placeholder('********'),
 																_1: {
 																	ctor: '::',
-																	_0: _elm_lang$html$Html_Events$onInput(
-																		_user$project$Messages$UpdateLoginForm('password')),
-																	_1: {ctor: '[]'}
+																	_0: _elm_lang$html$Html_Attributes$value(model.loginForm.password),
+																	_1: {
+																		ctor: '::',
+																		_0: _elm_lang$html$Html_Attributes$class('mb2'),
+																		_1: {
+																			ctor: '::',
+																			_0: _elm_lang$html$Html_Events$onInput(
+																				_user$project$Messages$UpdateLoginForm('login-password')),
+																			_1: {ctor: '[]'}
+																		}
+																	}
 																}
 															}
 														}
@@ -12810,7 +12870,7 @@ var _user$project$Authors_Commands$fetchAuthor = F2(
 	});
 
 var _user$project$Utils_FormatText$formatMottoText = function (mottoText) {
-	return mottoText;
+	return _elm_lang$core$String$isEmpty(mottoText) ? 'Silence...' : mottoText;
 };
 var _user$project$Utils_FormatText$formatHandle = function (handle) {
 	return A2(_elm_lang$core$String$append, '— ', handle);
@@ -12902,7 +12962,7 @@ var _user$project$Authors_Detail$page = function (response) {
 	var _p0 = response;
 	switch (_p0.ctor) {
 		case 'NotAsked':
-			return _elm_lang$html$Html$text('Silence...');
+			return _elm_lang$html$Html$text('');
 		case 'Loading':
 			return _user$project$Views_Loader$view;
 		case 'Success':
@@ -13359,15 +13419,15 @@ var _user$project$Update$updateCreateForm = F3(
 	function (field, updatedValue, oldCreateForm) {
 		var _p3 = field;
 		switch (_p3) {
-			case 'email':
+			case 'create-email':
 				return _elm_lang$core$Native_Utils.update(
 					oldCreateForm,
 					{email: updatedValue});
-			case 'handle':
+			case 'create-handle':
 				return _elm_lang$core$Native_Utils.update(
 					oldCreateForm,
 					{handle: updatedValue});
-			case 'password':
+			case 'create-password':
 				return _elm_lang$core$Native_Utils.update(
 					oldCreateForm,
 					{password: updatedValue});
@@ -13379,11 +13439,11 @@ var _user$project$Update$updateLoginForm = F3(
 	function (field, updatedValue, oldLoginForm) {
 		var _p4 = field;
 		switch (_p4) {
-			case 'email':
+			case 'login-email':
 				return _elm_lang$core$Native_Utils.update(
 					oldLoginForm,
 					{email: updatedValue});
-			case 'password':
+			case 'login-password':
 				return _elm_lang$core$Native_Utils.update(
 					oldLoginForm,
 					{password: updatedValue});
@@ -13667,7 +13727,12 @@ var _user$project$Update$update = F2(
 					var _p15 = _p11._0._0;
 					return {
 						ctor: '_Tuple2',
-						_0: model,
+						_0: _elm_lang$core$Native_Utils.update(
+							model,
+							{
+								user: _elm_lang$core$Maybe$Just(_p15),
+								editUserForm: A2(_user$project$Update$editFormToUser, model.editUserForm, _p15)
+							}),
 						_1: _elm_lang$core$Platform_Cmd$batch(
 							{
 								ctor: '::',
