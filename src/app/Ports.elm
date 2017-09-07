@@ -1,6 +1,6 @@
 port module Ports exposing (..)
 
--- INTEROP
+-- PORTS
 
 
 port setToken : String -> Cmd msg

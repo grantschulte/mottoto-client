@@ -24,7 +24,7 @@ page : WebData Author -> Html Msg
 page response =
     case response of
         RemoteData.NotAsked ->
-            text "Silence..."
+            text ""
 
         RemoteData.Loading ->
             Views.Loader.view

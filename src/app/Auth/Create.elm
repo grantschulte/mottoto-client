@@ -23,31 +23,46 @@ view model =
                 [ text "join" ]
             , errorElement model.createForm.error
             , div [ class "form my2" ]
-                [ label [ class "block left-align h5 mb1" ]
+                [ label
+                    [ class "block left-align h5 mb1"
+                    , for "create-email"
+                    ]
                     [ text "email" ]
                 , input
                     [ type_ "email"
-                    , placeholder "abrahamlincoln@gmail.com"
+                    , id "create-email"
+                    , value model.createForm.email
+                    , placeholder "abrahamlincoln@email.com"
                     , class "mb2"
-                    , onInput (UpdateCreateForm "email")
+                    , onInput (UpdateCreateForm "create-email")
                     ]
                     []
-                , label [ class "block left-align h5 mb1" ]
+                , label
+                    [ class "block left-align h5 mb1"
+                    , for "create-handle"
+                    ]
                     [ text "handle" ]
                 , input
                     [ type_ "text"
-                    , placeholder "abeLincoln"
+                    , id "create-handle"
+                    , value model.createForm.handle
+                    , placeholder "HonestAbe"
                     , class "mb2"
-                    , onInput (UpdateCreateForm "handle")
+                    , onInput (UpdateCreateForm "create-handle")
                     ]
                     []
-                , label [ class "block left-align h5 mb1" ]
+                , label
+                    [ class "block left-align h5 mb1"
+                    , for "create-password"
+                    ]
                     [ text "password" ]
                 , input
                     [ type_ "password"
+                    , id "create-password"
+                    , value model.createForm.password
                     , placeholder "********"
                     , class "mb2"
-                    , onInput (UpdateCreateForm "password")
+                    , onInput (UpdateCreateForm "create-password")
                     ]
                     []
                 ]

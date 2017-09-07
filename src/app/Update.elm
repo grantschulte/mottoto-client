@@ -115,7 +115,9 @@ update msg model =
             ( { model | loginForm = updatedLoginForm }, Cmd.none )
 
         OnSaveMotto (Ok motto) ->
-            ( { model | user = updateUserWithMotto model.user motto }
+            ( { model
+                | user = updateUserWithMotto model.user motto
+              }
             , navigateTo (authorPath (userHandle model.user))
             )
 
@@ -123,7 +125,10 @@ update msg model =
             ( model, Cmd.none )
 
         OnSaveUser (Ok user) ->
-            ( model
+            ( { model
+                | user = Just user
+                , editUserForm = editFormToUser model.editUserForm user
+              }
             , Cmd.batch
                 [ navigateTo (authorPath user.handle)
                 , setToken user.token
@@ -273,10 +278,10 @@ setTokenOnUser user newToken =
 updateLoginForm : String -> String -> LoginUserForm -> LoginUserForm
 updateLoginForm field updatedValue oldLoginForm =
     case field of
-        "email" ->
+        "login-email" ->
             { oldLoginForm | email = updatedValue }
 
-        "password" ->
+        "login-password" ->
             { oldLoginForm | password = updatedValue }
 
         _ ->
@@ -286,13 +291,13 @@ updateLoginForm field updatedValue oldLoginForm =
 updateCreateForm : String -> String -> CreateUserForm -> CreateUserForm
 updateCreateForm field updatedValue oldCreateForm =
     case field of
-        "email" ->
+        "create-email" ->
             { oldCreateForm | email = updatedValue }
 
-        "handle" ->
+        "create-handle" ->
             { oldCreateForm | handle = updatedValue }
 
-        "password" ->
+        "create-password" ->
             { oldCreateForm | password = updatedValue }
 
         _ ->

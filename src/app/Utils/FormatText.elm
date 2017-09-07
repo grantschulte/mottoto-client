@@ -13,4 +13,7 @@ formatHandle handle =
 
 formatMottoText : MottoText -> String
 formatMottoText mottoText =
-    mottoText
+    if String.isEmpty mottoText then
+        "Silence..."
+    else
+        mottoText

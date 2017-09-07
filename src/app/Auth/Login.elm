@@ -22,22 +22,32 @@ view model =
             [ h1 [ class "mt0 mb2 h1 lh1" ] [ text "login" ]
             , errorElement model.loginForm.error
             , div [ class "form my2" ]
-                [ label [ class "block left-align h5 mb1" ]
+                [ label
+                    [ class "block left-align h5 mb1"
+                    , for "login-email"
+                    ]
                     [ text "email" ]
                 , input
                     [ type_ "email"
-                    , placeholder "abrahamlincoln@gmail.com"
+                    , id "login-email"
+                    , value model.loginForm.email
+                    , placeholder "abrahamlincoln@email.com"
                     , class "mb2"
-                    , onInput (UpdateLoginForm "email")
+                    , onInput (UpdateLoginForm "login-email")
                     ]
                     []
-                , label [ class "block left-align h5 mb1" ]
+                , label
+                    [ class "block left-align h5 mb1"
+                    , for "login-password"
+                    ]
                     [ text "password" ]
                 , input
                     [ type_ "password"
+                    , id "login-password"
                     , placeholder "********"
+                    , value model.loginForm.password
                     , class "mb2"
-                    , onInput (UpdateLoginForm "password")
+                    , onInput (UpdateLoginForm "login-password")
                     ]
                     []
                 ]
