@@ -12902,7 +12902,7 @@ var _user$project$Authors_Detail$page = function (response) {
 	var _p0 = response;
 	switch (_p0.ctor) {
 		case 'NotAsked':
-			return _elm_lang$html$Html$text('');
+			return _elm_lang$html$Html$text('Silence...');
 		case 'Loading':
 			return _user$project$Views_Loader$view;
 		case 'Success':
@@ -13538,7 +13538,8 @@ var _user$project$Update$update = F2(
 						_0: _elm_lang$core$Native_Utils.update(
 							model,
 							{
-								user: _elm_lang$core$Maybe$Just(_p12)
+								user: _elm_lang$core$Maybe$Just(_p12),
+								editUserForm: A2(_user$project$Update$editFormToUser, model.editUserForm, _p12)
 							}),
 						_1: _elm_lang$core$Platform_Cmd$batch(
 							{
