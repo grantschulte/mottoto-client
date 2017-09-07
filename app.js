@@ -14559,7 +14559,7 @@ var _user$project$Views_Welcome$view = A2(
 											_elm_lang$html$Html$button,
 											{
 												ctor: '::',
-												_0: _elm_lang$html$Html_Attributes$class('button mx1 button-large button-primary'),
+												_0: _elm_lang$html$Html_Attributes$class('button mx1 button-large button-primary mb2'),
 												_1: {
 													ctor: '::',
 													_0: _elm_lang$html$Html_Events$onClick(
@@ -14578,7 +14578,7 @@ var _user$project$Views_Welcome$view = A2(
 												_elm_lang$html$Html$button,
 												{
 													ctor: '::',
-													_0: _elm_lang$html$Html_Attributes$class('button mx1 button-large button-primary'),
+													_0: _elm_lang$html$Html_Attributes$class('button mx1 button-large button-primary mb2'),
 													_1: {
 														ctor: '::',
 														_0: _elm_lang$html$Html_Events$onClick(
