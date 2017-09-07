@@ -30,6 +30,7 @@
     "build:staging": "webpack --env=staging --progress --profile --colors",
     "build:prod": "webpack --env=production --progress --profile --colors",
     "client": "webpack-dev-server --env=development --port 4200",
+    "deploy:gh-pages": "yarn build:prod && gh-pages -d ./dist",
     "deploy:staging": "yarn build:staging; surge ./dist -d venomous-comb.surge.sh",
     "deploy:prod": "yarn build:prod; aws s3 sync --acl public-read --sse --delete ./dist s3://www.mottoto.com",
     "seed": "node ./db/seed.js",

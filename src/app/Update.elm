@@ -46,6 +46,7 @@ update msg model =
         OnCreateUser (Ok user) ->
             ( { model
                 | user = Just user
+                , editUserForm = editFormToUser model.editUserForm user
               }
             , Cmd.batch
                 [ navigateTo editMottoPath
