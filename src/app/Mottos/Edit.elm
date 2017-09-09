@@ -12,14 +12,14 @@ view : Model -> User -> Html Msg
 view model user =
     div
         [ id "edit-motto-page"
-        , class "sm-flex items-center justify-center max-width-4 mx-auto h100"
+        , class "flex items-center justify-center max-width-4 h100"
         ]
         [ page model user ]
 
 
 page : Model -> User -> Html Msg
 page model user =
-    div [ class "col-12 md-col-4 center mx-auto" ]
+    div [ class "col-12 md-col-4 center m-auto" ]
         [ h1 [ class "mt0 mb2 h1 lh1" ] [ text "what's your motto?" ]
         , errorElement model.editMottoForm.error
         , div [ class "form my3" ]

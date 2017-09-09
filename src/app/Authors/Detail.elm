@@ -14,7 +14,7 @@ view : Model -> Html Msg
 view model =
     div
         [ id "user-page"
-        , class "sm-flex items-center justify-center h100"
+        , class "flex items-center justify-center h100"
         ]
         [ page model.author
         ]

@@ -14,7 +14,7 @@ view model user =
         [ id "edit-profile-page"
         , class "sm-flex items-center justify-center max-width-4 mx-auto h100"
         ]
-        [ div [ class "col-12 md-col-4 center mx-auto" ]
+        [ div [ class "col-12 md-col-4 center m-auto" ]
             [ h1 [ class "mt0 mb2 h1 lh1" ] [ text "edit profile" ]
             , errorElement model.editUserForm.error
             , div [ class "form my3" ]
