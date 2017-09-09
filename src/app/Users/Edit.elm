@@ -12,9 +12,9 @@ view : Model -> User -> Html Msg
 view model user =
     div
         [ id "edit-profile-page"
-        , class "flex items-center justify-center max-width-4 mx-auto h100"
+        , class "sm-flex items-center justify-center max-width-4 mx-auto h100"
         ]
-        [ div [ class "col-12 md-col-4 center m1-auto" ]
+        [ div [ class "col-12 md-col-4 center mx-auto" ]
             [ h1 [ class "mt0 mb2 h1 lh1" ] [ text "edit profile" ]
             , errorElement model.editUserForm.error
             , div [ class "form my3" ]

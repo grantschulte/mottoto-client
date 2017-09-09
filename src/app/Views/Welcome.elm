@@ -14,9 +14,9 @@ view : Html Msg
 view =
     div
         [ id "welcome-page"
-        , class "flex items-center justify-center max-width-4 mx-auto h100"
+        , class "sm-flex items-center justify-center max-width-4 mx-auto h100"
         ]
-        [ div [ class "col-12 md-col-5 center" ]
+        [ div [ class "col-12 md-col-5 mx-auto center" ]
             [ h1 [ class "mt0 mb2 oversized lh1" ] [ text "motto" ]
             , div [ class "m2" ]
                 [ span [ class "dot" ] []

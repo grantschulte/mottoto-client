@@ -16,9 +16,9 @@ view : Model -> Html Msg
 view model =
     div
         [ id "create-page"
-        , class "flex items-center justify-center max-width-4 mx-auto h100"
+        , class "sm-flex items-center justify-center max-width-4 mx-auto h100"
         ]
-        [ div [ class "col-12 md-col-4 center m1-auto" ]
+        [ div [ class "col-12 md-col-4 center mx-auto" ]
             [ h1 [ class "mt0 mb2 h1 lh1" ]
                 [ text "join" ]
             , errorElement model.createForm.error

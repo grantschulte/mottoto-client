@@ -27,7 +27,7 @@
  */
 
 .h100 {
-  height: 100%;
+  height: calc(100% - 64px);
 }
 
 .w100 {
@@ -44,6 +44,13 @@
 
 .oversized {
   font-size: 4rem;
+}
+
+.page-wrapper {
+  position: fixed;
+  top: 64px;
+  width: 100%;
+  overflow: scroll;
 }
 
 /*

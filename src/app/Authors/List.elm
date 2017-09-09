@@ -14,9 +14,7 @@ import Views.Loader exposing (..)
 view : WebData (List Author) -> Html Msg
 view authors =
     div
-        [ id "browse-page"
-        , class "pt4"
-        ]
+        [ id "browse-page" ]
         [ page authors
         ]
 
