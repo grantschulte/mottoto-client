@@ -753,7 +753,7 @@ exports = module.exports = __webpack_require__(0)(undefined);
 
 
 // module
-exports.push([module.i, "/*\n * Theme: Colors\n *\n */\n/*\n * Theme: Fonts\n *\n */\n/*\n * Theme: Elements\n *\n */\n/*\n * Theme: Transitions\n *\n */\n/*\n * Theme: Colors\n *\n */\n/*\n * Theme: Fonts\n *\n */\n/*\n * Theme: Elements\n *\n */\n/*\n * Theme: Transitions\n *\n */\n:root {\n  --link-color: #E4B7E5; }\n\n* {\n  box-sizing: border-box; }\n\nhtml {\n  -webkit-font-smoothing: antialiased;\n  margin: 0;\n  padding: 0;\n  height: 100%; }\n\nbody {\n  padding: 0;\n  margin: 0;\n  height: 100%;\n  font-size: 16px;\n  font-family: \"Source Serif Pro\", \"Georgia\", serif;\n  background-color: #7E5A9B;\n  color: #E4B7E5; }\n\na {\n  color: #E4B7E5;\n  transition: all 200ms ease-in-out;\n  cursor: pointer; }\n  a:hover {\n    color: #d692d7; }\n\n.dot {\n  display: inline-block;\n  height: 5px;\n  width: 5px;\n  border-radius: 50%;\n  background-color: #E4B7E5; }\n\nheader {\n  background-color: #7E5A9B;\n  z-index: 1; }\n\n.header-icon {\n  border: 1px solid #E4B7E5;\n  border-radius: 4px;\n  cursor: pointer;\n  font-size: 1.25em;\n  padding: 0.25em;\n  text-decoration: none;\n  transition: all 200ms ease-in-out; }\n  .header-icon:hover {\n    border-color: #d692d7;\n    color: #d692d7; }\n  .header-icon:focus {\n    border-color: #cf7fd1;\n    color: #cf7fd1; }\n\n/*\n * Color Helpers\n */\n.color-primary {\n  color: #7E5A9B; }\n\n.color-secondary {\n  color: #E4B7E5; }\n\n.color-accent {\n  color: #66CED6; }\n\n.color-warn {\n  color: #EE4266; }\n\n.color-dark {\n  color: #1F1A38; }\n\n/*\n * Layout Helpers\n */\n.h100 {\n  height: 100%; }\n\n.w100 {\n  width: 100%; }\n\n/*\n * Type Helpers\n */\n.lh1 {\n  line-height: 1; }\n\n.oversized {\n  font-size: 4rem; }\n\n/*\n * Element Helpers\n */\na.border:hover {\n  border-color: #d692d7; }\n\n.border {\n  border-color: #E4B7E5;\n  border-radius: 4px; }\n\n.background-secondary {\n  color: #7E5A9B;\n  background-color: #E4B7E5; }\n  .background-secondary a {\n    color: #7E5A9B; }\n    .background-secondary a:hover {\n      color: #d692d7; }\n\n.box-shadow-with-radius {\n  box-shadow: 0 0 10px 4px rgba(0, 0, 0, 0.08);\n  border-radius: 4px; }\n\n.button {\n  border: 1px solid;\n  border-radius: 4px;\n  cursor: pointer;\n  display: inline-block;\n  font-family: \"Source Serif Pro\", \"Georgia\", serif;\n  font-size: 16px;\n  height: 40px;\n  transition: all 200ms ease-in-out; }\n  .button:focus {\n    outline: none; }\n\n.button-large {\n  font-size: 1.25rem;\n  height: 50px;\n  min-width: 160px;\n  padding: 0 20px; }\n\n.button-primary {\n  background-color: transparent;\n  border-color: #E4B7E5;\n  color: #E4B7E5; }\n  .button-primary:hover {\n    border-color: #d692d7;\n    color: #d692d7; }\n  .button-primary:focus {\n    border-color: #cf7fd1;\n    color: #cf7fd1; }\n\ninput {\n  background-color: #E4B7E5;\n  border: none;\n  border-left: 3px solid #E4B7E5;\n  border-radius: 4px;\n  color: #7E5A9B;\n  font-size: 1.2rem;\n  font-family: \"Source Serif Pro\", \"Georgia\", serif;\n  height: 50px;\n  padding: 0.5rem;\n  transition: all 200ms ease-in-out;\n  width: 100%; }\n  input:focus {\n    box-shadow: none;\n    outline: none;\n    border-color: #594ba0; }\n  input::-webkit-input-placeholder {\n    color: #7E5A9B; }\n  input::-moz-placeholder {\n    color: #7E5A9B; }\n\ninput[type=\"password\"] {\n  letter-spacing: 2px; }\n\ntextarea {\n  background-color: #E4B7E5;\n  border: none;\n  border-left: 3px solid #E4B7E5;\n  border-radius: 4px;\n  color: #7E5A9B;\n  font-size: 1.2rem;\n  font-family: \"Source Serif Pro\", \"Georgia\", serif;\n  padding: 0.75rem 0.5rem;\n  transition: all 200ms ease-in-out;\n  width: 100%;\n  resize: none; }\n  textarea:focus {\n    box-shadow: none;\n    outline: none;\n    border-color: #594ba0; }\n  textarea::-webkit-input-placeholder {\n    color: #7E5A9B; }\n  textarea::-moz-placeholder {\n    color: #7E5A9B; }\n\n.loader,\n.loader:after {\n  border-radius: 50%;\n  width: 10em;\n  height: 10em; }\n\n.loader {\n  margin: 60px auto;\n  font-size: 10px;\n  position: relative;\n  text-indent: -9999em;\n  border-top: 1.1em solid rgba(255, 255, 255, 0.2);\n  border-right: 1.1em solid rgba(255, 255, 255, 0.2);\n  border-bottom: 1.1em solid rgba(255, 255, 255, 0.2);\n  border-left: 1.1em solid #FFFFFF;\n  -webkit-transform: translateZ(0);\n  -ms-transform: translateZ(0);\n  transform: translateZ(0);\n  -webkit-animation: load8 1.1s infinite linear;\n  animation: load8 1.1s infinite linear; }\n\n@-webkit-keyframes load8 {\n  0% {\n    -webkit-transform: rotate(0deg);\n    transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(360deg);\n    transform: rotate(360deg); } }\n\n@keyframes load8 {\n  0% {\n    -webkit-transform: rotate(0deg);\n    transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(360deg);\n    transform: rotate(360deg); } }\n", ""]);
+exports.push([module.i, "/*\n * Theme: Colors\n *\n */\n/*\n * Theme: Fonts\n *\n */\n/*\n * Theme: Elements\n *\n */\n/*\n * Theme: Transitions\n *\n */\n/*\n * Theme: Colors\n *\n */\n/*\n * Theme: Fonts\n *\n */\n/*\n * Theme: Elements\n *\n */\n/*\n * Theme: Transitions\n *\n */\n:root {\n  --link-color: #E4B7E5; }\n\n* {\n  box-sizing: border-box; }\n\nhtml {\n  -webkit-font-smoothing: antialiased;\n  margin: 0;\n  padding: 0;\n  height: 100%; }\n\nbody {\n  padding: 0;\n  margin: 0;\n  height: 100%;\n  font-size: 16px;\n  font-family: \"Source Serif Pro\", \"Georgia\", serif;\n  background-color: #7E5A9B;\n  color: #E4B7E5; }\n\na {\n  color: #E4B7E5;\n  transition: all 200ms ease-in-out;\n  cursor: pointer; }\n  a:hover {\n    color: #d692d7; }\n\n.dot {\n  display: inline-block;\n  height: 5px;\n  width: 5px;\n  border-radius: 50%;\n  background-color: #E4B7E5; }\n\nheader {\n  background-color: #7E5A9B;\n  z-index: 1; }\n\n.header-icon {\n  border: 1px solid #E4B7E5;\n  border-radius: 4px;\n  cursor: pointer;\n  font-size: 1.25em;\n  padding: 0.25em;\n  text-decoration: none;\n  transition: all 200ms ease-in-out; }\n  .header-icon:hover {\n    border-color: #d692d7;\n    color: #d692d7; }\n  .header-icon:focus {\n    border-color: #cf7fd1;\n    color: #cf7fd1; }\n\n/*\n * Color Helpers\n */\n.color-primary {\n  color: #7E5A9B; }\n\n.color-secondary {\n  color: #E4B7E5; }\n\n.color-accent {\n  color: #66CED6; }\n\n.color-warn {\n  color: #EE4266; }\n\n.color-dark {\n  color: #1F1A38; }\n\n/*\n * Layout Helpers\n */\n.h100 {\n  height: calc(100% - 64px); }\n\n.w100 {\n  width: 100%; }\n\n/*\n * Type Helpers\n */\n.lh1 {\n  line-height: 1; }\n\n.oversized {\n  font-size: 4rem; }\n\n.page-wrapper {\n  position: fixed;\n  top: 64px;\n  width: 100%;\n  overflow: scroll; }\n\n/*\n * Element Helpers\n */\na.border:hover {\n  border-color: #d692d7; }\n\n.border {\n  border-color: #E4B7E5;\n  border-radius: 4px; }\n\n.background-secondary {\n  color: #7E5A9B;\n  background-color: #E4B7E5; }\n  .background-secondary a {\n    color: #7E5A9B; }\n    .background-secondary a:hover {\n      color: #d692d7; }\n\n.box-shadow-with-radius {\n  box-shadow: 0 0 10px 4px rgba(0, 0, 0, 0.08);\n  border-radius: 4px; }\n\n.button {\n  border: 1px solid;\n  border-radius: 4px;\n  cursor: pointer;\n  display: inline-block;\n  font-family: \"Source Serif Pro\", \"Georgia\", serif;\n  font-size: 16px;\n  height: 40px;\n  transition: all 200ms ease-in-out; }\n  .button:focus {\n    outline: none; }\n\n.button-large {\n  font-size: 1.25rem;\n  height: 50px;\n  min-width: 160px;\n  padding: 0 20px; }\n\n.button-primary {\n  background-color: transparent;\n  border-color: #E4B7E5;\n  color: #E4B7E5; }\n  .button-primary:hover {\n    border-color: #d692d7;\n    color: #d692d7; }\n  .button-primary:focus {\n    border-color: #cf7fd1;\n    color: #cf7fd1; }\n\ninput {\n  background-color: #E4B7E5;\n  border: none;\n  border-left: 3px solid #E4B7E5;\n  border-radius: 4px;\n  color: #7E5A9B;\n  font-size: 1.2rem;\n  font-family: \"Source Serif Pro\", \"Georgia\", serif;\n  height: 50px;\n  padding: 0.5rem;\n  transition: all 200ms ease-in-out;\n  width: 100%; }\n  input:focus {\n    box-shadow: none;\n    outline: none;\n    border-color: #594ba0; }\n  input::-webkit-input-placeholder {\n    color: #7E5A9B; }\n  input::-moz-placeholder {\n    color: #7E5A9B; }\n\ninput[type=\"password\"] {\n  letter-spacing: 2px; }\n\ntextarea {\n  background-color: #E4B7E5;\n  border: none;\n  border-left: 3px solid #E4B7E5;\n  border-radius: 4px;\n  color: #7E5A9B;\n  font-size: 1.2rem;\n  font-family: \"Source Serif Pro\", \"Georgia\", serif;\n  padding: 0.75rem 0.5rem;\n  transition: all 200ms ease-in-out;\n  width: 100%;\n  resize: none; }\n  textarea:focus {\n    box-shadow: none;\n    outline: none;\n    border-color: #594ba0; }\n  textarea::-webkit-input-placeholder {\n    color: #7E5A9B; }\n  textarea::-moz-placeholder {\n    color: #7E5A9B; }\n\n.loader,\n.loader:after {\n  border-radius: 50%;\n  width: 10em;\n  height: 10em; }\n\n.loader {\n  margin: 60px auto;\n  font-size: 10px;\n  position: relative;\n  text-indent: -9999em;\n  border-top: 1.1em solid rgba(255, 255, 255, 0.2);\n  border-right: 1.1em solid rgba(255, 255, 255, 0.2);\n  border-bottom: 1.1em solid rgba(255, 255, 255, 0.2);\n  border-left: 1.1em solid #FFFFFF;\n  -webkit-transform: translateZ(0);\n  -ms-transform: translateZ(0);\n  transform: translateZ(0);\n  -webkit-animation: load8 1.1s infinite linear;\n  animation: load8 1.1s infinite linear; }\n\n@-webkit-keyframes load8 {\n  0% {\n    -webkit-transform: rotate(0deg);\n    transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(360deg);\n    transform: rotate(360deg); } }\n\n@keyframes load8 {\n  0% {\n    -webkit-transform: rotate(0deg);\n    transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(360deg);\n    transform: rotate(360deg); } }\n", ""]);
 
 // exports
 
@@ -12349,7 +12349,7 @@ var _user$project$Auth_Create$view = function (model) {
 			_0: _elm_lang$html$Html_Attributes$id('create-page'),
 			_1: {
 				ctor: '::',
-				_0: _elm_lang$html$Html_Attributes$class('flex items-center justify-center max-width-4 mx-auto h100'),
+				_0: _elm_lang$html$Html_Attributes$class('sm-flex items-center justify-center max-width-4 mx-auto h100'),
 				_1: {ctor: '[]'}
 			}
 		},
@@ -12359,7 +12359,7 @@ var _user$project$Auth_Create$view = function (model) {
 				_elm_lang$html$Html$div,
 				{
 					ctor: '::',
-					_0: _elm_lang$html$Html_Attributes$class('col-12 md-col-4 center m1-auto'),
+					_0: _elm_lang$html$Html_Attributes$class('col-12 md-col-4 center mx-auto'),
 					_1: {ctor: '[]'}
 				},
 				{
@@ -12615,7 +12615,7 @@ var _user$project$Auth_Login$view = function (model) {
 			_0: _elm_lang$html$Html_Attributes$id('login-page'),
 			_1: {
 				ctor: '::',
-				_0: _elm_lang$html$Html_Attributes$class('flex items-center justify-center max-width-4 mx-auto h100'),
+				_0: _elm_lang$html$Html_Attributes$class('sm-flex items-center justify-center max-width-4 mx-auto h100'),
 				_1: {ctor: '[]'}
 			}
 		},
@@ -12625,7 +12625,7 @@ var _user$project$Auth_Login$view = function (model) {
 				_elm_lang$html$Html$div,
 				{
 					ctor: '::',
-					_0: _elm_lang$html$Html_Attributes$class('col-12 md-col-4 center m1-auto'),
+					_0: _elm_lang$html$Html_Attributes$class('col-12 md-col-4 center mx-auto'),
 					_1: {ctor: '[]'}
 				},
 				{
@@ -12979,7 +12979,7 @@ var _user$project$Authors_Detail$view = function (model) {
 			_0: _elm_lang$html$Html_Attributes$id('user-page'),
 			_1: {
 				ctor: '::',
-				_0: _elm_lang$html$Html_Attributes$class('flex items-center justify-center h100'),
+				_0: _elm_lang$html$Html_Attributes$class('sm-flex items-center justify-center h100'),
 				_1: {ctor: '[]'}
 			}
 		},
@@ -13086,11 +13086,7 @@ var _user$project$Authors_List$view = function (authors) {
 		{
 			ctor: '::',
 			_0: _elm_lang$html$Html_Attributes$id('browse-page'),
-			_1: {
-				ctor: '::',
-				_0: _elm_lang$html$Html_Attributes$class('pt4'),
-				_1: {ctor: '[]'}
-			}
+			_1: {ctor: '[]'}
 		},
 		{
 			ctor: '::',
@@ -13177,7 +13173,7 @@ var _user$project$Mottos_Edit$page = F2(
 			_elm_lang$html$Html$div,
 			{
 				ctor: '::',
-				_0: _elm_lang$html$Html_Attributes$class('col-12 md-col-4 center m1-auto'),
+				_0: _elm_lang$html$Html_Attributes$class('col-12 md-col-4 center mx-auto'),
 				_1: {ctor: '[]'}
 			},
 			{
@@ -13271,7 +13267,7 @@ var _user$project$Mottos_Edit$view = F2(
 				_0: _elm_lang$html$Html_Attributes$id('edit-motto-page'),
 				_1: {
 					ctor: '::',
-					_0: _elm_lang$html$Html_Attributes$class('flex items-center justify-center max-width-4 mx-auto h100'),
+					_0: _elm_lang$html$Html_Attributes$class('sm-flex items-center justify-center max-width-4 mx-auto h100'),
 					_1: {ctor: '[]'}
 				}
 			},
@@ -13818,7 +13814,7 @@ var _user$project$Users_Edit$view = F2(
 				_0: _elm_lang$html$Html_Attributes$id('edit-profile-page'),
 				_1: {
 					ctor: '::',
-					_0: _elm_lang$html$Html_Attributes$class('flex items-center justify-center max-width-4 mx-auto h100'),
+					_0: _elm_lang$html$Html_Attributes$class('sm-flex items-center justify-center max-width-4 mx-auto h100'),
 					_1: {ctor: '[]'}
 				}
 			},
@@ -13828,7 +13824,7 @@ var _user$project$Users_Edit$view = F2(
 					_elm_lang$html$Html$div,
 					{
 						ctor: '::',
-						_0: _elm_lang$html$Html_Attributes$class('col-12 md-col-4 center m1-auto'),
+						_0: _elm_lang$html$Html_Attributes$class('col-12 md-col-4 center mx-auto'),
 						_1: {ctor: '[]'}
 					},
 					{
@@ -14468,7 +14464,7 @@ var _user$project$Views_Welcome$view = A2(
 		_0: _elm_lang$html$Html_Attributes$id('welcome-page'),
 		_1: {
 			ctor: '::',
-			_0: _elm_lang$html$Html_Attributes$class('flex items-center justify-center max-width-4 mx-auto h100'),
+			_0: _elm_lang$html$Html_Attributes$class('sm-flex items-center justify-center max-width-4 mx-auto h100'),
 			_1: {ctor: '[]'}
 		}
 	},
@@ -14478,7 +14474,7 @@ var _user$project$Views_Welcome$view = A2(
 			_elm_lang$html$Html$div,
 			{
 				ctor: '::',
-				_0: _elm_lang$html$Html_Attributes$class('col-12 md-col-5 center'),
+				_0: _elm_lang$html$Html_Attributes$class('col-12 md-col-5 mx-auto center'),
 				_1: {ctor: '[]'}
 			},
 			{
