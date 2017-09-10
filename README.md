@@ -29,9 +29,9 @@ yarn seed
 ```
 
 ## Develop
-In development we use Webpack Dev Server to serve our `index.html`. The app uses JSON Server to serve mock data from a JSON file.
+In development we use Webpack Dev Server to serve our `index.html`. The app uses JSON Server to serve mock data from a JSON file. *NOTE: THE JSON web server portion of this repo is now out of date as the API resource paths have been changed in order to interact with the staging and production API.*
 
-### Run Elm app + JSON Server (*recommended*)
+### Run Elm app + JSON Server
 If you wish to start the mock JSON server and the Elm app simultaneously:
 ```
 yarn start
@@ -66,11 +66,12 @@ yarn build:prod
 
 ## Deploy
 ### Dependencies
-You must have [Surge CLI](https://surge.sh/) and [AWS CLI](http://docs.aws.amazon.com/cli/latest/userguide/installing.html) installed in order to deploy. Everything else is listed in `package.json` and will install with `yarn`.
+You must have [Surge CLI](https://surge.sh/) and [AWS CLI](http://docs.aws.amazon.com/cli/latest/userguide/installing.html) installed in order to deploy. Everything else is listed in `package.json` and will install with `yarn`. If you wish to deploy to Github Pages you'll need to have the gh-pages npm module installed globally.
 
 ### Staging
 The staging deployment builds with staging environment variables
 and deploys the built site with Surge.
+
 ```
 yarn deploy:staging
 ```
@@ -80,6 +81,11 @@ The production deployment builds with production environment variables
 and deploys the built site to S3.
 ```
 yarn deploy:prod
+```
+
+### Github Pages
+```
+yarn deploy:gh-pages
 ```
 
 ## Configure
