@@ -17,6 +17,7 @@ type Msg
     | LoginUser LoginUserForm
     | LogoutUser
     | OnCreateUser (Result Http.Error User)
+    | OnDeleteUser (Result Http.Error User)
     | OnGetUserFromToken (Result Http.Error User)
     | OnFetchAuthors (WebData (List Author))
     | OnFetchAuthor (WebData Author)

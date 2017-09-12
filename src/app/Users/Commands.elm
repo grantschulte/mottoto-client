@@ -43,6 +43,42 @@ saveUserUrl apiUrl =
 
 
 
+-- DELETE USER
+
+
+deleteUserCmd : Model -> Cmd Msg
+deleteUserCmd model =
+    deleteUserRequest model.env.apiUrl model.user
+        |> Http.send OnDeleteUser
+
+
+
+-- DELETE USER REQUEST
+
+
+deleteUserRequest : ApiUrl -> User -> Http.Request User
+deleteUserRequest apiUrl user =
+    Http.request
+        { body = Http.emptyBody
+        , expect = Http.expectJson userDecoder
+        , headers = []
+        , method = "POST"
+        , timeout = Nothing
+        , url = deleteUserUrl apiUrl
+        , withCredentials = False
+        }
+
+
+
+-- DELETE USER URL
+
+
+deleteUserUrl : ApiUrl -> User -> String
+deleteUserUrl apiUrl user =
+    apiUrl ++ "/api/users/" ++ user.id
+
+
+
 -- GET USER FROM TOKEN
 
 
