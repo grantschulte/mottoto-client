@@ -11,6 +11,7 @@ import RemoteData exposing (WebData)
 
 type Msg
     = CreateUser CreateUserForm
+    | DeleteUser
     | GetToken
     | GetUserFromToken String
     | SetToken String

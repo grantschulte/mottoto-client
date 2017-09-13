@@ -8,7 +8,7 @@ import Models exposing (..)
 import Mottos.Commands exposing (saveMottoCmd)
 import Ports exposing (getToken, removeToken, setToken)
 import Routing exposing (authorPath, editMottoPath, parseLocation, welcomePath)
-import Users.Commands exposing (getUserFromTokenCmd, saveUserCmd)
+import Users.Commands exposing (deleteUserCmd, getUserFromTokenCmd, saveUserCmd)
 import Utils.Errors exposing (httpError)
 
 
@@ -20,6 +20,9 @@ update msg model =
     case msg of
         CreateUser createForm ->
             ( model, createUserCmd model createForm )
+
+        DeleteUser ->
+            ( model, deleteUser model )
 
         GetToken ->
             ( model, Cmd.none )
@@ -63,6 +66,12 @@ update msg model =
                     createFormErrors oldCreateForm error
             in
             ( { model | createForm = updatedCreateForm }, Cmd.none )
+
+        OnDeleteUser (Ok user) ->
+            ( model, Cmd.none )
+
+        OnDeleteUser (Err error) ->
+            ( model, Cmd.none )
 
         OnFetchAuthor response ->
             ( { model | author = response }, Cmd.none )
@@ -263,6 +272,16 @@ saveMotto model mottoForm =
 
         Just user ->
             saveMottoCmd model user mottoForm
+
+
+deleteUser : Model -> Cmd Msg
+deleteUser model =
+    case model.user of
+        Nothing ->
+            Cmd.none
+
+        Just user ->
+            deleteUserCmd model user
 
 
 setTokenOnUser : Maybe User -> Token -> Maybe User

@@ -46,9 +46,9 @@ saveUserUrl apiUrl =
 -- DELETE USER
 
 
-deleteUserCmd : Model -> Cmd Msg
-deleteUserCmd model =
-    deleteUserRequest model.env.apiUrl model.user
+deleteUserCmd : Model -> User -> Cmd Msg
+deleteUserCmd model user =
+    deleteUserRequest model.env.apiUrl user
         |> Http.send OnDeleteUser
 
 
@@ -61,10 +61,10 @@ deleteUserRequest apiUrl user =
     Http.request
         { body = Http.emptyBody
         , expect = Http.expectJson userDecoder
-        , headers = []
-        , method = "POST"
+        , headers = [ Http.header "x-access-token" user.token ]
+        , method = "DELETE"
         , timeout = Nothing
-        , url = deleteUserUrl apiUrl
+        , url = deleteUserUrl apiUrl user
         , withCredentials = False
         }
 
@@ -75,7 +75,7 @@ deleteUserRequest apiUrl user =
 
 deleteUserUrl : ApiUrl -> User -> String
 deleteUserUrl apiUrl user =
-    apiUrl ++ "/api/users/" ++ user.id
+    apiUrl ++ "/api/users"
 
 
 
